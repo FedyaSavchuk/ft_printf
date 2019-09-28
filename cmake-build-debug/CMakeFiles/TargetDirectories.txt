@@ -1,0 +1,3 @@
+/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/CMakeFiles/Print_f.dir

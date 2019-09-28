@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/hspeeder/Desktop/School_42/Print_f/Libft/libft.h
+unistd.h
+-
+string.h
+-
+stdlib.h
+-
+
+/Users/hspeeder/Desktop/School_42/Print_f/ft_printf.c
+printf.h
+/Users/hspeeder/Desktop/School_42/Print_f/printf.h
+
+/Users/hspeeder/Desktop/School_42/Print_f/printf.h
+unistd.h
+-
+stdlib.h
+-
+fcntl.h
+-
+stdarg.h
+-
+Libft/libft.h
+/Users/hspeeder/Desktop/School_42/Print_f/Libft/libft.h
+
