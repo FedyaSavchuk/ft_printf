@@ -7,17 +7,19 @@
 # include "Libft/libft.h"
 
 int		ft_printf(const char *format, ... );
+int		print_xXo(unsigned int nbr, char ns);
 
 // список флагов к спецификаторам
 typedef struct	s_flags
 {
 				// общие флаги
-				int null;			// отвечает за ширину (при 04 будет '0025' / '25  ' )
+				int nul;			// отвечает за ширину (при 04 будет '0025' / '25  ' )
 				int minus;			// отвечает за выравнивание слева/справа
 				int plus;			// отвечает за отображение знака +/- (+25 / -25)
 				int grill;			// отвечает за отображение 8-16-ых чисел
 				int dote;			// точность после запятой (с int работает так же как и null)
 				int space;			// есть ли пробел после %
+				int min_width;		// минимальная ширина строки
 
 				// только для d i o u x X
 				int h;				// перевод int->short_int      / unsigned_int->unsigned_short_int

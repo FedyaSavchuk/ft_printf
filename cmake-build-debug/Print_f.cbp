@@ -44,7 +44,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/hspeeder/Desktop/School_42/Print_f/."/>
+					<Add directory="/Users/hspeeder/Desktop/School_42/Print_f/Libft"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
@@ -66,7 +66,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/hspeeder/Desktop/School_42/Print_f/."/>
+					<Add directory="/Users/hspeeder/Desktop/School_42/Print_f/Libft"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/hspeeder/Desktop/School_42/Print_f/Libft/ft_putchar.c">
+			<Option target="Print_f"/>
+		</Unit>
+		<Unit filename="/Users/hspeeder/Desktop/School_42/Print_f/Libft/ft_putnbr.c">
+			<Option target="Print_f"/>
+		</Unit>
 		<Unit filename="/Users/hspeeder/Desktop/School_42/Print_f/ft_printf.c">
 			<Option target="Print_f"/>
 		</Unit>

@@ -123,6 +123,60 @@ Print_f/fast:
 	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/build
 .PHONY : Print_f/fast
 
+Libft/ft_putchar.o: Libft/ft_putchar.c.o
+
+.PHONY : Libft/ft_putchar.o
+
+# target to build an object file
+Libft/ft_putchar.c.o:
+	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/Libft/ft_putchar.c.o
+.PHONY : Libft/ft_putchar.c.o
+
+Libft/ft_putchar.i: Libft/ft_putchar.c.i
+
+.PHONY : Libft/ft_putchar.i
+
+# target to preprocess a source file
+Libft/ft_putchar.c.i:
+	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/Libft/ft_putchar.c.i
+.PHONY : Libft/ft_putchar.c.i
+
+Libft/ft_putchar.s: Libft/ft_putchar.c.s
+
+.PHONY : Libft/ft_putchar.s
+
+# target to generate assembly for a file
+Libft/ft_putchar.c.s:
+	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/Libft/ft_putchar.c.s
+.PHONY : Libft/ft_putchar.c.s
+
+Libft/ft_putnbr.o: Libft/ft_putnbr.c.o
+
+.PHONY : Libft/ft_putnbr.o
+
+# target to build an object file
+Libft/ft_putnbr.c.o:
+	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/Libft/ft_putnbr.c.o
+.PHONY : Libft/ft_putnbr.c.o
+
+Libft/ft_putnbr.i: Libft/ft_putnbr.c.i
+
+.PHONY : Libft/ft_putnbr.i
+
+# target to preprocess a source file
+Libft/ft_putnbr.c.i:
+	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/Libft/ft_putnbr.c.i
+.PHONY : Libft/ft_putnbr.c.i
+
+Libft/ft_putnbr.s: Libft/ft_putnbr.c.s
+
+.PHONY : Libft/ft_putnbr.s
+
+# target to generate assembly for a file
+Libft/ft_putnbr.c.s:
+	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/Libft/ft_putnbr.c.s
+.PHONY : Libft/ft_putnbr.c.s
+
 ft_printf.o: ft_printf.c.o
 
 .PHONY : ft_printf.o
@@ -159,6 +213,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... Print_f"
+	@echo "... Libft/ft_putchar.o"
+	@echo "... Libft/ft_putchar.i"
+	@echo "... Libft/ft_putchar.s"
+	@echo "... Libft/ft_putnbr.o"
+	@echo "... Libft/ft_putnbr.i"
+	@echo "... Libft/ft_putnbr.s"
 	@echo "... ft_printf.o"
 	@echo "... ft_printf.i"
 	@echo "... ft_printf.s"
