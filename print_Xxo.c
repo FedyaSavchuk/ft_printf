@@ -24,7 +24,12 @@ int		print_xxo(int nbr, char ns)
 {
 	char *snbr;
 
-	snbr = ft_itoa_base(nbr, (ns == 'o') ? 8 : 16, (ns == 'X') ? 'A' : 'a');
+	if (ns == 'b')
+		snbr = ft_itoa_base(nbr, 2, 'a');
+	else if (ns == 'o')
+		snbr = ft_itoa_base(nbr, 8, 'a');
+	else
+		snbr = ft_itoa_base(nbr, 16, (ns == 'X') ? 'A' : 'a');
 	if (g_flags->minus || (g_flags->min_width && g_flags->zero))
 	{
 		print_format_xo(ns);
