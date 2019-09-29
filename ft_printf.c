@@ -61,10 +61,11 @@ char 	read_flags(const char *format)
 		}
 		else if (format[i] == '0')
 		{
+			g_flags->zero = 1ж
 			// записать число и если не будет равно одному из спецификаторов - войти в елсе
 			while (format[i] <= '9' && format[i] >= '0')
 			{
-				g_flags->zero = g_flags->zero * 10 + (format[i] - '0');
+				g_flags-> = g_flags->zero * 10 + (format[i] - '0');
 				i++;
 			}
 			if (format[i] == 'c' || format[i] == 's' || format[i] == 'p' || format[i] == 'd'
