@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/hspeeder/Desktop/School_42/Print_f
+CMAKE_SOURCE_DIR = /Users/hspeeder/Desktop/School_42/printf_project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/CMakeFiles /Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/CMakeFiles /Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -204,6 +204,33 @@ ft_printf.c.s:
 	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/ft_printf.c.s
 .PHONY : ft_printf.c.s
 
+print_d.o: print_d.c.o
+
+.PHONY : print_d.o
+
+# target to build an object file
+print_d.c.o:
+	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/print_d.c.o
+.PHONY : print_d.c.o
+
+print_d.i: print_d.c.i
+
+.PHONY : print_d.i
+
+# target to preprocess a source file
+print_d.c.i:
+	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/print_d.c.i
+.PHONY : print_d.c.i
+
+print_d.s: print_d.c.s
+
+.PHONY : print_d.s
+
+# target to generate assembly for a file
+print_d.c.s:
+	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/print_d.c.s
+.PHONY : print_d.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -222,6 +249,9 @@ help:
 	@echo "... ft_printf.o"
 	@echo "... ft_printf.i"
 	@echo "... ft_printf.s"
+	@echo "... print_d.o"
+	@echo "... print_d.i"
+	@echo "... print_d.s"
 .PHONY : help
 
 

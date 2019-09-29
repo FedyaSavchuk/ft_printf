@@ -8,43 +8,43 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug"/>
+				<Option working_dir="/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug"/>
+				<Option working_dir="/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug"/>
+				<Option working_dir="/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Print_f">
-				<Option output="/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Print_f" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug"/>
+				<Option output="/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Print_f" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/hspeeder/Desktop/School_42/Print_f/Libft"/>
+					<Add directory="/Users/hspeeder/Desktop/School_42/printf_project/Libft"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
@@ -53,20 +53,20 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 Print_f"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 Print_f"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Print_f/fast">
-				<Option output="/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Print_f" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug"/>
+				<Option output="/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Print_f" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/hspeeder/Desktop/School_42/Print_f/Libft"/>
+					<Add directory="/Users/hspeeder/Desktop/School_42/printf_project/Libft"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
@@ -75,26 +75,29 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 Print_f/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 Print_f/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/hspeeder/Desktop/School_42/Print_f/Libft/ft_putchar.c">
+		<Unit filename="/Users/hspeeder/Desktop/School_42/printf_project/Libft/ft_putchar.c">
 			<Option target="Print_f"/>
 		</Unit>
-		<Unit filename="/Users/hspeeder/Desktop/School_42/Print_f/Libft/ft_putnbr.c">
+		<Unit filename="/Users/hspeeder/Desktop/School_42/printf_project/Libft/ft_putnbr.c">
 			<Option target="Print_f"/>
 		</Unit>
-		<Unit filename="/Users/hspeeder/Desktop/School_42/Print_f/ft_printf.c">
+		<Unit filename="/Users/hspeeder/Desktop/School_42/printf_project/ft_printf.c">
 			<Option target="Print_f"/>
 		</Unit>
-		<Unit filename="/Users/hspeeder/Desktop/School_42/Print_f/printf.h">
+		<Unit filename="/Users/hspeeder/Desktop/School_42/printf_project/print_d.c">
 			<Option target="Print_f"/>
 		</Unit>
-		<Unit filename="/Users/hspeeder/Desktop/School_42/Print_f/CMakeLists.txt">
+		<Unit filename="/Users/hspeeder/Desktop/School_42/printf_project/printf.h">
+			<Option target="Print_f"/>
+		</Unit>
+		<Unit filename="/Users/hspeeder/Desktop/School_42/printf_project/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

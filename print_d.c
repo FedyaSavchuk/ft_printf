@@ -1,4 +1,7 @@
-//
-// Created by Hollard Speeder on 29/09/2019.
-//
 
+#include "printf.h"
+
+void	print_d(int d)
+{
+	if (g_flags->dote || g_flags->nul)
+}

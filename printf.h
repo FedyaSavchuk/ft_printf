@@ -7,13 +7,14 @@
 # include "Libft/libft.h"
 
 int		ft_printf(const char *format, ... );
-int		print_xXo(unsigned int nbr, char ns);
+int		print_xxo(int nbr, char ns);
+char	*ft_itoa_base(int value, int base, char reg);
 
 // список флагов к спецификаторам
 typedef struct	s_flags
 {
 				// общие флаги
-				int nul;			// отвечает за ширину (при 04 будет '0025' / '25  ' )
+				int zero;			// отвечает за ширину (при 04 будет '0025' / '25  ' )
 				int minus;			// отвечает за выравнивание слева/справа
 				int plus;			// отвечает за отображение знака +/- (+25 / -25)
 				int grill;			// отвечает за отображение 8-16-ых чисел
@@ -34,5 +35,6 @@ typedef struct	s_flags
 
 t_flags *g_flags;
 
+int g_iter;
 
 #endif

@@ -6,5 +6,5 @@ C_FLAGS = -g   -std=gnu11
 
 C_DEFINES = 
 
-C_INCLUDES = -I/Users/hspeeder/Desktop/School_42/Print_f/Libft 
+C_INCLUDES = -I/Users/hspeeder/Desktop/School_42/printf_project/Libft 
 

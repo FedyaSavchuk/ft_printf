@@ -1,10 +1,10 @@
 #include "printf.h"
-
+#include <stdio.h>
 
 // функция очищает флаги
 void 	clear_flags(void)
 {
-	g_flags->nul = 0;
+	g_flags->zero = 0;
 	g_flags->minus = 0;
 	g_flags->plus = 0;
 	g_flags->grill = 0;
@@ -19,11 +19,10 @@ void 	clear_flags(void)
 
 
 // функция записывает флаги в список
-char 	read_flags(const char *format, int i)
+char 	read_flags(const char *format)
 {
-
-	g_flags = (t_flags *)malloc(sizeof(t_flags *) * 1);
-	g_flags->min_width = 0;
+	int i;
+	i = g_iter;
 	while (format[i] != 'c' && format[i] != 's' && format[i] != 'p' && format[i] != 'd'
 	&& format[i] != 'i' && format[i] != 'o' && format[i] != 'u'
 	&& format[i] != 'x' && format[i] != 'X' && format[i] != 'f' && format[i] != '\0')
@@ -34,8 +33,6 @@ char 	read_flags(const char *format, int i)
 			g_flags->minus = 1;
 		else if (format[i] == '+')
 			g_flags->plus = 1;
-		else if (format[i] == '.')
-			g_flags->dote = 1;
 		else if (format[i] == '#')
 			g_flags->grill = 1;
 		else if (format[i] == 'h' && format[i++] == 'h')
@@ -48,14 +45,8 @@ char 	read_flags(const char *format, int i)
 			g_flags->ll = 1;
 		else if (format[i] == 'L')
 			g_flags->L = 1;
-//		else if (format[i] == '0')
-//		{
-//
-//		}
-//			g_flags->nul = 1;
-		else
+		else if (format[i] <= '9' && format[i] >= '1')
 		{
-			// записать число и если не будет равно одному из спецификаторов - войти в елсе
 			while (format[i] <= '9' && format[i] >= '0')
 			{
 				g_flags->min_width = g_flags->min_width * 10 + (format[i] - '0');
@@ -64,16 +55,46 @@ char 	read_flags(const char *format, int i)
 			if (format[i] == 'c' || format[i] == 's' || format[i] == 'p' || format[i] == 'd'
 				|| format[i] == 'i' || format[i] == 'o' || format[i] == 'u'
 				|| format[i] == 'x' || format[i] == 'X' || format[i] == 'f' || format[i] != '\0')
-			{
-				g_flags->format[i] = 1;
 				break ;
+			clear_flags();
+			return (0);
+		}
+		else if (format[i] == '0')
+		{
+			// записать число и если не будет равно одному из спецификаторов - войти в елсе
+			while (format[i] <= '9' && format[i] >= '0')
+			{
+				g_flags->zero = g_flags->zero * 10 + (format[i] - '0');
+				i++;
 			}
-
+			if (format[i] == 'c' || format[i] == 's' || format[i] == 'p' || format[i] == 'd'
+				|| format[i] == 'i' || format[i] == 'o' || format[i] == 'u'
+				|| format[i] == 'x' || format[i] == 'X' || format[i] == 'f')
+				break ;
+			i--;
+		}
+		else if (format[i] == '.')
+		{
+			i++;
+			while (format[i] <= '9' && format[i] >= '0')
+			{
+				g_flags->dote = g_flags->dote * 10 + (format[i] - '0');
+				i++;
+			}
+			if (format[i] == 'c' || format[i] == 's' || format[i] == 'p' || format[i] == 'd'
+				|| format[i] == 'i' || format[i] == 'o' || format[i] == 'u'
+				|| format[i] == 'x' || format[i] == 'X' || format[i] == 'f' || format[i] != '\0')
+				break ;
+			i--;
+		}
+		else
+		{
 			clear_flags();
 			return (0);
 		}
 		i++;
 	}
+	g_iter = i;
 	return (format[i]);
 }
 
@@ -83,39 +104,37 @@ char 	read_flags(const char *format, int i)
 int		ft_printf(const char *format, ... )
 {
     va_list				argv;
-    int					i;
     char 				spec;
 
-    //count = read_format(format);
-    i = 0;
-    g_flags = (t_flags *)malloc(sizeof(t_flags *) * 1);
+	g_iter = 0;
 	va_start(argv, format);
-	while (format[i])
+	g_flags = (t_flags *)malloc(sizeof(t_flags *) * 1);
+	while (format[g_iter])
     {
-		if (format[i] != '%')
-			ft_putchar(format[i]);
-	    else if (format[i] == '%' && format[i + 1] == '%')
+		if (format[g_iter] != '%')
+			ft_putchar(format[g_iter]);
+	    else if (format[g_iter] == '%' && format[g_iter + 1] == '%')
 		{
-	    	i++;
-			ft_putchar(format[i]);
+			g_iter++;
+			ft_putchar(format[g_iter]);
 		}
 	    else
         {
-	        i++;
-			if (!(spec = read_flags(format, i)))
+			g_iter++;
+			clear_flags();
+			if (!(spec = read_flags(format)))
 				continue ;
 	        if (spec == 'd' || spec == 'i')
-                ft_putnbr(va_arg(argv, int));
+                ft_putnbr(va_arg(argv, int)); //print_d
 	        if (spec == 'o')
 				// Функция Витали(перевод в 8-ую систему);
 	        if (spec == 'u')
 				ft_putnbr(va_arg(argv, unsigned int));
-			if (spec == 'x' || format[i] == 'X')
-				// Функция Витали (перевод в 16-ую систему);
-				// Функция добавления флагов
-			clear_flags();
+			if (spec == 'x' || spec == 'X' || spec == 'o')
+				print_xxo(va_arg(argv, unsigned int), spec);
+
         }
-	    i++;
+		g_iter++;
 
     }
 	return (0);
@@ -124,10 +143,24 @@ int		ft_printf(const char *format, ... )
 int     main(void)
 {
 	char a;
-    //ft_printf("H %5ello %d \n %d", 5);
-    a = read_flags("H %02 d %d \n %d", 3);
-    ft_putnbr(g_flags->min_width);
+	printf("\n----------- TESTS -----------\n");
+    ft_printf("%o", 30);
+	//printf("|%0.d| \n", 5);
+//    a = read_flags("H %02d %d \n %d", 3);
     write(1, &a, 1);
+	printf("\n--------- Check Flags ---------\n");
+	printf("g_flags->zero   : %d\n", g_flags->zero);
+	printf("g_flags->minus  : %d\n", g_flags->minus);
+	printf("g_flags->plus   : %d\n", g_flags->plus);
+	printf("g_flags->grill  : %d\n", g_flags->grill);
+	printf("g_flags->dote   : %d\n", g_flags->dote);
+	printf("g_flags->space  : %d\n", g_flags->space);
+	printf("g_flags->h      : %d\n", g_flags->h);
+	printf("g_flags->hh     : %d\n", g_flags->hh);
+	printf("g_flags->l      : %d\n", g_flags->l);
+	printf("g_flags->ll     : %d\n", g_flags->ll);
+	printf("g_flags->L      : %d\n", g_flags->L);
+	printf("------------------------------\n");
     return (0);
 }
 

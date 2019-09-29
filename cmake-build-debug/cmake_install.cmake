@@ -1,4 +1,4 @@
-# Install script for directory: /Users/hspeeder/Desktop/School_42/Print_f
+# Install script for directory: /Users/hspeeder/Desktop/School_42/printf_project
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/hspeeder/Desktop/School_42/Print_f/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
