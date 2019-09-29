@@ -12,12 +12,6 @@
 
 #include "printf.h"
 
-void	ft_putchars(char c, int i)
-{
-	while (i-- > 0)
-		ft_putchar(c);
-}
-
 static void	print_format_xo(char ns)
 {
 	if (g_flags->grill)
@@ -26,24 +20,10 @@ static void	print_format_xo(char ns)
 		ft_putchar(ns);
 }
 
-static int	convert_xo(int nbr)
-{
-	if (g_flags->h)
-		nbr = (short int)nbr;
-	if (g_flags->hh)
-		nbr = (char)nbr;
-	if (g_flags->l)
-		nbr = (long int)nbr;
-	if (g_flags->ll)
-		nbr = (long long int)nbr;
-	return (nbr);
-}
-
 int		print_xxo(int nbr, char ns)
 {
 	char *snbr;
 
-	nbr = convert_xo(nbr);
 	snbr = ft_itoa_base(nbr, (ns == 'o') ? 8 : 16, (ns == 'X') ? 'A' : 'a');
 	if (g_flags->minus || (g_flags->min_width && g_flags->zero))
 	{
