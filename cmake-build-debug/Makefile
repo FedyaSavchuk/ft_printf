@@ -204,32 +204,59 @@ ft_printf.c.s:
 	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/ft_printf.c.s
 .PHONY : ft_printf.c.s
 
-print_d.o: print_d.c.o
+print_di.o: print_di.c.o
 
-.PHONY : print_d.o
+.PHONY : print_di.o
 
 # target to build an object file
-print_d.c.o:
-	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/print_d.c.o
-.PHONY : print_d.c.o
+print_di.c.o:
+	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/print_di.c.o
+.PHONY : print_di.c.o
 
-print_d.i: print_d.c.i
+print_di.i: print_di.c.i
 
-.PHONY : print_d.i
+.PHONY : print_di.i
 
 # target to preprocess a source file
-print_d.c.i:
-	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/print_d.c.i
-.PHONY : print_d.c.i
+print_di.c.i:
+	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/print_di.c.i
+.PHONY : print_di.c.i
 
-print_d.s: print_d.c.s
+print_di.s: print_di.c.s
 
-.PHONY : print_d.s
+.PHONY : print_di.s
 
 # target to generate assembly for a file
-print_d.c.s:
-	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/print_d.c.s
-.PHONY : print_d.c.s
+print_di.c.s:
+	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/print_di.c.s
+.PHONY : print_di.c.s
+
+print_u.o: print_u.c.o
+
+.PHONY : print_u.o
+
+# target to build an object file
+print_u.c.o:
+	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/print_u.c.o
+.PHONY : print_u.c.o
+
+print_u.i: print_u.c.i
+
+.PHONY : print_u.i
+
+# target to preprocess a source file
+print_u.c.i:
+	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/print_u.c.i
+.PHONY : print_u.c.i
+
+print_u.s: print_u.c.s
+
+.PHONY : print_u.s
+
+# target to generate assembly for a file
+print_u.c.s:
+	$(MAKE) -f CMakeFiles/Print_f.dir/build.make CMakeFiles/Print_f.dir/print_u.c.s
+.PHONY : print_u.c.s
 
 # Help Target
 help:
@@ -249,9 +276,12 @@ help:
 	@echo "... ft_printf.o"
 	@echo "... ft_printf.i"
 	@echo "... ft_printf.s"
-	@echo "... print_d.o"
-	@echo "... print_d.i"
-	@echo "... print_d.s"
+	@echo "... print_di.o"
+	@echo "... print_di.i"
+	@echo "... print_di.s"
+	@echo "... print_u.o"
+	@echo "... print_u.i"
+	@echo "... print_u.s"
 .PHONY : help
 
 

@@ -11,3 +11,11 @@ CMakeFiles/Print_f.dir/ft_printf.c.o: ../Libft/libft.h
 CMakeFiles/Print_f.dir/ft_printf.c.o: ../ft_printf.c
 CMakeFiles/Print_f.dir/ft_printf.c.o: ../printf.h
 
+CMakeFiles/Print_f.dir/print_di.c.o: ../Libft/libft.h
+CMakeFiles/Print_f.dir/print_di.c.o: ../print_di.c
+CMakeFiles/Print_f.dir/print_di.c.o: ../printf.h
+
+CMakeFiles/Print_f.dir/print_u.c.o: ../Libft/libft.h
+CMakeFiles/Print_f.dir/print_u.c.o: ../print_u.c
+CMakeFiles/Print_f.dir/print_u.c.o: ../printf.h
+

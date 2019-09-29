@@ -18,7 +18,7 @@ void	ft_putchars(char c, int i)
 		ft_putchar(c);
 }
 
-void	print_format_xo(char ns)
+static void	print_format_xo(char ns)
 {
 	if (g_flags->grill)
 		ft_putchar('0');
@@ -26,7 +26,7 @@ void	print_format_xo(char ns)
 		ft_putchar(ns);
 }
 
-int	convert_xo(int nbr)
+static int	convert_xo(int nbr)
 {
 	if (g_flags->h)
 		nbr = (short int)nbr;
@@ -56,8 +56,6 @@ int		print_xxo(int nbr, char ns)
 	{
 		ft_putchars(' ', g_flags->min_width - ft_strlen(snbr) -
 			g_flags->grill - ((ns == 'o') ? 0 : 1));
-		if (g_flags->grill)
-			ft_putchar('0');
 		print_format_xo(ns);
 	}
 	ft_putstr(snbr);

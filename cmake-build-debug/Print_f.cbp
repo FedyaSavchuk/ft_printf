@@ -91,7 +91,10 @@
 		<Unit filename="/Users/hspeeder/Desktop/School_42/printf_project/ft_printf.c">
 			<Option target="Print_f"/>
 		</Unit>
-		<Unit filename="/Users/hspeeder/Desktop/School_42/printf_project/print_d.c">
+		<Unit filename="/Users/hspeeder/Desktop/School_42/printf_project/print_di.c">
+			<Option target="Print_f"/>
+		</Unit>
+		<Unit filename="/Users/hspeeder/Desktop/School_42/printf_project/print_u.c">
 			<Option target="Print_f"/>
 		</Unit>
 		<Unit filename="/Users/hspeeder/Desktop/School_42/printf_project/printf.h">

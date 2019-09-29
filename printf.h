@@ -8,7 +8,9 @@
 
 int		ft_printf(const char *format, ... );
 int		print_xxo(int nbr, char ns);
-char	*ft_itoa_base(int value, int base, char reg);
+char	*ft_itoa_base(int long long value, int base, char reg);
+int     print_di(long long int nbr);
+int     print_u(unsigned long long int nbr);
 
 // список флагов к спецификаторам
 typedef struct	s_flags

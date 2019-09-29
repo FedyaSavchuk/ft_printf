@@ -7,7 +7,8 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/hspeeder/Desktop/School_42/printf_project/Libft/ft_putchar.c" "/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/CMakeFiles/Print_f.dir/Libft/ft_putchar.c.o"
   "/Users/hspeeder/Desktop/School_42/printf_project/Libft/ft_putnbr.c" "/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/CMakeFiles/Print_f.dir/Libft/ft_putnbr.c.o"
   "/Users/hspeeder/Desktop/School_42/printf_project/ft_printf.c" "/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/CMakeFiles/Print_f.dir/ft_printf.c.o"
-  "/Users/hspeeder/Desktop/School_42/printf_project/print_d.c" "/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/CMakeFiles/Print_f.dir/print_d.c.o"
+  "/Users/hspeeder/Desktop/School_42/printf_project/print_di.c" "/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/CMakeFiles/Print_f.dir/print_di.c.o"
+  "/Users/hspeeder/Desktop/School_42/printf_project/print_u.c" "/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/CMakeFiles/Print_f.dir/print_u.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

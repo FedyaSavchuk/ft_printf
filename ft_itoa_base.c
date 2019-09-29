@@ -12,7 +12,7 @@
 
 #include "printf.h"
 
-char	*ft_itoa_base(int value, int base, char reg)
+char	*ft_itoa_base(long long int value, int base, char reg)
 {
 	int		i;
 	int		mult;
@@ -33,7 +33,7 @@ char	*ft_itoa_base(int value, int base, char reg)
 	}
 	i = 0;
 	mult = 1;
-	table = malloc(sizeof(char) * 34);
+	table = malloc(sizeof(char) * 66);
 	power = 1;
 	if (value < 0)
 	{

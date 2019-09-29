@@ -91,5 +91,6 @@ int					ft_isspace(int c);
 void				ft_swapstr(char **str1, char **str2);
 unsigned long		ft_root(unsigned long long num);
 char				*ft_strrev(char *str);
+void    			ft_putchars(char c, int i);
 
 #endif

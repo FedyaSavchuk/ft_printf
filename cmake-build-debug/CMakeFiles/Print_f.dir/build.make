@@ -96,25 +96,39 @@ CMakeFiles/Print_f.dir/Libft/ft_putnbr.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Print_f.dir/Libft/ft_putnbr.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/hspeeder/Desktop/School_42/printf_project/Libft/ft_putnbr.c -o CMakeFiles/Print_f.dir/Libft/ft_putnbr.c.s
 
-CMakeFiles/Print_f.dir/print_d.c.o: CMakeFiles/Print_f.dir/flags.make
-CMakeFiles/Print_f.dir/print_d.c.o: ../print_d.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/Print_f.dir/print_d.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Print_f.dir/print_d.c.o   -c /Users/hspeeder/Desktop/School_42/printf_project/print_d.c
+CMakeFiles/Print_f.dir/print_di.c.o: CMakeFiles/Print_f.dir/flags.make
+CMakeFiles/Print_f.dir/print_di.c.o: ../print_di.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/Print_f.dir/print_di.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Print_f.dir/print_di.c.o   -c /Users/hspeeder/Desktop/School_42/printf_project/print_di.c
 
-CMakeFiles/Print_f.dir/print_d.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Print_f.dir/print_d.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/hspeeder/Desktop/School_42/printf_project/print_d.c > CMakeFiles/Print_f.dir/print_d.c.i
+CMakeFiles/Print_f.dir/print_di.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Print_f.dir/print_di.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/hspeeder/Desktop/School_42/printf_project/print_di.c > CMakeFiles/Print_f.dir/print_di.c.i
 
-CMakeFiles/Print_f.dir/print_d.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Print_f.dir/print_d.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/hspeeder/Desktop/School_42/printf_project/print_d.c -o CMakeFiles/Print_f.dir/print_d.c.s
+CMakeFiles/Print_f.dir/print_di.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Print_f.dir/print_di.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/hspeeder/Desktop/School_42/printf_project/print_di.c -o CMakeFiles/Print_f.dir/print_di.c.s
+
+CMakeFiles/Print_f.dir/print_u.c.o: CMakeFiles/Print_f.dir/flags.make
+CMakeFiles/Print_f.dir/print_u.c.o: ../print_u.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/Print_f.dir/print_u.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Print_f.dir/print_u.c.o   -c /Users/hspeeder/Desktop/School_42/printf_project/print_u.c
+
+CMakeFiles/Print_f.dir/print_u.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Print_f.dir/print_u.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/hspeeder/Desktop/School_42/printf_project/print_u.c > CMakeFiles/Print_f.dir/print_u.c.i
+
+CMakeFiles/Print_f.dir/print_u.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Print_f.dir/print_u.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/hspeeder/Desktop/School_42/printf_project/print_u.c -o CMakeFiles/Print_f.dir/print_u.c.s
 
 # Object files for target Print_f
 Print_f_OBJECTS = \
 "CMakeFiles/Print_f.dir/ft_printf.c.o" \
 "CMakeFiles/Print_f.dir/Libft/ft_putchar.c.o" \
 "CMakeFiles/Print_f.dir/Libft/ft_putnbr.c.o" \
-"CMakeFiles/Print_f.dir/print_d.c.o"
+"CMakeFiles/Print_f.dir/print_di.c.o" \
+"CMakeFiles/Print_f.dir/print_u.c.o"
 
 # External object files for target Print_f
 Print_f_EXTERNAL_OBJECTS =
@@ -122,10 +136,11 @@ Print_f_EXTERNAL_OBJECTS =
 Print_f: CMakeFiles/Print_f.dir/ft_printf.c.o
 Print_f: CMakeFiles/Print_f.dir/Libft/ft_putchar.c.o
 Print_f: CMakeFiles/Print_f.dir/Libft/ft_putnbr.c.o
-Print_f: CMakeFiles/Print_f.dir/print_d.c.o
+Print_f: CMakeFiles/Print_f.dir/print_di.c.o
+Print_f: CMakeFiles/Print_f.dir/print_u.c.o
 Print_f: CMakeFiles/Print_f.dir/build.make
 Print_f: CMakeFiles/Print_f.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable Print_f"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/hspeeder/Desktop/School_42/printf_project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable Print_f"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Print_f.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
