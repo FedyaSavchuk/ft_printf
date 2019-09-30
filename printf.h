@@ -4,7 +4,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdarg.h>
-# include "Libft/libft.h"
+# include "libft/libft.h"
 
 int		ft_printf(const char *format, ... );
 int		print_xxo(int nbr, char ns);
@@ -20,7 +20,7 @@ typedef struct	s_flags
 				int minus;			// отвечает за выравнивание слева/справа
 				int plus;			// отвечает за отображение знака +/- (+25 / -25)
 				int grill;			// отвечает за отображение 8-16-ых чисел
-				int dote;			// точность после запятой (с int работает так же как и null)
+				int dote;			// точность после запятой (с int работает так же как и zero)
 				int space;			// есть ли пробел после %
 				int min_width;		// минимальная ширина строки
 
@@ -31,7 +31,7 @@ typedef struct	s_flags
 				int ll;				// перевод int->long_long_int  / unsigned_int->unsigned_long_long_int
 
 				// только для f
-				// int l; Закомментирова, так как уже был этот флаг
+				//int l; /Закомментирова, так как уже был этот флаг
 				int L;				// перевод double->long_double
 }				t_flags;
 
