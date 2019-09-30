@@ -4,13 +4,15 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdarg.h>
-# include "libft/libft.h"
+# include "Libft/libft.h"
 
 int		ft_printf(const char *format, ... );
 int		print_xxo(int nbr, char ns);
 char	*ft_itoa_base(int long long value, int base, char reg);
 int		print_di(long long int nbr);
 int		print_u(unsigned long long int nbr);
+void	print_t(char **arr);
+void	print_y(char **arr);
 
 // список флагов к спецификаторам
 typedef struct	s_flags
@@ -23,6 +25,7 @@ typedef struct	s_flags
 				int dote;			// точность после запятой (с int работает так же как и zero)
 				int space;			// есть ли пробел после %
 				int min_width;		// минимальная ширина строки
+				int cut;			// сколько символов нужно обрезать после точки (.5)
 
 				// только для d i o u x X
 				int h;				// перевод int->short_int      / unsigned_int->unsigned_short_int

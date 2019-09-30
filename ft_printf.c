@@ -28,6 +28,7 @@ void 	clear_flags(void)
 	g_flags->ll = 0;
 	g_flags->L = 0;
 	g_flags->min_width = 0;
+	g_flags->cut = 0;
 }
 
 // конвертор signed
@@ -64,7 +65,7 @@ char 	read_flags(const char *format)
 	int i;
 	i = g_iter;
 	while (format[i] != 'c' && format[i] != 's' && format[i] != 'p' && format[i] != 'd'
-	&& format[i] != 'i' && format[i] != 'o' && format[i] != 'u'
+	&& format[i] != 'i' && format[i] != 'o' && format[i] != 'u' && format[i] != 't'
 	&& format[i] != 'x' && format[i] != 'X' && format[i] != 'f' && format[i] != '\0')
 	{
 		if (format[i] == ' ')
@@ -98,10 +99,11 @@ char 	read_flags(const char *format)
 			g_flags->zero = 0;
 		else if (format[i] == '.')
 		{
+			g_flags->dote = 1;
 			i++;
 			while (format[i] <= '9' && format[i] >= '0')
 			{
-				g_flags->dote = g_flags->dote * 10 + (format[i] - '0');
+				g_flags->cut = g_flags->cut * 10 + (format[i] - '0');
 				i++;
 			}
 			i--;
@@ -149,7 +151,10 @@ int		ft_printf(const char *format, ... )
 				print_di(convert_u(&argv));
 			if (spec == 'x' || spec == 'X' || spec == 'o')
 				print_di(convert_u(&argv));
-
+			if (spec == 't')
+				print_t(va_arg(argv, char **));
+			if (spec == 'y')
+				print_ty(va_arg(argv, char ***));
 			if (spec == 'p')
 				if (!(print_xxo(va_arg(argv, unsigned int), 'x')))
 					ft_putstr("(nill)");
@@ -162,12 +167,14 @@ int		ft_printf(const char *format, ... )
 
 int     main(void)
 {
-	char a;
+	char **arr;
+	arr[0] = "Hello";
+	arr[1] = "World";
+	arr[2] = "Man";
 	printf("\n----------- TESTS -----------\n");
-    ft_printf("%ld", 3000000000);
+    ft_printf("%t", arr);
 	//printf("|%0.d| \n", 5);
 //    a = read_flags("H %02d %d \n %d", 3);
-    write(1, &a, 1);
 	printf("\n--------- Check Flags ---------\n");
 	printf("g_flags->zero           : %d\n", g_flags->zero);
 	printf("g_flags->minus          : %d\n", g_flags->minus);
