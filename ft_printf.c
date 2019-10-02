@@ -31,8 +31,8 @@ void 	clear_flags(void)
 	g_flags->cut = 0;
 }
 
-// конвертор signed
-static long long int convert_d(va_list *argv)
+
+long long int convert_d(va_list *argv)
 {
 	if (g_flags->h)
 		return ((long long int)(short int)va_arg(*argv, int));
@@ -45,8 +45,8 @@ static long long int convert_d(va_list *argv)
 	return (va_arg(*argv, int));
 }
 
-// конвертор unsigned
-static unsigned long long int convert_u(va_list *argv)
+
+unsigned long long int convert_u(va_list *argv)
 {
 	if (g_flags->h)
 		return ((unsigned long long int)(unsigned short int)va_arg(*argv, unsigned int));
@@ -57,6 +57,15 @@ static unsigned long long int convert_u(va_list *argv)
 	if (g_flags->ll)
 		return ((unsigned long long int)va_arg(*argv, unsigned long long int));
 	return (va_arg(*argv, unsigned int));
+}
+
+long double convert_f(va_list *argv)
+{
+	if (g_flags->l)
+		return ((long double)va_arg(*argv, double));
+	if (g_flags->L)
+		return ((long double)va_arg(*argv, long double));
+	return ((long double)(float)va_arg(*argv, double));
 }
 
 // функция записывает флаги в список
@@ -135,29 +144,26 @@ int		ft_printf(const char *format, ... )
 		if (format[g_iter] != '%')
 			ft_putchar(format[g_iter]);
 	    if (format[g_iter] == '%' && format[g_iter + 1] == '%')
-		{
-			g_iter++;
-			ft_putchar(format[g_iter]);
-		}
+			ft_putchar(format[++g_iter]);
 	    else
         {
 			g_iter++;
-			clear_flags();
 			if (!(spec = read_flags(format)))
 				continue ;
-	        if (spec == 'd' || spec == 'i')
+	        else if (spec == 'd' || spec == 'i')
 				print_di(convert_d(&argv));
-	        if (spec == 'u')
+	        else if (spec == 'u')
 				print_di(convert_u(&argv));
-			if (spec == 'x' || spec == 'X' || spec == 'o')
+			//else if (spec == 'f')
+			//	print_ld(convert_f(&argv));
+			else if (spec == 'x' || spec == 'X' || spec == 'o')
 				print_xxo(convert_u(&argv), spec);
-			//if (spec == 't')
-				//print_t(va_arg(argv, char **));
+			else if (spec == 't')
+				print_t(va_arg(argv, char **));
 			//if (spec == 'y')
-			//	print_ty(va_arg(argv, char ***));
-			if (spec == 'p')
-				if (!(print_xxo(va_arg(argv, unsigned int), 'x')))
-					ft_putstr("(nill)");
+			//	print_y(va_arg(argv, char ***));
+			else if (spec == 'p' && !(print_xxo(va_arg(argv, unsigned int), 'x')))
+				ft_putstr("(nill)");
 		}
 		g_iter++;
 
@@ -167,11 +173,12 @@ int		ft_printf(const char *format, ... )
 
 int     main(void)
 {
-	char *arr = (char *)malloc(1);
+	
 	int a = 2343556;
+	char *str;
 	printf("\n----------- TESTS -----------\n");
-	ft_printf("|%-u| |%10u| |%010u| |%-10u| |%-010u|\n", a, a, a, a, a);
-	printf("|%-u| |%10u| |%010u| |%-10u| |%-010u|\n", a, a, a, a, a);
+	ft_printf("|%-u| |%10u| |%010u| |%-10u| |%-010u| |%p|\n", a, a, a, a, a, str);
+	printf("|%-u| |%10u| |%010u| |%-10u| |%-010u| |%p|\n", a, a, a, a, a, str);
 	//printf("|%o| |%10o| |%010o| |%-10o| |%-010o| |%#o| |%#10o| |%#010o| |%#-10o| |%#-010o|\n", a, a, a, a, a, a, a, a, a, a);
 	//printf("|%#-10x|\n", a, a, a,);
 	//printf("|%0.d| \n", 5);
