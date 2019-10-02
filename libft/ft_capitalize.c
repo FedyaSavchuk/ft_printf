@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strupcase.c                                     :+:      :+:    :+:   */
+/*   ft_capitalize.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hspeeder <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/12 13:58:30 by hspeeder          #+#    #+#             */
-/*   Updated: 2019/09/12 14:09:41 by hspeeder         ###   ########.fr       */
+/*   Created: 2019/09/10 15:21:26 by pparalax          #+#    #+#             */
+/*   Updated: 2019/09/10 15:21:27 by pparalax         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strupcase(char *str)
+char	*ft_capitalize(char *s)
 {
 	int i;
 
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] >= 'a' && str[i] <= 'z')
-			str[i] = str[i] - 32;
-		i++;
-	}
-	return (str);
+	i = -1;
+	while (s && s[++i])
+		s[i] = ft_toupper(s[i]);
+	return (s);
 }

@@ -170,8 +170,9 @@ int     main(void)
 	char *arr = (char *)malloc(1);
 	int a = 2343556;
 	printf("\n----------- TESTS -----------\n");
-	ft_printf("|%o| |%10o| |%010o| |%-10o| |%-010o| |%#o| |%#10o| |%#010o| |%#-10o| |%#-010o|\n", a, a, a, a, a, a, a, a, a, a);
-	printf("|%o| |%10o| |%010o| |%-10o| |%-010o| |%#o| |%#10o| |%#010o| |%#-10o| |%#-010o|\n", a, a, a, a, a, a, a, a, a, a);
+	ft_printf("|%-u| |%10u| |%010u| |%-10u| |%-010u|\n", a, a, a, a, a);
+	printf("|%-u| |%10u| |%010u| |%-10u| |%-010u|\n", a, a, a, a, a);
+	//printf("|%o| |%10o| |%010o| |%-10o| |%-010o| |%#o| |%#10o| |%#010o| |%#-10o| |%#-010o|\n", a, a, a, a, a, a, a, a, a, a);
 	//printf("|%#-10x|\n", a, a, a,);
 	//printf("|%0.d| \n", 5);
 	//a = read_flags("H %02d %d \n %d", 3);

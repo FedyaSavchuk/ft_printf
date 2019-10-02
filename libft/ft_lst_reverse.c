@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swapstr.c                                       :+:      :+:    :+:   */
+/*   ft_lst_reverse.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hspeeder <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/13 12:32:49 by hspeeder          #+#    #+#             */
-/*   Updated: 2019/09/13 12:32:52 by hspeeder         ###   ########.fr       */
+/*   Created: 2019/09/10 15:21:08 by pparalax          #+#    #+#             */
+/*   Updated: 2019/09/10 15:21:10 by pparalax         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_swapstr(char **str1, char **str2)
+t_list	*ft_lst_reverse(t_list *alst)
 {
-	char *temp;
+	t_list	*rev;
+	t_list	*tmp;
+	t_list	*next;
 
-	temp = *str1;
-	*str1 = *str2;
-	*str2 = temp;
+	if (!alst || !(tmp = alst))
+		return (NULL);
+	rev = NULL;
+	while (tmp)
+	{
+		next = tmp->next;
+		tmp->next = rev;
+		rev = tmp;
+		tmp = next;
+	}
+	return (rev);
 }

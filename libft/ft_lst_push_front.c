@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ft_lst_push_front.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hspeeder <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/12 13:53:04 by hspeeder          #+#    #+#             */
-/*   Updated: 2019/09/12 14:41:54 by hspeeder         ###   ########.fr       */
+/*   Created: 2019/09/10 17:27:54 by pparalax          #+#    #+#             */
+/*   Updated: 2019/09/10 17:27:56 by pparalax         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isspace(int c)
+void	ft_lst_push_front(t_list **begin_list, void *content,
+	size_t content_size)
 {
-	if (c == '\t' || c == '\n' || c == '\v' || c == '\f'
-			|| c == '\r' || c == ' ')
-		return (1);
-	return (0);
+	t_list	*tmp;
+
+	if (*begin_list)
+	{
+		tmp = ft_lstnew(content, content_size);
+		tmp->next = *begin_list;
+		*begin_list = tmp;
+	}
+	else
+		*begin_list = ft_lstnew(content, content_size);
 }

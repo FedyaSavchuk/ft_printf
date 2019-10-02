@@ -3,50 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hspeeder <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/07 11:40:26 by hspeeder          #+#    #+#             */
-/*   Updated: 2019/09/07 16:35:02 by hspeeder         ###   ########.fr       */
+/*   Created: 2019/09/05 23:38:45 by pparalax          #+#    #+#             */
+/*   Updated: 2019/09/05 23:38:46 by pparalax         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	where_start(char const *s)
+char	*ft_strtrim(char const *s)
 {
-	int start;
-
-	start = 0;
-	while ((s[start] == ' ' || s[start] == '\t' || s[start] == '\n')
-	&& s[start] != '\0')
-		start++;
-	return (start);
-}
-
-char		*ft_strtrim(char const *s)
-{
-	char	*str;
-	int		end;
-	int		len;
+	char	*res;
 	int		i;
+	int		j;
+	int		end;
 
+	i = 0;
+	j = 0;
 	if (!s)
 		return (NULL);
-	len = 0;
 	end = ft_strlen(s) - 1;
-	while ((s[end] == ' ' || s[end] == '\t' || s[end] == '\n')
-	&& s[where_start(s)] != '\0')
-	{
+	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+		i++;
+	while ((s[i] != '\0') && (s[end] == ' ' || s[end] == '\n' ||
+		s[end] == '\t'))
 		end--;
-		len++;
-	}
-	end++;
-	len = ft_strlen(s) - (where_start(s) + len);
-	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
+	res = (char *)malloc(sizeof(char) * (end - i + 1 + 1));
+	if ((!res))
 		return (NULL);
-	i = -1;
-	while (++i < len)
-		str[i] = s[where_start(s) + i];
-	str[i] = '\0';
-	return (str);
+	while (i <= end)
+		res[j++] = s[i++];
+	res[j] = '\0';
+	return (res);
 }

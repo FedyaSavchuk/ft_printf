@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hspeeder <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 14:19:59 by hspeeder          #+#    #+#             */
-/*   Updated: 2019/09/06 14:27:17 by hspeeder         ###   ########.fr       */
+/*   Created: 2019/09/05 20:31:56 by pparalax          #+#    #+#             */
+/*   Updated: 2019/09/05 20:31:58 by pparalax         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isprint(int ch)
+int	ft_isprint(int c)
 {
-	if (ch >= 32 && ch <= 126)
-		return (1);
-	return (0);
+	return (' ' <= c && c <= '~');
 }
