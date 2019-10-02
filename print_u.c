@@ -16,5 +16,6 @@ int	print_u(unsigned long long int nbr)
 	ft_putchars((g_flags->zero && !g_flags->minus) ? '0' : ' ', c);
 	if (!g_flags->minus)
 		ft_putstr(snbr);
+	free(snbr);
 	return (0);
 }

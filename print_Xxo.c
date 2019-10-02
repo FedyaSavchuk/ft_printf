@@ -20,29 +20,31 @@ static void	print_format_xo(char ns)
 		ft_putchar(ns);
 }
 
-int		print_xxo(int nbr, char ns)
+int			print_xxo(unsigned int nbr, char ns)
 {
-	char *snbr;
+	char	*snbr;
 
+	if (!nbr)
+		return (0);
 	if (ns == 'b')
 		snbr = ft_itoa_base(nbr, 2, 'a');
-	else if (ns == 'o')
-		snbr = ft_itoa_base(nbr, 8, 'a');
 	else
-		snbr = ft_itoa_base(nbr, 16, (ns == 'X') ? 'A' : 'a');
-	if (g_flags->minus || (g_flags->min_width && g_flags->zero))
-	{
+		snbr = ft_itoa_base(nbr, (ns == 'o') ? 8 : 16, (ns == 'X') ? 'A' : 'a');
+	if (g_flags->minus)
 		print_format_xo(ns);
-		if (!g_flags->minus)
-			ft_putchars('0', g_flags->min_width - ft_strlen(snbr) -
-				g_flags->grill - ((ns == 'o') ? 0 : 1));
-	}
-	else if (g_flags->min_width)
+	else
 	{
-		ft_putchars(' ', g_flags->min_width - ft_strlen(snbr) -
-			g_flags->grill - ((ns == 'o') ? 0 : 1));
-		print_format_xo(ns);
+		if (g_flags->zero)
+			print_format_xo(ns);
+		ft_putchars((g_flags->zero) ? '0' : ' ', g_flags->min_width -
+			ft_strlen(snbr) - g_flags->grill - (ns != 'o' && g_flags->grill));
+		if (!g_flags->zero)
+			print_format_xo(ns);
 	}
 	ft_putstr(snbr);
-	return (0);
+	if (g_flags->minus)
+		ft_putchars(' ', g_flags->min_width - ft_strlen(snbr) -
+			g_flags->grill - (ns != 'o' && g_flags->grill));
+	free(snbr);
+	return (1);
 }

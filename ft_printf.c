@@ -63,6 +63,8 @@ static unsigned long long int convert_u(va_list *argv)
 char 	read_flags(const char *format)
 {
 	int i;
+
+	clear_flags();
 	i = g_iter;
 	while (format[i] != 'c' && format[i] != 's' && format[i] != 'p' && format[i] != 'd'
 	&& format[i] != 'i' && format[i] != 'o' && format[i] != 'u' && format[i] != 't'
@@ -89,14 +91,11 @@ char 	read_flags(const char *format)
 		else if (format[i] <= '9' && format[i] >= '1')
 		{
 			while (format[i] <= '9' && format[i] >= '0')
-			{
-				g_flags->min_width = g_flags->min_width * 10 + (format[i] - '0');
-				i++;
-			}
+				g_flags->min_width = g_flags->min_width * 10 + (format[i++] - '0');
 			i--;
 		}
 		else if (format[i] == '0')
-			g_flags->zero = 0;
+			g_flags->zero = 1;
 		else if (format[i] == '.')
 		{
 			g_flags->dote = 1;
@@ -129,9 +128,10 @@ int		ft_printf(const char *format, ... )
 
 	g_iter = 0;
 	va_start(argv, format);
-	g_flags = (t_flags *)malloc(sizeof(t_flags *) * 1);
+	g_flags = (t_flags *)malloc(sizeof(t_flags));
 	while (format[g_iter])
     {
+    	clear_flags();
 		if (format[g_iter] != '%')
 			ft_putchar(format[g_iter]);
 	    if (format[g_iter] == '%' && format[g_iter + 1] == '%')
@@ -150,31 +150,31 @@ int		ft_printf(const char *format, ... )
 	        if (spec == 'u')
 				print_di(convert_u(&argv));
 			if (spec == 'x' || spec == 'X' || spec == 'o')
-				print_di(convert_u(&argv));
-			if (spec == 't')
-				print_t(va_arg(argv, char **));
-			if (spec == 'y')
-				print_ty(va_arg(argv, char ***));
+				print_xxo(convert_u(&argv), spec);
+			//if (spec == 't')
+				//print_t(va_arg(argv, char **));
+			//if (spec == 'y')
+			//	print_ty(va_arg(argv, char ***));
 			if (spec == 'p')
 				if (!(print_xxo(va_arg(argv, unsigned int), 'x')))
 					ft_putstr("(nill)");
-        }
+		}
 		g_iter++;
 
-    }
+	}
 	return (0);
 }
 
 int     main(void)
 {
-	char **arr;
-	arr[0] = "Hello";
-	arr[1] = "World";
-	arr[2] = "Man";
+	char *arr = (char *)malloc(1);
+	int a = 2343556;
 	printf("\n----------- TESTS -----------\n");
-    ft_printf("%t", arr);
+	ft_printf("|%o| |%10o| |%010o| |%-10o| |%-010o| |%#o| |%#10o| |%#010o| |%#-10o| |%#-010o|\n", a, a, a, a, a, a, a, a, a, a);
+	printf("|%o| |%10o| |%010o| |%-10o| |%-010o| |%#o| |%#10o| |%#010o| |%#-10o| |%#-010o|\n", a, a, a, a, a, a, a, a, a, a);
+	//printf("|%#-10x|\n", a, a, a,);
 	//printf("|%0.d| \n", 5);
-//    a = read_flags("H %02d %d \n %d", 3);
+	//a = read_flags("H %02d %d \n %d", 3);
 	printf("\n--------- Check Flags ---------\n");
 	printf("g_flags->zero           : %d\n", g_flags->zero);
 	printf("g_flags->minus          : %d\n", g_flags->minus);

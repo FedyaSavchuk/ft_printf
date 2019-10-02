@@ -1,4 +1,4 @@
-
+/*
 #include "printf.h"
 
 void	print_t(char **arr)
@@ -50,4 +50,4 @@ void	print_y(char ***arr)
 		write(1, "\n", 1);
 		line++;
 	}
-}
+}*/

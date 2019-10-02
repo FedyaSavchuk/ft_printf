@@ -7,12 +7,12 @@
 # include "Libft/libft.h"
 
 int		ft_printf(const char *format, ... );
-int		print_xxo(int nbr, char ns);
+int		print_xxo(unsigned int nbr, char ns);
 char	*ft_itoa_base(int long long value, int base, char reg);
 int		print_di(long long int nbr);
 int		print_u(unsigned long long int nbr);
-void	print_t(char **arr);
-void	print_y(char **arr);
+//void	print_t(char **arr);
+//void	print_y(char **arr);
 
 // список флагов к спецификаторам
 typedef struct	s_flags

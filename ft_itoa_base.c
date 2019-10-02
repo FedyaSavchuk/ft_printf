@@ -20,50 +20,21 @@ char	*ft_itoa_base(long long int value, int base, char reg)
 	char	*table;
 	char	arr[16];
 
+	i = -1;
+	while (++i < 16)
+		arr[i] = (i < 10) ? i + '0' : reg + i - 10;
 	i = 0;
-	while (i < 10)
-	{
-		arr[i] = i + '0';
-		i++;
-	}
-	while (i < 16)
-	{
-		arr[i] = reg + i - 10;
-		i++;
-	}
-	i = 0;
-	mult = 1;
+	mult = (value < 0) ? -1 : 1;
 	table = malloc(sizeof(char) * 66);
 	power = 1;
-	if (value < 0)
-	{
-		if (base == 10)
-			table[i++] = '-';
-		mult = -1;
-	}
-	if (value != -2147483648)
-		while ((value / power) * mult >= base)
-			power = power * base;
-	else
-	{
-		power = base;
-		while ((value / power * mult) >= base)
-		{
-			if (value / power * mult == base &&	value % power == 0)
-			{
-				table[i++] = arr[1];
-				value = value - mult * power * base;
-			}
-			else
-				power = power * base;
-		}
-	}
-	while (1)
+	(value < 0 && base == 10) ? table[i++] = '-' : 0;
+	while ((value / power) * mult >= base)
+		power *= base;
+	while (0 == 0)
 	{
 		table[i++] = arr[(value / power) * mult];
-		value = value - power * (value / power);
-		power = power / base;
-		if (power == 0)
+		value -= power * (value / power);
+		if (!(power /= base))
 			break ;
 	}
 	table[i] = '\0';
