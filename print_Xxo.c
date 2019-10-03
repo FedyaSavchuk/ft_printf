@@ -20,7 +20,7 @@ static void	print_format_xo(char ns)
 		ft_putchar(ns);
 }
 
-int			print_xxo(unsigned int nbr, char ns)
+int			print_xxo(unsigned long long int nbr, char ns)
 {
 	char	*snbr;
 

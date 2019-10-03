@@ -7,7 +7,7 @@
 # include "libft/includes/libft.h"
 
 int		ft_printf(const char *format, ... );
-int		print_xxo(unsigned int nbr, char ns);
+int		print_xxo(unsigned long long int nbr, char ns);
 char	*ft_itoa_base(int long long value, int base, char reg);
 int		print_di(long long int nbr);
 int		print_u(unsigned long long int nbr);

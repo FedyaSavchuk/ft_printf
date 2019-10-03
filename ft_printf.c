@@ -143,9 +143,9 @@ int		ft_printf(const char *format, ... )
     	clear_flags();
 		if (format[g_iter] != '%')
 			ft_putchar(format[g_iter]);
-	    if (format[g_iter] == '%' && format[g_iter + 1] == '%')
+		if (format[g_iter] == '%' && format[g_iter + 1] == '%')
 			ft_putchar(format[++g_iter]);
-	    else
+		else
         {
 			g_iter++;
 			if (!(spec = read_flags(format)))
@@ -162,7 +162,7 @@ int		ft_printf(const char *format, ... )
 				print_t(va_arg(argv, char **));
 			//if (spec == 'y')
 			//	print_y(va_arg(argv, char ***));
-			else if (spec == 'p' && !(print_xxo(va_arg(argv, unsigned int), 'x')))
+			else if (spec == 'p' && !(print_xxo(va_arg(argv, unsigned long int), 'x')))
 				ft_putstr("(nill)");
 		}
 		g_iter++;
@@ -171,18 +171,13 @@ int		ft_printf(const char *format, ... )
 	return (0);
 }
 
-int     main(void)
+int		main(void)
 {
 	
-	int a = 2343556;
+	long a = 34567891234567890;
 	char *str;
 	printf("\n----------- TESTS -----------\n");
-	ft_printf("|%-u| |%10u| |%010u| |%-10u| |%-010u| |%p|\n", a, a, a, a, a, str);
-	printf("|%-u| |%10u| |%010u| |%-10u| |%-010u| |%p|\n", a, a, a, a, a, str);
-	//printf("|%o| |%10o| |%010o| |%-10o| |%-010o| |%#o| |%#10o| |%#010o| |%#-10o| |%#-010o|\n", a, a, a, a, a, a, a, a, a, a);
-	//printf("|%#-10x|\n", a, a, a,);
-	//printf("|%0.d| \n", 5);
-	//a = read_flags("H %02d %d \n %d", 3);
+	ft_printf("|%ld|", a);
 	printf("\n--------- Check Flags ---------\n");
 	printf("g_flags->zero           : %d\n", g_flags->zero);
 	printf("g_flags->minus          : %d\n", g_flags->minus);
@@ -197,7 +192,7 @@ int     main(void)
 	printf("g_flags->L              : %d\n", g_flags->L);
 	printf("g_flags->min_width      : %d\n", g_flags->min_width);
 	printf("------------------------------\n");
-    return (0);
+	return (0);
 }
 
 
