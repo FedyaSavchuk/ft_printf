@@ -3,41 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hspeeder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 20:35:02 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/09 20:35:03 by pparalax         ###   ########.fr       */
+/*   Created: 2019/09/11 17:25:45 by hspeeder          #+#    #+#             */
+/*   Updated: 2019/09/12 14:40:31 by hspeeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	delcontent(void *content, size_t content_size)
+static	void		ft_del(void *content, size_t content_size)
 {
 	ft_memdel(&content);
 	content_size = 0;
 }
 
-t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list		*list_start;
-	t_list		*list;
+	t_list	*new_head;
+	t_list	*new;
 
 	if (!lst || !f)
 		return (NULL);
-	list = f(lst);
-	list_start = list;
-	lst = lst->next;
-	while (lst)
+	new_head = (*f)(lst);
+	if (new_head == NULL)
 	{
-		list->next = f(lst);
-		if (!list->next)
+		free(new_head);
+		return (NULL);
+	}
+	new = new_head;
+	while (lst->next != NULL)
+	{
+		lst = lst->next;
+		new->next = (*f)(lst);
+		if (new->next == NULL)
 		{
-			ft_lstdel(&list_start, delcontent);
+			ft_lstdel(&new_head, ft_del);
 			return (NULL);
 		}
-		lst = lst->next;
-		list = list->next;
+		new = new->next;
 	}
-	return (list_start);
+	return (new_head);
 }

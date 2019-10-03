@@ -19,7 +19,7 @@ int	print_di(long long int nbr)
 
 	snbr = ft_itoa_base(nbr, 10, 'a');
 	c = g_flags->min_width - ft_strlen(snbr) -
-	((g_flags->plus || g_flags->space) && nbr >= 0);
+		((g_flags->plus || g_flags->space) && nbr >= 0);
 	if (g_flags->space && !g_flags->plus && nbr >= 0)
 		ft_putchar(' ');
 	if (g_flags->plus && nbr >= 0)

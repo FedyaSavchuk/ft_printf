@@ -20,7 +20,7 @@ static void	print_format_xo(char ns)
 		ft_putchar(ns);
 }
 
-int			print_xxo(unsigned int nbr, char ns)
+int			print_xxo(unsigned long long int nbr, char ns)
 {
 	char	*snbr;
 
@@ -37,14 +37,14 @@ int			print_xxo(unsigned int nbr, char ns)
 		if (g_flags->zero)
 			print_format_xo(ns);
 		ft_putchars((g_flags->zero) ? '0' : ' ', g_flags->min_width -
-			ft_strlen(snbr) - g_flags->grill - (ns != 'o' && g_flags->grill));
+												 ft_strlen(snbr) - g_flags->grill - (ns != 'o' && g_flags->grill));
 		if (!g_flags->zero)
 			print_format_xo(ns);
 	}
 	ft_putstr(snbr);
 	if (g_flags->minus)
 		ft_putchars(' ', g_flags->min_width - ft_strlen(snbr) -
-			g_flags->grill - (ns != 'o' && g_flags->grill));
+						 g_flags->grill - (ns != 'o' && g_flags->grill));
 	free(snbr);
 	return (1);
 }

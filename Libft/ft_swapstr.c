@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_swapstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hspeeder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 14:53:31 by hspeeder          #+#    #+#             */
-/*   Updated: 2019/09/06 15:45:42 by hspeeder         ###   ########.fr       */
+/*   Created: 2019/09/13 12:32:49 by hspeeder          #+#    #+#             */
+/*   Updated: 2019/09/13 12:32:52 by hspeeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_memdel(void **ap)
+void	ft_swapstr(char **str1, char **str2)
 {
-	if (ap == NULL || *ap == NULL)
-		return ;
-	free(*ap);
-	*ap = NULL;
+	char *temp;
+
+	temp = *str1;
+	*str1 = *str2;
+	*str2 = temp;
 }

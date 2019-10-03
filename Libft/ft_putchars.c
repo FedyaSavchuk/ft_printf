@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchars.c.                                     :+:      :+:    :+:   */
+/*   ft_putchars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hspeeder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 23:34:57 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/05 23:34:59 by pparalax         ###   ########.fr       */
+/*   Created: 2019/09/29 19:16:50 by hspeeder          #+#    #+#             */
+/*   Updated: 2019/09/29 19:16:53 by hspeeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchars(char c, int i)
+void    ft_putchars(char c, int i)
 {
 	while (i-- > 0)
 		ft_putchar(c);

@@ -3,39 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hspeeder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 20:30:48 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/05 20:30:50 by pparalax         ###   ########.fr       */
+/*   Created: 2019/09/06 13:41:43 by hspeeder          #+#    #+#             */
+/*   Updated: 2019/09/06 13:49:07 by hspeeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+static int			check_overflow(int sign)
 {
-	long long	res;
-	int			sign;
-	int			i;
-	long long	prev;
+	if (sign == -1)
+		return (0);
+	else
+		return (-1);
+}
+
+int					ft_atoi(const char *str)
+{
+	int					num;
+	long long			max;
+	long long			prev;
+	int					sign;
 
 	sign = 1;
-	res = 0;
-	i = 0;
-	while (str[i] != '\0' && (str[i] == ' ' || str[i] == '\n' || str[i] == '\f'
-		|| str[i] == '\t' || str[i] == '\r' || str[i] == '\v'))
-		i++;
-	if ((str[i] == '-' || str[i] == '+') && (str[i++] == '-'))
-		sign = -1;
-	while (str[i] != '\0')
+	num = 0;
+	max = 0;
+	prev = 0;
+	while ((*str == ' ' || *str == '\n' || *str == '\t' ||
+			*str == '\v' || *str == '\f' || *str == '\r'))
+		str++;
+	if (*str == '-')
+		str -= (sign = (-1));
+	else if (*str == '+')
+		str++;
+	while ((*str >= '0') && (*str <= '9'))
 	{
-		prev = res;
-		if ((int)(str[i] - '0') > 9 || (int)(str[i] - '0') < 0)
-			return (sign * res);
-		res = res * 10 + (int)(str[i] - '0');
-		if (res < prev)
-			return ((sign == 1) ? -1 : 0);
-		i++;
+		max = max * 10 + (*str - '0');
+		if (max < prev || max >= 9223372036854775807)
+			return (check_overflow(sign));
+		prev = max;
+		str++;
 	}
-	return ((int)(sign * res));
+	return (max * sign);
 }

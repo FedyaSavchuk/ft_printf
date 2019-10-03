@@ -3,34 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hspeeder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 20:37:20 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/05 20:37:21 by pparalax         ###   ########.fr       */
+/*   Created: 2019/09/06 11:42:00 by hspeeder          #+#    #+#             */
+/*   Updated: 2019/09/06 12:43:13 by hspeeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(const char *str, const char *to_find)
+char	*ft_strstr(const char *str1, const char *str2)
 {
-	int	i;
-	int	j;
+	int			i;
+	const char	*start;
+	const char	*search;
 
-	i = -1;
-	j = 0;
-	if (to_find[0] == '\0')
-		return ((char*)str);
-	while (str[++i] != '\0')
+	search = str1;
+	start = str2;
+	i = 0;
+	if (*str2 == '\0')
+		return ((char *)str1);
+	while (*str1)
 	{
-		if (str[i] == to_find[0])
+		if (*str1 == *str2)
 		{
-			while (to_find[j] != '\0' && to_find[j] == str[i + j])
-				j++;
-			if (to_find[j] == '\0')
-				return ((char*)&str[i]);
+			search = str1;
+			while (str1[i] == str2[i] && str2[i] != '\0')
+				i++;
+			if (str2[i] == '\0')
+				return ((char *)search);
+			i = 0;
+			str2 = start;
 		}
-		j = 0;
+		str1++;
 	}
-	return (0);
+	return (NULL);
 }

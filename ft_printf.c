@@ -12,6 +12,7 @@
 
 #include "printf.h"
 #include <stdio.h>
+#include <string.h>
 
 // функция очищает флаги
 void 	clear_flags(void)
@@ -31,52 +32,41 @@ void 	clear_flags(void)
 	g_flags->cut = 0;
 }
 
-
-long long int convert_d(va_list *argv)
-{
-	if (g_flags->h)
-		return ((long long int)(short int)va_arg(*argv, int));
-	if (g_flags->hh)
-		return ((long long int)(char)va_arg(*argv, int));
-	if (g_flags->l)
-		return ((long long int)va_arg(*argv, long int));
-	if (g_flags->ll)
-		return ((long long int)va_arg(*argv, long long int));
-	return (va_arg(*argv, int));
-}
-
-
-unsigned long long int convert_u(va_list *argv)
-{
-	if (g_flags->h)
-		return ((unsigned long long int)(unsigned short int)va_arg(*argv, unsigned int));
-	if (g_flags->hh)
-		return ((unsigned long long int)(unsigned char)va_arg(*argv, unsigned int));
-	if (g_flags->l)
-		return ((unsigned long long int)va_arg(*argv, unsigned long int));
-	if (g_flags->ll)
-		return ((unsigned long long int)va_arg(*argv, unsigned long long int));
-	return (va_arg(*argv, unsigned int));
-}
-
-long double convert_f(va_list *argv)
-{
-	if (g_flags->l)
-		return ((long double)va_arg(*argv, double));
-	if (g_flags->L)
-		return ((long double)va_arg(*argv, long double));
-	return ((long double)(float)va_arg(*argv, double));
-}
+//// конвертор signed
+//static long long int convert_d(va_list *argv)
+//{
+//	if (g_flags->h)
+//		return ((long long int)(short int)va_arg(*argv, int));
+//	if (g_flags->hh)
+//		return ((long long int)(char)va_arg(*argv, int));
+//	if (g_flags->l)
+//		return ((long long int)va_arg(*argv, long int));
+//	if (g_flags->ll)
+//		return ((long long int)va_arg(*argv, long long int));
+//	return (va_arg(*argv, int));
+//}
+//
+//// конвертор unsigned
+//static unsigned long long int convert_u(va_list *argv)
+//{
+//	if (g_flags->h)
+//		return ((unsigned long long int)(unsigned short int)va_arg(*argv, unsigned int));
+//	if (g_flags->hh)
+//		return ((unsigned long long int)(unsigned char)va_arg(*argv, unsigned int));
+//	if (g_flags->l)
+//		return ((unsigned long long int)va_arg(*argv, unsigned long int));
+//	if (g_flags->ll)
+//		return ((unsigned long long int)va_arg(*argv, unsigned long long int));
+//	return (va_arg(*argv, unsigned int));
+//}
 
 // функция записывает флаги в список
-char 	read_flags(const char *format)
+char 	read_flags(const char *format, va_list *argv)
 {
 	int i;
-
-	clear_flags();
 	i = g_iter;
-	while (format[i] != 'c' && format[i] != 's' && format[i] != 'p' && format[i] != 'd'
-	&& format[i] != 'i' && format[i] != 'o' && format[i] != 'u' && format[i] != 't'
+	while (format[i] != 'c' && format[i] != 's' && format[i] != 'p' && format[i] != 'd' && format[i] != 'r'
+	&& format[i] != 'i' && format[i] != 'o' && format[i] != 'u' && format[i] != 't' && format[i] != 'y'
 	&& format[i] != 'x' && format[i] != 'X' && format[i] != 'f' && format[i] != '\0')
 	{
 		if (format[i] == ' ')
@@ -87,24 +77,36 @@ char 	read_flags(const char *format)
 			g_flags->plus = 1;
 		else if (format[i] == '#')
 			g_flags->grill = 1;
-		else if (format[i] == 'h' && format[i++] == 'h')
+		else if (format[i] == 'h' && format[i + 1] == 'h')
 			g_flags->hh = 1;
 		else if (format[i] == 'h')
 			g_flags->h = 1;
+		else if (format[i] == 'l' && format[i + 1] == 'l')
+			g_flags->ll = 1;
 		else if (format[i] == 'l')
 			g_flags->l = 1;
-		else if (format[i] == 'l' && format[i++] == 'l')
-			g_flags->ll = 1;
 		else if (format[i] == 'L')
 			g_flags->L = 1;
+		else if (format[i] == '*')
+		{
+			if (format[i - 1] == '.')
+				g_flags->dote = va_arg(*argv, int);
+			else if (format[i - 1] == '0')
+				g_flags->zero = va_arg(*argv, int);
+			else
+				g_flags->min_width = va_arg(*argv, int);
+		}
 		else if (format[i] <= '9' && format[i] >= '1')
 		{
 			while (format[i] <= '9' && format[i] >= '0')
-				g_flags->min_width = g_flags->min_width * 10 + (format[i++] - '0');
+			{
+				g_flags->min_width = g_flags->min_width * 10 + (format[i] - '0');
+				i++;
+			}
 			i--;
 		}
 		else if (format[i] == '0')
-			g_flags->zero = 1;
+			g_flags->zero = 0;
 		else if (format[i] == '.')
 		{
 			g_flags->dote = 1;
@@ -140,49 +142,62 @@ int		ft_printf(const char *format, ... )
 	g_flags = (t_flags *)malloc(sizeof(t_flags));
 	while (format[g_iter])
     {
-    	clear_flags();
 		if (format[g_iter] != '%')
 			ft_putchar(format[g_iter]);
-	    if (format[g_iter] == '%' && format[g_iter + 1] == '%')
-			ft_putchar(format[++g_iter]);
+	    else if (format[g_iter] == '%' && format[g_iter + 1] == '%')
+		{
+			g_iter++;
+			ft_putchar(format[g_iter]);
+		}
 	    else
         {
 			g_iter++;
-			if (!(spec = read_flags(format)))
+			clear_flags();
+			if (!(spec = read_flags(format, &argv)))
 				continue ;
-	        else if (spec == 'd' || spec == 'i')
+	        if (spec == 'd' || spec == 'i')
 				print_di(convert_d(&argv));
-	        else if (spec == 'u')
-				print_di(convert_u(&argv));
-			//else if (spec == 'f')
-			//	print_ld(convert_f(&argv));
-			else if (spec == 'x' || spec == 'X' || spec == 'o')
+	        if (spec == 'u')
+				print_u(convert_u(&argv));
+			if (spec == 'x' || spec == 'X' || spec == 'o' || spec == 'b')
 				print_xxo(convert_u(&argv), spec);
-			else if (spec == 't')
+			if (spec == 't')
 				print_t(va_arg(argv, char **));
-			//if (spec == 'y')
-			//	print_y(va_arg(argv, char ***));
-			else if (spec == 'p' && !(print_xxo(va_arg(argv, unsigned int), 'x')))
-				ft_putstr("(nill)");
-		}
+			if (spec == 'y')
+				print_y(va_arg(argv, char ***));
+			if (spec == 'r')
+				read_file(va_arg(argv, int));
+			if (spec == 'p')
+				if (!(print_xxo(va_arg(argv, unsigned int), 'x')))
+					ft_putstr("(nill)");
+        }
 		g_iter++;
 
-	}
+    }
 	return (0);
 }
 
 int     main(void)
 {
-	
-	int a = 2343556;
-	char *str;
+	char **arr[3];
+
+	arr[0] = (char **)malloc(sizeof(char *) * 100);
+	arr[1] = (char **)malloc(sizeof(char *) * 100);
+	arr[0][0] = "Hello column 1.0\0";
+	arr[0][1] = "Hello column 1.1\0";
+	arr[0][2] = NULL;
+	arr[1][0] = "Hello column 1.0\0";
+	arr[1][1] = "Hello column 1.1\0";
+	arr[1][2] = NULL;
+	arr[2] = NULL;
+	long int a = 372036854775200;
+
+
 	printf("\n----------- TESTS -----------\n");
-	ft_printf("|%-u| |%10u| |%010u| |%-10u| |%-010u| |%p|\n", a, a, a, a, a, str);
-	printf("|%-u| |%10u| |%010u| |%-10u| |%-010u| |%p|\n", a, a, a, a, a, str);
-	//printf("|%o| |%10o| |%010o| |%-10o| |%-010o| |%#o| |%#10o| |%#010o| |%#-10o| |%#-010o|\n", a, a, a, a, a, a, a, a, a, a);
-	//printf("|%#-10x|\n", a, a, a,);
+	ft_printf("|%ld|", a);
+	printf("|%ld|", a);
 	//printf("|%0.d| \n", 5);
-	//a = read_flags("H %02d %d \n %d", 3);
+//    a = read_flags("H %02d %d \n %d", 3);
 	printf("\n--------- Check Flags ---------\n");
 	printf("g_flags->zero           : %d\n", g_flags->zero);
 	printf("g_flags->minus          : %d\n", g_flags->minus);

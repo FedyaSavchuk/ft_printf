@@ -3,35 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hspeeder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 20:36:44 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/05 20:36:45 by pparalax         ###   ########.fr       */
+/*   Created: 2019/09/06 12:38:52 by hspeeder          #+#    #+#             */
+/*   Updated: 2019/09/06 12:47:51 by hspeeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *str, const char *to_find, size_t len)
+static int	ft_check_same(const char *str1,
+		const char *str2, size_t len, size_t save)
 {
-	int	i;
-	int	j;
+	size_t			i;
 
-	i = -1;
-	j = 0;
-	if (to_find[0] == '\0')
-		return ((char*)str);
-	while (str[++i] != '\0' && i <= (int)len)
+	i = 0;
+	while (str1[i] == str2[i] && str2[i] != '\0' && len > save)
 	{
-		if (str[i] == to_find[0])
-		{
-			while (to_find[j] != '\0' && to_find[j] == str[i + j]
-				&& i + j < (int)len)
-				j++;
-			if (to_find[j] == '\0')
-				return ((char*)&str[i]);
-		}
-		j = 0;
+		i++;
+		save++;
 	}
+	if (str2[i] == '\0')
+		return (1);
 	return (0);
+}
+
+char		*ft_strnstr(const char *str1, const char *str2, size_t len)
+{
+	size_t			save;
+	size_t			check_len;
+	const char		*start;
+
+	start = str2;
+	check_len = 0;
+	if (*str2 == '\0')
+		return ((char *)str1);
+	while (len > check_len && *str1)
+	{
+		if (*str1 == *str2 && *str1)
+		{
+			save = check_len;
+			if (ft_check_same(str1, str2, len, save) == 1)
+				return ((char *)str1);
+			str2 = start;
+		}
+		str1++;
+		check_len++;
+	}
+	return (NULL);
 }
