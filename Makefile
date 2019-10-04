@@ -1,35 +1,24 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: pparalax <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/09/06 16:59:28 by pparalax          #+#    #+#              #
-#    Updated: 2019/09/06 16:59:33 by pparalax         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+.PHONY: all clean install uninstall
 
-NAME		= ft_printf.a
-CFLAGS		= -Wall -Wextra -I./includes -c
-FILES		= *.c
-OBJ	= *.o
+FLAGS = -Wall -Wextra -Werror -L./libft/ -lft
 
-all: $(NAME)
+SRC = convert.c ft_printf.c print_Xxo.c print_di.c print_tyr.c print_u.c print_s.c
 
-$(NAME): $(OBJ)
+LIBFT = ./libft/libft.a
+
+OBJ = $(SRC:.c=.o)
+
+all: $(LIBFT) $(OBJ)
+	gcc $(FLAGS) -o printf.o $(OBJ)
+
+$(LIBFT):
 	make -C ./libft
-	gcc *.o -I.libft/includes/libft.h -L./libft -lft -o $(NAME)
-
-$(OBJ):
-	gcc $(CFLAGS) $(FILES) -c
+	make -C ./libft clean
 
 clean:
-	rm -f $(OBJ)
+	rm $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	make -C ./Libft fclean
 
 re: fclean all
-
-.PHONY: all clean fclean re

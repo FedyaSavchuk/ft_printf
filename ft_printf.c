@@ -9,7 +9,7 @@
 /*   Updated: 2019/09/29 19:17:48 by hspeeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-// gcc *.c -I.libft/includes/libft.h -L./libft -lft
+
 #include "printf.h"
 #include <stdio.h>
 #include <string.h>
@@ -38,8 +38,8 @@ char 	read_flags(const char *format, va_list *argv)
 	int i;
 	i = g_iter;
 	while (format[i] != 'c' && format[i] != 's' && format[i] != 'p' && format[i] != 'd' && format[i] != 'r'
-	&& format[i] != 'i' && format[i] != 'o' && format[i] != 'u' && format[i] != 't' && format[i] != 'y'
-	&& format[i] != 'x' && format[i] != 'X' && format[i] != 'f' && format[i] != '\0')
+		   && format[i] != 'i' && format[i] != 'o' && format[i] != 'u' && format[i] != 't' && format[i] != 'y'
+		   && format[i] != 'x' && format[i] != 'X' && format[i] != 'f' && format[i] != '\0')
 	{
 		if (format[i] == ' ')
 			g_flags->space = 1;
@@ -66,7 +66,7 @@ char 	read_flags(const char *format, va_list *argv)
 			else if (format[i - 1] == '0')
 				g_flags->zero = va_arg(*argv, int);
 			else
-				g_flags->min_width = va_arg(*argv, int);
+			g_flags->min_width = va_arg(*argv, int);
 		}
 		else if (format[i] <= '9' && format[i] >= '1')
 		{
@@ -101,56 +101,52 @@ char 	read_flags(const char *format, va_list *argv)
 	return (format[i]);
 }
 
-
-
 // функция отправляет флаги и спецификаторы на обработку
 int		ft_printf(const char *format, ... )
 {
-    va_list				argv;
-    char 				spec;
+	va_list				argv;
+	char 				spec;
 
 	g_iter = 0;
 	va_start(argv, format);
 	g_flags = (t_flags *)malloc(sizeof(t_flags));
 	while (format[g_iter])
-    {
+	{
 		if (format[g_iter] != '%')
 			ft_putchar(format[g_iter]);
 		if (format[g_iter] == '%' && format[g_iter + 1] == '%')
 			ft_putchar(format[++g_iter]);
 		else
-        {
+		{
 			g_iter++;
 			clear_flags();
 			if (!(spec = read_flags(format, &argv)))
 				continue ;
-	        if (spec == 'd' || spec == 'i')
+			if (spec == 'd' || spec == 'i')
 				print_di(convert_d(&argv));
-	        if (spec == 'u')
+			else if (spec == 'u')
 				print_u(convert_u(&argv));
-			if (spec == 'x' || spec == 'X' || spec == 'o' || spec == 'b')
+			else if (spec == 'x' || spec == 'X' || spec == 'o' || spec == 'b')
 				print_xxo(convert_u(&argv), spec);
-			if (spec == 't')
+			else if (spec == 't')
 				print_t(va_arg(argv, char **));
-			if (spec == 's')
+			else if (spec == 's')
 				print_s(va_arg(argv, char *));
-			//if (spec == 'y')
-			//	print_y(va_arg(argv, char ***));
+			else if (spec == 'y')
+				print_y(va_arg(argv, char ***));
 			else if (spec == 'p' && (g_flags->grill = 1) && !(print_xxo(va_arg(argv, unsigned long int), 'x')))
 				ft_putstr("(nill)");
-			//if (spec == 'r')
-			//	read_file(va_arg(argv, int));
-        }
+			else if (spec == 'r')
+				read_file(va_arg(argv, int));
+		}
 		g_iter++;
-
-    }
-    free(g_flags);
+	}
+	free(g_flags);
 	return (0);
 }
 
 int		main(void)
 {
-
 	printf("\n----------- TESTS -----------\n");
 	int			i = 2147483647;
 	long		l = 2147483647;
@@ -158,12 +154,9 @@ int		main(void)
 	char		c = 0;
 	intmax_t	im = 9223372036854775807;
 
-		ft_printf("|%20.10d| |%20d| |%020d| |%-20d| |%+20d| |% 20d|, \n", -54321, -54321, -54321, -54321, -54321, -54321);
-		printf("|%20.10d| |%20d| |%020d| |%-20d| |%+20d| |% 20d|, \n", -54321, -54321, -54321, -54321, -54321, -54321);
-		
-
-  
-  
+	long int a = 372036854775200;
+	ft_printf("|%ld|", a);
+	printf("|%ld|", a);
 
 	printf("\n--------- Check Flags ---------\n");
 	printf("g_flags->zero           : %d\n", g_flags->zero);
@@ -181,5 +174,4 @@ int		main(void)
 	printf("------------------------------\n");
 	return (0);
 }
-
 
