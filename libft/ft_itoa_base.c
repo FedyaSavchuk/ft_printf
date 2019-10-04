@@ -10,33 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-char	*ft_itoa_base(long long int value, int base, char reg)
+char	*ft_itoa_base(long long value, int base, char reg)
 {
-	int		i;
-	int		mult;
-	int		power;
-	char	*table;
-	char	arr[16];
+	char		*str;
+	int			size;
+	char		*tab;
+	int			flag;
+	long long	tmp;
 
-	i = -1;
-	while (++i < 16)
-		arr[i] = (i < 10) ? i + '0' : reg + i - 10;
-	i = 0;
-	mult = (value < 0) ? -1 : 1;
-	table = malloc(sizeof(char) * 66);
-	power = 1;
-	(value < 0 && base == 10) ? table[i++] = '-' : 0;
-	while ((value / power) * mult >= base)
-		power *= base;
-	while (0 == 0)
+	flag = (value < 0 && base == 10) ? 1 : 0;
+	size = 0;
+	tab = (reg >= 'A' && reg <= 'Z') ? "0123456789ABCDEF" : "0123456789abcdef";
+	if (base < 2 || base > 16)
+		return (0);
+	tmp = value;
+	while (tmp /= base)
+		size++;
+	size += flag + 1;
+	str = (char *)malloc(sizeof(char) * size + 1);
+	str[size] = '\0';
+	str[0] = (flag == 1) ? '-' : str[0];
+	while (size > flag)
 	{
-		table[i++] = arr[(value / power) * mult];
-		value -= power * (value / power);
-		if (!(power /= base))
-			break ;
+		str[--size] = tab[ft_abs(value % base)];
+		value /= base;
 	}
-	table[i] = '\0';
-	return (table);
+	return (str);
 }

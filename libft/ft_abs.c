@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchars.c                                      :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hspeeder <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/29 19:16:50 by hspeeder          #+#    #+#             */
-/*   Updated: 2019/09/29 19:16:53 by hspeeder         ###   ########.fr       */
+/*   Created: 2019/10/04 10:51:37 by pparalax          #+#    #+#             */
+/*   Updated: 2019/10/04 10:51:39 by pparalax         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_putchars(char c, int i)
+long long	ft_abs(long long nb)
 {
-	while (i-- > 0)
-		ft_putchar(c);
+	if (nb < 0)
+		nb = -nb;
+	return (nb);
 }

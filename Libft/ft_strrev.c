@@ -1,19 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchars.c                                      :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hspeeder <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/29 19:16:50 by hspeeder          #+#    #+#             */
-/*   Updated: 2019/09/29 19:16:53 by hspeeder         ###   ########.fr       */
+/*   Created: 2019/09/13 13:28:20 by hspeeder          #+#    #+#             */
+/*   Updated: 2019/09/13 13:28:22 by hspeeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_putchars(char c, int i)
+char	*ft_strrev(char *str)
 {
-	while (i-- > 0)
-		ft_putchar(c);
+	int		count;
+	int		i;
+	char	c;
+
+	if (str == NULL)
+		return (NULL);
+	count = 0;
+	while (str[count] != '\0')
+		count++;
+	count = count - 1;
+	i = 0;
+	while (i < ((count + 1) / 2))
+	{
+		c = str[i];
+		str[i] = str[count - i];
+		str[count - i] = c;
+		i++;
+	}
+	return (str);
 }
