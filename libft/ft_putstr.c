@@ -17,8 +17,10 @@ void	ft_putstr(const char *s)
 {
 	size_t len;
 
-	len = ft_strlen(s);
-	g_giter += len;
 	if (s)
+	{
+		len = ft_strlen(s);
+		g_giter += len;
 		write(1, s, len);
+	}	
 }
