@@ -31,10 +31,9 @@ char	*ft_uitoa_base(unsigned long long value, int base, char reg)
 	size += flag + 1;
 	str = (char *)malloc(sizeof(char) * size + 1);
 	str[size] = '\0';
-	str[0] = (flag == 1) ? '-' : str[0];
-	while (size > flag)
+	while (--size >= 0)
 	{
-		str[--size] = tab[ft_abs(value % base)];
+		str[size] = tab[ft_abs(value % base)];
 		value /= base;
 	}
 	return (str);

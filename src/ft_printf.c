@@ -61,10 +61,14 @@ char 	read_flags(const char *format, va_list *argv)
 		{
 			if (format[i - 1] == '.')
 				g_flags->dote = va_arg(*argv, int);
-			else if (format[i - 1] == '0')
-				g_flags->zero = va_arg(*argv, int);
+			else if(format[i + 1] <= '9' && format[i + 1] >= '0')
+				va_arg(*argv, int);
 			else
-			g_flags->min_width = va_arg(*argv, int);
+			{
+				g_flags->min_width = va_arg(*argv, int);
+				g_flags->minus = (g_flags->min_width < 0);
+				g_flags->min_width = ft_abs(g_flags->min_width);
+			}
 		}
 		else if (format[i] <= '9' && format[i] >= '1')
 		{
@@ -99,6 +103,20 @@ char 	read_flags(const char *format, va_list *argv)
 	return (format[i]);
 }
 
+int check_double_percents(const char *format)
+{
+	int i = 0;
+	if(format[g_iter] == '%')
+	{
+		i++;
+		while(format[g_iter + i] == ' ')
+			i++;
+		if (format[g_iter + i] == '%')
+			return(g_iter += i);
+	}
+	return (0);
+}
+
 // функция отправляет флаги и спецификаторы на обработку
 int		ft_printf(const char *format, ...)
 {
@@ -113,8 +131,8 @@ int		ft_printf(const char *format, ...)
 	{
 		if (format[g_iter] != '%')
 			ft_putchar(format[g_iter]);
-		else if (format[g_iter] == '%' && format[g_iter + 1] == '%')
-			ft_putchar(format[++g_iter]);
+		else if (check_double_percents(format))
+			ft_putchar(format[g_iter]);
 		else
 		{
 			g_iter++;
@@ -131,12 +149,14 @@ int		ft_printf(const char *format, ...)
 				print_t(va_arg(argv, char **));
 			else if (spec == 's')
 				print_s(va_arg(argv, char *));
+			else if (spec == 'c')
+				print_c(va_arg(argv, int));
 			else if (spec == 'y')
 				print_y(va_arg(argv, char ***));
 			else if (spec == 'f')
 				print_lf(va_arg(argv, double));
-			else if (spec == 'p' && (g_flags->grill = 1) && !(print_xxo(va_arg(argv, unsigned long int), 'x')))
-				ft_putstr("(nill)");
+			else if (spec == 'p')
+				print_xxo(va_arg(argv, unsigned long int), 'p');
 //			else if (spec == 'r')
 //				read_file(va_arg(argv, int));
 		}

@@ -10,7 +10,7 @@ int		print_c(char c)
 {
 	if(g_flags->minus)
 		ft_putchar(c);
-	ft_putchars(' ', g_flags->minwidth - 1);
+	ft_putchars(' ', g_flags->min_width - 1);
 	if(!g_flags->minus)
 		ft_putchar(c);
 	return (0);

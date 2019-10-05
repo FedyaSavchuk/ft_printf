@@ -2,7 +2,7 @@
 
 FLAGS = -Wall -Wextra -Werror -I./libft/includes/ -I./includes/#-L./libft/ -lft
 
-SRC = src/convert.c src/ft_printf.c src/print_Xxo.c src/print_di.c src/print_tyr.c src/print_u.c src/print_s.c src/print_f.c
+SRC = src/convert.c src/ft_printf.c src/print_Xxo.c src/print_di.c src/print_tyr.c src/print_u.c src/print_s.c src/print_c.c src/print_f.c
 
 SRC_PATH = ./src/
 
