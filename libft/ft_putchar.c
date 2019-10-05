@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../includes/ft_printf.h"
 
 void	ft_putchar(char c)
 {
+	g_giter++;
 	write(1, &c, 1);
 }

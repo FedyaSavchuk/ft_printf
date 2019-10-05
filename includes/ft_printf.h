@@ -6,19 +6,19 @@
 # include <stdarg.h>
 # include "libft.h"
 
-int		ft_printf(const char *format, ... );
-int		print_xxo(unsigned long long int nbr, char ns);
-char	*ft_itoa_base(int long long value, int base, char reg);
-int		print_di(long long int nbr);
-int		print_u(unsigned long long int nbr);
-void	print_t(char **arr);
-void	print_y(char ***arr);
-int		print_s(char *str);
-int		read_file(int fd);
-long long int convert_d(va_list *argv);
-unsigned long long int convert_u(va_list *argv);
-long double convert_f(va_list *argv);
-
+int						ft_printf(const char *format, ... );
+int						print_xxo(unsigned long long int nbr, char ns);
+char					*ft_itoa_base(int long long value, int base, char reg);
+int						print_di(long long int nbr);
+int						print_u(unsigned long long int nbr);
+void					print_t(char **arr);
+void					print_y(char ***arr);
+int						print_s(char *str);
+int						read_file(int fd);
+long long int			convert_d(va_list *argv);
+unsigned long long int	convert_u(va_list *argv);
+long double				convert_f(va_list *argv);
+void					print_lf(long double num);
 
 // список флагов к спецификаторам
 typedef struct	s_flags
@@ -47,5 +47,6 @@ typedef struct	s_flags
 t_flags *g_flags;
 
 int g_iter;
+int g_giter;
 
 #endif

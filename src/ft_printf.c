@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdlib.h>
-#include <ctype.h>
 #include "ft_printf.h"
 
 // функция очищает флаги
@@ -109,6 +106,7 @@ int		ft_printf(const char *format, ...)
 	char 				spec;
 
 	g_iter = 0;
+	g_giter = 0;
 	va_start(argv, format);
 	g_flags = (t_flags *)malloc(sizeof(t_flags));
 	while (format[g_iter])
@@ -135,6 +133,8 @@ int		ft_printf(const char *format, ...)
 				print_s(va_arg(argv, char *));
 			else if (spec == 'y')
 				print_y(va_arg(argv, char ***));
+			else if (spec == 'f')
+				print_lf(va_arg(argv, double));
 			else if (spec == 'p' && (g_flags->grill = 1) && !(print_xxo(va_arg(argv, unsigned long int), 'x')))
 				ft_putstr("(nill)");
 //			else if (spec == 'r')
@@ -143,7 +143,8 @@ int		ft_printf(const char *format, ...)
 		g_iter++;
 	}
 	free(g_flags);
-	return (0);
+	va_end(argv);
+	return (g_giter);
 }
 
 //int		main(void)

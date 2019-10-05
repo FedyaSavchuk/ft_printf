@@ -3,7 +3,6 @@
 
 #include "ft_printf.h"
 #include "libft.h"
-#include <float.h>
 
 /*
 ** Function: copy_itoa_result
@@ -20,6 +19,8 @@ static int copy_itoa_result(char *dest, long int num)
 {
 	char *tmp;
 
+	if (num == 0)
+		return (0);
 	tmp = ft_itoa_base(num, 10, 'a');
 	ft_strcpy(dest, tmp);
 	ft_strdel(&tmp);
@@ -45,6 +46,8 @@ static void float2str(char *s, long double num)
 //	unsigned long int pw;
 
     u = copy_itoa_result(s, (int)num);
+    if ((int)num == 0)
+    	s[u++] = '0';
 	if (g_flags->dote == 0)
 		g_flags->cut = 6;
 	s[u++] = g_flags->cut == 0 ? '\0' : '.';
@@ -113,12 +116,13 @@ static int count_num(long double num)
 
 void print_lf(long double num)
 {
-	char s[MAX_LEN] = "";
+	char s[MAX_LEN];
 	char *out;
 	int len;
 	int precision;
 
 	precision = g_flags->cut;
+	out = s;
 	if (num < 0.0)
 	{
 		s[0] = '-';
@@ -134,7 +138,7 @@ void print_lf(long double num)
 		out = s + 1;
 	}
 	len = count_num(num);
-	if (precision <= 18 && len < 16)
+	if (precision <= 20 && len < 16)
 	{
 		out += copy_itoa_result(out, (unsigned long int) (num / 10));
 		num -= ((unsigned long int) num / 10) * 10;
@@ -149,5 +153,6 @@ void print_lf(long double num)
 	}
 //	else
 //		dbl2str(out, num);
-	ft_putstr(s);
+	ft_putstr(&s[1]);
+
 }

@@ -17,7 +17,6 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
-# 	gcc $(OBJ) $(LIBFT_OBJ)
 	ar rc $(NAME) $(OBJ) $(LIBFT_OBJ)
 	ranlib $(NAME)
 

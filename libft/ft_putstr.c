@@ -11,9 +11,14 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../includes/ft_printf.h"
 
 void	ft_putstr(const char *s)
 {
+	size_t len;
+
+	len = ft_strlen(s);
+	g_giter += len;
 	if (s)
-		write(1, s, ft_strlen(s));
+		write(1, s, len);
 }
