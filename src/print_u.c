@@ -17,7 +17,7 @@ int	print_u(unsigned long long int nbr)
 	char	*snbr;
 	int		c;
 
-	snbr = ft_itoa_base((long long int)nbr, 10, 'a');
+	snbr = ft_uitoa_base((long long int)nbr, 10, 'a');
 	c = g_flags->min_width - ft_strlen(snbr) - g_flags->plus;
 	if (c <= 0 && !g_flags->plus)
 		ft_putchar(' ');
