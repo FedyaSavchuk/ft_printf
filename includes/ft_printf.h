@@ -4,7 +4,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdarg.h>
-# include "libft/includes/libft.h"
+# include "libft.h"
 
 int		ft_printf(const char *format, ... );
 int		print_xxo(unsigned long long int nbr, char ns);

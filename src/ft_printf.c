@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include <stdio.h>
-#include <string.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include "ft_printf.h"
 
 // функция очищает флаги
 void 	clear_flags(void)
@@ -102,7 +103,7 @@ char 	read_flags(const char *format, va_list *argv)
 }
 
 // функция отправляет флаги и спецификаторы на обработку
-int		ft_printf(const char *format, ... )
+int		ft_printf(const char *format, ...)
 {
 	va_list				argv;
 	char 				spec;
@@ -136,8 +137,8 @@ int		ft_printf(const char *format, ... )
 				print_y(va_arg(argv, char ***));
 			else if (spec == 'p' && (g_flags->grill = 1) && !(print_xxo(va_arg(argv, unsigned long int), 'x')))
 				ft_putstr("(nill)");
-			else if (spec == 'r')
-				read_file(va_arg(argv, int));
+//			else if (spec == 'r')
+//				read_file(va_arg(argv, int));
 		}
 		g_iter++;
 	}
@@ -147,31 +148,25 @@ int		ft_printf(const char *format, ... )
 
 //int		main(void)
 //{
-//	printf("\n----------- TESTS -----------\n");
-//	int			i = 2147483647;
-//	long		l = 2147483647;
-//	long long	ll = 9223372036854775807;
-//	char		c = 0;
-//	intmax_t	im = 9223372036854775807;
+////	printf("\n----------- TESTS -----------\n");
 //
-//	long int a = -3720368547752000;
-//	ft_printf("|Abcdef|", a);
+//	ft_printf("This is a simple test.");
 //	//printf("|Abcdef|", a);
 //
-//	printf("\n--------- Check Flags ---------\n");
-//	printf("g_flags->zero           : %d\n", g_flags->zero);
-//	printf("g_flags->minus          : %d\n", g_flags->minus);
-//	printf("g_flags->plus           : %d\n", g_flags->plus);
-//	printf("g_flags->grill          : %d\n", g_flags->grill);
-//	printf("g_flags->dote           : %d\n", g_flags->dote);
-//	printf("g_flags->space          : %d\n", g_flags->space);
-//	printf("g_flags->h              : %d\n", g_flags->h);
-//	printf("g_flags->hh             : %d\n", g_flags->hh);
-//	printf("g_flags->l              : %d\n", g_flags->l);
-//	printf("g_flags->ll             : %d\n", g_flags->ll);
-//	printf("g_flags->L              : %d\n", g_flags->L);
-//	printf("g_flags->min_width      : %d\n", g_flags->min_width);
-//	printf("------------------------------\n");
+////	printf("\n--------- Check Flags ---------\n");
+////	printf("g_flags->zero           : %d\n", g_flags->zero);
+////	printf("g_flags->minus          : %d\n", g_flags->minus);
+////	printf("g_flags->plus           : %d\n", g_flags->plus);
+////	printf("g_flags->grill          : %d\n", g_flags->grill);
+////	printf("g_flags->dote           : %d\n", g_flags->dote);
+////	printf("g_flags->space          : %d\n", g_flags->space);
+////	printf("g_flags->h              : %d\n", g_flags->h);
+////	printf("g_flags->hh             : %d\n", g_flags->hh);
+////	printf("g_flags->l              : %d\n", g_flags->l);
+////	printf("g_flags->ll             : %d\n", g_flags->ll);
+////	printf("g_flags->L              : %d\n", g_flags->L);
+////	printf("g_flags->min_width      : %d\n", g_flags->min_width);
+////	printf("------------------------------\n");
 //	return (0);
 //}
 

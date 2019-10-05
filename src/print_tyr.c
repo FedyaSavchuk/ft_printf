@@ -1,5 +1,5 @@
 
-#include "printf.h"
+#include "ft_printf.h"
 
 void	print_t(char **arr)
 {
@@ -34,19 +34,19 @@ void	print_y(char ***arr)
 	}
 }
 
-int		read_file(int fd)
-{
-	int count;
-	char buff[BUFF_SIZE + 1];
-
-	if (fd < 0)
-		return (-1);
-	count = 1;
-	while (count != 0)
-	{
-		count = read(fd, buff, BUFF_SIZE);
-		buff[count] = '\0';
-		ft_putstr(buff);
-	}
-	return (0);
-}
+//int		read_file(int fd)
+//{
+//	int count;
+//	char buff[BUFF_SIZE + 1];
+//
+//	if (fd < 0)
+//		return (-1);
+//	count = 1;
+//	while (count != 0)
+//	{
+//		count = read(fd, buff, BUFF_SIZE);
+//		buff[count] = '\0';
+//		ft_putstr(buff);
+//	}
+//	return (0);
+//}
