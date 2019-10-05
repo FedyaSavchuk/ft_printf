@@ -135,7 +135,7 @@ void print_lf(long double num)
 			s[0] = '+';
 		if (g_flags->space)
 			s[0] = ' ';
-		out = s + 1;
+		out = g_flags->plus || g_flags->space ? s + 1 : s;
 	}
 	len = count_num(num);
 	if (precision <= 20 && len < 16)
@@ -153,6 +153,5 @@ void print_lf(long double num)
 	}
 //	else
 //		dbl2str(out, num);
-	ft_putstr(&s[1]);
-
+	ft_putstr(s);
 }

@@ -11,6 +11,6 @@ int		print_s(char *str)
 		write(1, str, len);
 	ft_putchars(' ', g_flags->min_width - len);
 	if(!g_flags->minus)
-		write(1, str, len);
+		ft_putstr(str);
 	return (0);
 }
