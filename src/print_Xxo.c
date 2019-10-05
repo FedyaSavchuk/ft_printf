@@ -27,9 +27,9 @@ int			print_xxo(unsigned long long int nbr, char ns)
 	if (!nbr)
 		return (0);
 	if (ns == 'b')
-		snbr = ft_itoa_base(nbr, 2, 'a');
+		snbr = ft_uitoa_base(nbr, 2, 'a');
 	else
-		snbr = ft_itoa_base(nbr, (ns == 'o') ? 8 : 16, (ns == 'X') ? 'A' : 'a');
+		snbr = ft_uitoa_base(nbr, (ns == 'o') ? 8 : 16, (ns == 'X') ? 'A' : 'a');
 	if (g_flags->minus)
 		print_format_xo(ns);
 	else

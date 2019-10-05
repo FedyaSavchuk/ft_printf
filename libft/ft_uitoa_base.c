@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_uitoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,15 +12,15 @@
 
 #include "libft.h"
 
-char	*ft_itoa_base(long long value, int base, char reg)
+char	*ft_uitoa_base(unsigned long long value, int base, char reg)
 {
-	char		*str;
-	int			size;
-	char		*tab;
-	int			flag;
-	long long	tmp;
+	char				*str;
+	int					size;
+	char				*tab;
+	int					flag;
+	unsigned long long	tmp;
 
-	flag = (value < 0 && base == 10) ? 1 : 0;
+	flag = 0;
 	size = 0;
 	tab = (reg >= 'A' && reg <= 'Z') ? "0123456789ABCDEF" : "0123456789abcdef";
 	if (base < 2 || base > 16)
