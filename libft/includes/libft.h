@@ -47,8 +47,11 @@ char				*ft_strnstr(const char *haystack, const char *needle,
 								size_t n);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
+long long			ft_abs(long long nb);
 int					ft_atoi(const char *str);
 char				*ft_itoa_base(long long int nbr, int base, char reg);
+char				*ft_uitoa_base(unsigned long long int nbr, int base,
+								char reg);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);

@@ -33,8 +33,10 @@ FILES		= ft_memset.c \
 		ft_strnstr.c \
 		ft_strcmp.c \
 		ft_strncmp.c \
+		ft_abs.c \
 		ft_atoi.c \
 		ft_itoa_base.c \
+		ft_uitoa_base.c \
 		ft_isalpha.c \
 		ft_isdigit.c \
 		ft_isalnum.c \
