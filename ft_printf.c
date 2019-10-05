@@ -114,7 +114,7 @@ int		ft_printf(const char *format, ... )
 	{
 		if (format[g_iter] != '%')
 			ft_putchar(format[g_iter]);
-		if (format[g_iter] == '%' && format[g_iter + 1] == '%')
+		else if (format[g_iter] == '%' && format[g_iter + 1] == '%')
 			ft_putchar(format[++g_iter]);
 		else
 		{
@@ -145,33 +145,33 @@ int		ft_printf(const char *format, ... )
 	return (0);
 }
 
-int		main(void)
-{
-	printf("\n----------- TESTS -----------\n");
-	int			i = 2147483647;
-	long		l = 2147483647;
-	long long	ll = 9223372036854775807;
-	char		c = 0;
-	intmax_t	im = 9223372036854775807;
-
-	long int a = 372036854775200;
-	ft_printf("|%ld|", a);
-	printf("|%ld|", a);
-
-	printf("\n--------- Check Flags ---------\n");
-	printf("g_flags->zero           : %d\n", g_flags->zero);
-	printf("g_flags->minus          : %d\n", g_flags->minus);
-	printf("g_flags->plus           : %d\n", g_flags->plus);
-	printf("g_flags->grill          : %d\n", g_flags->grill);
-	printf("g_flags->dote           : %d\n", g_flags->dote);
-	printf("g_flags->space          : %d\n", g_flags->space);
-	printf("g_flags->h              : %d\n", g_flags->h);
-	printf("g_flags->hh             : %d\n", g_flags->hh);
-	printf("g_flags->l              : %d\n", g_flags->l);
-	printf("g_flags->ll             : %d\n", g_flags->ll);
-	printf("g_flags->L              : %d\n", g_flags->L);
-	printf("g_flags->min_width      : %d\n", g_flags->min_width);
-	printf("------------------------------\n");
-	return (0);
-}
+//int		main(void)
+//{
+//	printf("\n----------- TESTS -----------\n");
+//	int			i = 2147483647;
+//	long		l = 2147483647;
+//	long long	ll = 9223372036854775807;
+//	char		c = 0;
+//	intmax_t	im = 9223372036854775807;
+//
+//	long int a = -3720368547752000;
+//	ft_printf("|Abcdef|", a);
+//	//printf("|Abcdef|", a);
+//
+//	printf("\n--------- Check Flags ---------\n");
+//	printf("g_flags->zero           : %d\n", g_flags->zero);
+//	printf("g_flags->minus          : %d\n", g_flags->minus);
+//	printf("g_flags->plus           : %d\n", g_flags->plus);
+//	printf("g_flags->grill          : %d\n", g_flags->grill);
+//	printf("g_flags->dote           : %d\n", g_flags->dote);
+//	printf("g_flags->space          : %d\n", g_flags->space);
+//	printf("g_flags->h              : %d\n", g_flags->h);
+//	printf("g_flags->hh             : %d\n", g_flags->hh);
+//	printf("g_flags->l              : %d\n", g_flags->l);
+//	printf("g_flags->ll             : %d\n", g_flags->ll);
+//	printf("g_flags->L              : %d\n", g_flags->L);
+//	printf("g_flags->min_width      : %d\n", g_flags->min_width);
+//	printf("------------------------------\n");
+//	return (0);
+//}
 
