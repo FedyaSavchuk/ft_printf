@@ -30,8 +30,8 @@ unsigned long long int convert_u(va_list *argv)
 long double convert_f(va_list *argv)
 {
 	if (g_flags->l)
-		return ((long double)va_arg(*argv, double));
-	if (g_flags->L)
-		return ((long double)va_arg(*argv, long double));
-	return ((long double)(float)va_arg(*argv, double));
+		return ((double)va_arg(*argv, double));
+	else if (g_flags->L)
+		return (va_arg(*argv, long double));
+	return (va_arg(*argv, double));
 }

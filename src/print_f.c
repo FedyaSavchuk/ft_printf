@@ -138,7 +138,7 @@ void print_lf(long double num)
 		out = g_flags->plus || g_flags->space ? s + 1 : s;
 	}
 	len = count_num(num);
-	if (precision <= 20 && len < 16)
+	if (precision <= 18 && len < 16)
 	{
 		out += copy_itoa_result(out, (unsigned long int) (num / 10));
 		num -= ((unsigned long int) num / 10) * 10;
