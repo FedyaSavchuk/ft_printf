@@ -4,6 +4,8 @@
 #include "ft_printf.h"
 #include "libft.h"
 
+int g_last_num;
+
 /*
 ** Function: copy_itoa_result
 ** --------------------------
@@ -39,11 +41,11 @@ static int copy_itoa_result(char *dest, long int num)
 ** 	returns:	void
 */
 
+#include <stdio.h>
+
 static void float2str(char *s, long double num)
 {
-//    long int j = 0;
     int u = 0;
-//	unsigned long int pw;
 
     u = copy_itoa_result(s, (int)num);
     if ((int)num == 0)
@@ -53,8 +55,10 @@ static void float2str(char *s, long double num)
 	s[u++] = g_flags->cut == 0 ? '\0' : '.';
     while (g_flags->cut)
     {
+    	if (g_flags->cut == 1)
+    		g_last_num = (unsigned long int)(num * 100) % 10;
         s[u++] = ((unsigned long int)(num * 10) % 10) + '0';
-        num *= 10;
+        num = num * 10 - (int)num;
         g_flags->cut--;
     }
     while (g_flags->cut--)
@@ -101,6 +105,51 @@ static void float2str(char *s, long double num)
 //	ft_putstr(s);
 //}
 
+
+/*
+** Function: round_num
+** --------------------------
+** 	round string double number like it should be round according
+**	to double rules
+**
+**	s:	string double ready for output
+**
+** 	returns:	void
+*/
+static void round_num(char *s)
+{
+	size_t	len;
+
+	len = ft_strlen(s) - 1;
+	if (g_last_num == 5)
+	{
+		if (s[len] % 2 == 1 && s[len] < '9')
+			s[len]++;
+	}
+	else if (g_last_num > 5)
+	{
+		if (s[len] < '9')
+			s[len]++;
+		else
+			while (s[len] == '9')
+			{
+				s[len] = '0';
+				len--;
+			}
+		s[len]++;
+	}
+}
+
+/*
+** Function: count_num
+** --------------------------
+** 	counts number of digits in integer part of double (long double)
+**
+**	num:	long long float (double) number to print
+**
+** 	returns:	void
+*/
+
 static int count_num(long double num)
 {
 	int len;
@@ -113,6 +162,19 @@ static int count_num(long double num)
 	}
 	return (len);
 }
+
+/*
+** Function: print_lf
+** --------------------------
+** 	main function for  float handling, get float format number
+**	convert it to long double, after what handling flags (+,-, )
+**	and convert it to string for output according to a needed precision
+**	and length of integer part
+**
+**	num:	long long float (double) number to print
+**
+** 	returns:	void
+*/
 
 void print_lf(long double num)
 {
@@ -138,7 +200,7 @@ void print_lf(long double num)
 		out = g_flags->plus || g_flags->space ? s + 1 : s;
 	}
 	len = count_num(num);
-	if (precision <= 18 && len < 16)
+	if (precision <= 17 && len < 16)
 	{
 		out += copy_itoa_result(out, (unsigned long int) (num / 10));
 		num -= ((unsigned long int) num / 10) * 10;
@@ -151,6 +213,7 @@ void print_lf(long double num)
 		while (precision--)
 			*out++ = '0';
 	}
+	round_num(s);
 //	else
 //		dbl2str(out, num);
 	ft_putstr(s);
