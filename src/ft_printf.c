@@ -154,7 +154,7 @@ int		ft_printf(const char *format, ...)
 			else if (spec == 'y')
 				print_y(va_arg(argv, char ***));
 			else if (spec == 'f')
-				print_lf(va_arg(argv, double));
+				print_lf(convert_f(&argv));
 			else if (spec == 'p')
 				print_xxo(va_arg(argv, unsigned long int), 'p');
 //			else if (spec == 'r')
