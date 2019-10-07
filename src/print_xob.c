@@ -14,7 +14,7 @@
 
 static void	print_format_xo(char ns, int nbr)
 {
-	if(ns == 'o' && g_flags->cut)
+	if (ns == 'o' && g_flags->cut)
 		return ;
 	if (g_flags->grill && (nbr || ns == 'p'))
 		ft_putchar('0');
@@ -24,7 +24,7 @@ static void	print_format_xo(char ns, int nbr)
 
 int			get_len1(char *snbr)
 {
-	if ( !(snbr[0] == '0' && !snbr[1]) || !g_flags->dote)
+	if (!(snbr[0] == '0' && !snbr[1]) || !g_flags->dote)
 		return (ft_strlen(snbr));
 	return (0);
 }

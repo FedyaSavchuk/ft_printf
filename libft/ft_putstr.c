@@ -22,5 +22,5 @@ void	ft_putstr(const char *s)
 		len = ft_strlen(s);
 		g_giter += len;
 		write(1, s, len);
-	}	
+	}
 }

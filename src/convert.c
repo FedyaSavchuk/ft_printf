@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/07 22:23:06 by pparalax          #+#    #+#             */
+/*   Updated: 2019/10/07 22:23:09 by pparalax         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
-long long int convert_d(va_list *argv)
+long long int			convert_d(va_list *argv)
 {
 	if (g_flags->hh)
 		return ((long long int)(char)va_arg(*argv, int));
@@ -14,24 +25,24 @@ long long int convert_d(va_list *argv)
 	return (va_arg(*argv, int));
 }
 
-unsigned long long int convert_u(va_list *argv)
+unsigned long long int	convert_u(va_list *argv)
 {
 	if (g_flags->hh)
-		return ((unsigned long long int)(unsigned char)va_arg(*argv, unsigned int));
+		return ((unsigned char)va_arg(*argv, unsigned int));
 	if (g_flags->h)
-		return ((unsigned long long int)(unsigned short int)va_arg(*argv, unsigned int));
+		return ((unsigned short int)va_arg(*argv, unsigned int));
 	if (g_flags->ll)
-		return ((unsigned long long int)va_arg(*argv, unsigned long long int));
+		return (va_arg(*argv, unsigned long long int));
 	if (g_flags->l)
-		return ((unsigned long long int)va_arg(*argv, unsigned long int));
+		return (va_arg(*argv, unsigned long int));
 	return (va_arg(*argv, unsigned int));
 }
 
-long double convert_f(va_list *argv)
+long double				convert_f(va_list *argv)
 {
 	if (g_flags->l)
 		return ((double)va_arg(*argv, double));
-	else if (g_flags->L)
+	else if (g_flags->cap_l)
 		return (va_arg(*argv, long double));
 	return (va_arg(*argv, double));
 }
