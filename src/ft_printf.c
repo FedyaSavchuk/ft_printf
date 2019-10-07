@@ -60,13 +60,17 @@ char 	read_flags(const char *format, va_list *argv)
 		else if (format[i] == '*')
         {
             if (format[i - 1] == '.')
+            {
                 g_flags->cut = va_arg(*argv, int);
+                g_flags->dote = (g_flags->cut >= 0) ? g_flags->dote : 0;
+                g_flags->cut = (g_flags->cut >= 0) ? g_flags->cut : 0;
+            }
             else if(format[i + 1] <= '9' && format[i + 1] >= '0')
                 va_arg(*argv, int);
             else
             {
                 g_flags->min_width = va_arg(*argv, int);
-                g_flags->minus = (g_flags->min_width < 0);
+                g_flags->minus = (g_flags->min_width < 0) ? 1 : 0;
                 g_flags->min_width = ft_abs(g_flags->min_width);
             }
         }
@@ -109,11 +113,9 @@ int check_double_percents(const char *format)
 
 	if(format[g_iter] == '%')
 	{
-		
 		i++;
 		while(format[g_iter + i] == ' ' || format[g_iter + i] == '.' || format[g_iter + i] == '-' || (format[g_iter + i] >= '0' && format[g_iter + i] <= '9'))
 			i++;
-
 		if (format[g_iter + i] == '%')
 		{
 			g_iter += i;
@@ -182,8 +184,6 @@ int		ft_printf(const char *format, ...)
 				print_lf(convert_f(&argv));
 			else if (spec == 'p')
 				print_xxo(va_arg(argv, unsigned long int), 'p');
-//			else if (spec == 'r')
-//				read_file(va_arg(argv, int));
 		}
 		g_iter++;
 	}
