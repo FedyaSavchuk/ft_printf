@@ -18,6 +18,7 @@ int	print_u(unsigned long long int nbr)
 	int		c;
 
 	snbr = ft_uitoa_base((long long int)nbr, 10, 'a');
+	add_cut(&snbr);
 	c = g_flags->min_width - ft_strlen(snbr);
 	if (g_flags->minus)
 		ft_putstr(snbr);

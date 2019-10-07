@@ -20,6 +20,7 @@ long long int			convert_d(va_list *argv);
 unsigned long long int	convert_u(va_list *argv);
 long double				convert_f(va_list *argv);
 void					print_lf(long double num);
+void					add_cut(char **snbr);
 
 // список флагов к спецификаторам
 typedef struct	s_flags
