@@ -58,18 +58,18 @@ char 	read_flags(const char *format, va_list *argv)
 		else if (format[i] == 'L')
 			g_flags->L = 1;
 		else if (format[i] == '*')
-		{
-			if (format[i - 1] == '.')
-				g_flags->dote = va_arg(*argv, int);
-			else if(format[i + 1] <= '9' && format[i + 1] >= '0')
-				va_arg(*argv, int);
-			else
-			{
-				g_flags->min_width = va_arg(*argv, int);
-				g_flags->minus = (g_flags->min_width < 0);
-				g_flags->min_width = ft_abs(g_flags->min_width);
-			}
-		}
+        {
+            if (format[i - 1] == '.')
+                g_flags->cut = va_arg(*argv, int);
+            else if(format[i + 1] <= '9' && format[i + 1] >= '0')
+                va_arg(*argv, int);
+            else
+            {
+                g_flags->min_width = va_arg(*argv, int);
+                g_flags->minus = (g_flags->min_width < 0);
+                g_flags->min_width = ft_abs(g_flags->min_width);
+            }
+        }
 		else if (format[i] <= '9' && format[i] >= '1')
 		{
 			while (format[i] <= '9' && format[i] >= '0')
@@ -106,13 +106,38 @@ char 	read_flags(const char *format, va_list *argv)
 int check_double_percents(const char *format)
 {
 	int i = 0;
+
 	if(format[g_iter] == '%')
 	{
+		
 		i++;
-		while(format[g_iter + i] == ' ')
+		while(format[g_iter + i] == ' ' || format[g_iter + i] == '.' || format[g_iter + i] == '-' || (format[g_iter + i] >= '0' && format[g_iter + i] <= '9'))
 			i++;
+
 		if (format[g_iter + i] == '%')
-			return(g_iter += i);
+		{
+			g_iter += i;
+			i = g_iter;
+			if(i > 1 && format[i - 1] >= '0' && format[i - 1] <= '9')
+			{
+				i--;
+				while((format[i] >= '0' && format[i] <= '9'))
+					i--;
+				if(format[i] == '%')
+					i++;
+				i = ft_atoi(&format[i]);
+				if(i > 0)
+					ft_putchars(' ', i - 1);
+				else
+				{
+					ft_putchar('%');
+					ft_putchars(' ', i * -1 - 1);
+					return(0);
+				}
+			}
+			
+			return(1);
+		}
 	}
 	return (0);
 }
