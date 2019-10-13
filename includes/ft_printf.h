@@ -6,7 +6,7 @@
 /*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 23:16:53 by pparalax          #+#    #+#             */
-/*   Updated: 2019/10/07 23:16:55 by pparalax         ###   ########.fr       */
+/*   Updated: 2019/10/13 21:01:35 by pmila            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ unsigned long long int	convert_u(va_list *argv);
 long double				convert_f(va_list *argv);
 void					print_lf(long double num);
 void					add_cut(char **snbr);
+void					infin_mult(char **m1, char *m2);
 
 typedef struct			s_flags
 {
