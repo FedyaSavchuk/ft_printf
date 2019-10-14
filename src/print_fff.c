@@ -6,7 +6,7 @@
 /*   By: pmila <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 16:49:28 by pmila             #+#    #+#             */
-/*   Updated: 2019/10/14 15:17:26 by pmila            ###   ########.fr       */
+/*   Updated: 2019/10/14 15:37:19 by pmila            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -303,7 +303,7 @@ int		is_num_valid(t_ld *l_info, char **str)
 	return (1);
 }
 
-char	*print_f(long double num)
+char	*print_f(void)
 {
 	t_ld		*l_info;
 	int			i;
@@ -311,7 +311,6 @@ char	*print_f(long double num)
 	int		final_degr;
 
 	l_info = malloc(sizeof(l_info));
-	g_u.num = num;
 	//handling an exponent
 	l_info->sign = (unsigned char)g_u.ar[9] >> 7;
 //	printf("l_info->sign = %d\n", sign);
@@ -380,6 +379,7 @@ void		print_lf(long double num)
 	char	*out;
 	int		precision;
 
+	g_u.num = num;
 	precision = g_flags->cut;
 	ft_bzero(s, MAX_LEN);
 	if ((unsigned char)g_u.ar[9] >> 7 == 1)
@@ -411,7 +411,7 @@ void		print_lf(long double num)
 //			*out++ = '0';
 //	}
 //	else
-	ft_strcpy(out, print_f(num));
+	ft_strcpy(out, print_f());
 //	round_num(s);
 	print_double(s, ft_strlen(s));
 }
