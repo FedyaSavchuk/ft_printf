@@ -135,9 +135,9 @@ void	handle_integer(char **result, int i, char *str)
 	int		j;
 	int		k;
 
-	j = 2;
+	j = 1;
 	k = 0;
-	if (i <= 0)
+	if (i <= 0 && (++k + 1))
 		(*result)[j++] = '0';
 	while (i-- > 0 && str[k] != '\0')
 		(*result)[j++] = str[k++];
@@ -347,12 +347,13 @@ static void	print_double(char *str, int len)
 {
 	if (!ft_isdigit(str[0]) && g_flags->zero)
 			ft_putchar(*str++);
-	if (g_flags->zero)
+	if (g_flags->zero && g_flags->min_width)
 		ft_putchars('0', g_flags->min_width - len);
-	else
+	else if (g_flags->min_width)
 	{
 		ft_putchars(' ', g_flags->min_width - len);
-		ft_putchar(*str++);
+		if (!ft_isdigit(str[0]))
+			ft_putchar(*str++);
 	}
 	if (ft_isdigit(*str))
 		ft_putstr(str);
