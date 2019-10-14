@@ -12,23 +12,24 @@
 
 #include "ft_printf.h"
 
-int		print_s(char *str)
+int		print_s(char *str, int flag)
 {
-	int len;
+	int		len;
+	char	*s;
 
 	if (!str)
-	{
-		ft_putstr("(null)");
-		return (0);
-	}
-	len = ft_strlen(str);
+		s = ft_strdup("(null)");
+	else
+		s = ft_strdup(str);
+	len = ft_strlen(s);
 	if (g_flags->dote && len > g_flags->cut)
 		len = g_flags->cut;
 	if (g_flags->minus)
-		write(1, str, len);
-	ft_putchars(' ', g_flags->min_width - len);
+		write(1, s, len);
+	ft_putchars(((!flag && (g_flags->zero && !g_flags->minus)) ? '0' : ' ') , g_flags->min_width - len);
 	if (!g_flags->minus)
-		write(1, str, len);
+		write(1, s, len);
 	g_giter += len;
+	ft_strdel(&s);
 	return (0);
 }

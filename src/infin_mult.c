@@ -37,8 +37,7 @@ static int		*ft_processing(char *m1, char *n2)
 	int		*arr;
 
 	len = ft_strlen(m1) + ft_strlen(n2);
-	arr = (int *)malloc(sizeof(int) * (len + 1));
-	ft_bzero(arr, sizeof(int) * (len + 1));
+	arr = ft_memalloc(sizeof(int) * (len + 1));
 	arr[len] = -5;
 	i = -1;
 	while (m1[++i] != '\0')

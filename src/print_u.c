@@ -17,15 +17,17 @@ int	print_u(unsigned long long int nbr)
 	char	*snbr;
 	int		c;
 
-	if (!nbr && g_flags->dote && !g_flags->cut)
+	if (!nbr && g_flags->dote && !g_flags->cut && !g_flags->min_width)
 		return (0);
 	snbr = ft_uitoa_base((long long int)nbr, 10, 'a');
 	add_cut(&snbr);
 	c = g_flags->min_width - ft_strlen(snbr);
-	if (g_flags->minus)
+	if (!nbr && g_flags->dote && !g_flags->cut)
+		c = g_flags->min_width;
+	if (g_flags->minus && !(!nbr && g_flags->dote && !g_flags->cut))
 		ft_putstr(snbr);
-	ft_putchars((g_flags->zero && !g_flags->minus) ? '0' : ' ', c);
-	if (!g_flags->minus)
+	ft_putchars((g_flags->zero && !g_flags->dote && !g_flags->minus) ? '0' : ' ', c);
+	if (!g_flags->minus && !(!nbr && g_flags->dote && !g_flags->cut))
 		ft_putstr(snbr);
 	free(snbr);
 	return (0);

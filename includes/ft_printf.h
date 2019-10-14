@@ -27,7 +27,7 @@ int						print_di(long long int nbr);
 int						print_u(unsigned long long int nbr);
 void					print_t(char **arr);
 void					print_y(char ***arr);
-int						print_s(char *str);
+int						print_s(char *str, int flag);
 int						print_c(char c);
 int						read_file(int fd);
 long long int			convert_d(va_list *argv);

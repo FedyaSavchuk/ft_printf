@@ -15,7 +15,7 @@
 int		put_persent_and_space(int i)
 {
 	ft_putchar('%');
-	ft_putchars(' ', i * -1 - 1);
+	ft_putchars((g_flags->zero) ? '0' : ' ', i * -1 - 1);
 	return (0);
 }
 
@@ -26,6 +26,7 @@ int		check_double_percents(const char *format)
 	i = 0;
 	if (format[g_iter] == '%' && ++i)
 	{
+		g_flags->zero = (format[g_iter + 1] == '0') ? 1 : 0;
 		while (format[g_iter + i] == ' ' || format[g_iter + i] == '.' ||
 			format[g_iter + i] == '-' || ft_isdigit(format[g_iter + i]))
 			i++;
@@ -38,7 +39,8 @@ int		check_double_percents(const char *format)
 				while ((format[i] >= '0' && format[i] <= '9'))
 					i--;
 				i += (format[i] == '%') ? 1 : 0;
-				ft_putchars(' ', (i = ft_atoi(&format[i])) > 0 ? i - 1 : 0);
+				ft_putchars((g_flags->zero) ? '0' : ' ',
+				(i = ft_atoi(&format[i])) > 0 ? i - 1 : 0);
 				if (i < 0)
 					return (put_persent_and_space(i));
 			}
@@ -59,7 +61,7 @@ void	choose_spec(char spec, va_list *argv)
 	else if (spec == 't')
 		print_t(va_arg(*argv, char **));
 	else if (spec == 's')
-		print_s(va_arg(*argv, char *));
+		print_s(va_arg(*argv, char *), 0);
 	else if (spec == 'c')
 		print_c(va_arg(*argv, int));
 	else if (spec == 'y')
@@ -84,7 +86,8 @@ int		ft_printf(const char *format, ...)
 	g_iter = 0;
 	g_giter = 0;
 	va_start(argv, format);
-	g_flags = (t_flags *)malloc(sizeof(t_flags));
+	if (!(g_flags = (t_flags *)ft_memalloc(sizeof(t_flags))))
+		return (0);
 	while (format[g_iter])
 	{
 		if (format[g_iter] != '%')
