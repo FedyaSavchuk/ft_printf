@@ -404,24 +404,8 @@ void		print_lf(long double num)
 	}
 	if (g_flags->dote == 0)
 		g_flags->cut = 6;
-//	len = count_num(num);
-//	if (precision <= 17 && len < 16)
-//	{
-//		out += copy_itoa_result(out, (unsigned long int)(num / 10));
-//		num -= ((unsigned long int)(num / 10)) * 10;
-//		float2str(out, num);
-//	}
-//	else if (len >= 16)
-//	{
-//		out += copy_itoa_result(out, (unsigned long int)num);
-//		*out++ = '.';
-//		while (precision--)
-//			*out++ = '0';
-//	}
-//	else
 	print_f(&temp);
 	ft_strcpy(out, temp);
 	ft_strdel(&temp);
-//	round_num(s);
 	print_double(s, ft_strlen(s));
 }

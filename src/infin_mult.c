@@ -13,9 +13,22 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "printf.h"
+#include "libft.h"
 
-#include <stdio.h>
-int		*ft_processing(char *m1, char *n2)
+void		check_overlay(int **arr, int len)
+{
+	int i;
+
+	i = len;
+	while (--i > 0)
+		if ((*arr)[i] >= 10)
+		{
+			(*arr)[i - 1] += (*arr)[i] / 10;
+			(*arr)[i] = (*arr)[i] % 10;
+		}
+}
+
+static int		*ft_processing(char *m1, char *n2)
 {
 	int		i;
 	int		j;
@@ -23,42 +36,33 @@ int		*ft_processing(char *m1, char *n2)
 	int		tmp;
 	int		*arr;
 
-	j = 0;
-	len = 0;
-	while ((m1)[len] != '\0')
-		len++;
-	while (n2[j++] != '\0')
-		len++;
+	len = ft_strlen(m1) + ft_strlen(n2);
 	arr = (int *)malloc(sizeof(int) * (len + 1));
-	i = 0;
-	while (i < len)
-		arr[i++] = 0;
+	ft_bzero(arr, sizeof(int) * (len + 1));
 	arr[len] = -5;
-	i = 0;
-	while (m1[i] != '\0')
+	i = -1;
+	while (m1[++i] != '\0')
 	{
 		j = 0;
 		while (n2[j] != '\0')
 		{
 			tmp = (m1[i] - '0') * (n2[j] - '0');
 			arr[i + j] += tmp / 10;
-			arr[i + j + 1] += tmp % 10;
-			j++;
+			arr[i + ++j] += tmp % 10;
 		}
-		i++;
 	}
+	check_overlay(&arr, len);
 	i = len;
-	while (--i > 0)
-		if (arr[i] >= 10)
-		{
-			arr[i - 1] += arr[i] / 10;
-			arr[i] = arr[i] % 10;
-		}
-	i = 0;
+//	while (--i > 0)
+//		if (arr[i] >= 10)
+//		{
+//			arr[i - 1] += arr[i] / 10;
+//			arr[i] = arr[i] % 10;
+//		}
 	return (arr);
 }
 
-void	infin_mult(char **m1, char *m2)
+void			infin_mult(char **m1, char *m2)
 {
 	int		*arr;
 	int		i;
