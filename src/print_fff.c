@@ -6,7 +6,7 @@
 /*   By: pmila <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 16:49:28 by pmila             #+#    #+#             */
-/*   Updated: 2019/10/13 23:55:34 by pmila            ###   ########.fr       */
+/*   Updated: 2019/10/14 14:31:30 by pmila            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,16 +104,15 @@ int		round_last(char *str, int k)
 	return (1);
 }
 
-void	print_res(char *result)
+void	print_res(char *result, char **str)
 {
+	int		i;
+
+	i = 0;
+	free(*str);
 	if (result[1] == '0' && result[2] != '.')
-	{
-		if (result[0] == '-' || g_flags->plus == 1)
-			ft_putchar(result[0]);
 		result++;
-		result++;
-	}
-	ft_putstr(result);
+	*str = ft_strdup(result);
 }
 
 void	check_round(char **str, int j)
@@ -146,7 +145,7 @@ void	handle_integer(char **result, int i, char *str)
 	(*result)[j] = '\0';
 }
 
-void	print_num(char *str, int degr, char sign)
+void	print_num(char **str, int degr)
 {
 	char	*result;
 	int		i;
@@ -156,22 +155,18 @@ void	print_num(char *str, int degr, char sign)
 //	ft_putstr(str);
 //	ft_putchar('\n');
 	//printf("degr = %d\n", degr);
-	i = ft_strlen(str);
-	result = ft_memalloc(i + g_flags->cut + 3);
+	i = ft_strlen((*str));
+	result = ft_memalloc(i + g_flags->cut + 2);
 	i -= degr;
 //	printf("%d\n", i);
 //	printf("%d\n", sign);
 	j = 0;
 	k = 0;
-	if (sign > 0)
-		result[j++] = '-';
-	else
-		result[j++] = '+';
 	if (g_flags->dote == 0)
 		g_flags->cut = 6;
 	result[j++] = '0';
 	if (g_flags->cut == 0)
-		handle_integer(&result, i, str);
+		handle_integer(&result, i, (*str));
 	else
 	{
 		if (i <= 0)
@@ -180,37 +175,38 @@ void	print_num(char *str, int degr, char sign)
 			result[j++] = '.';
 			while (i++ < 0 && g_flags->cut-- > 1)
 				result[j++] = '0';
-			while (str[k] != '\0' && g_flags->cut-- > 1)
-				result[j++] = str[k++];
+			while ((*str)[k] != '\0' && g_flags->cut-- > 1)
+				result[j++] = (*str)[k++];
 		}
 		else
 		{
-			while (i-- > 0 && str[k] != '\0')
-				result[j++] = str[k++];
+			while (i-- > 0 && (*str)[k] != '\0')
+				result[j++] = (*str)[k++];
 			result[j++] = '.';
-			while (str[k] != '\0' && g_flags->cut-- > 1)
+			while ((*str)[k] != '\0' && g_flags->cut-- > 1)
 			{
 	//			printf("12334\n");
-				result[j++] = str[k++];
+				result[j++] = (*str)[k++];
 			}
 			i += 2;
 		}
-		if (!str[k])
+		if (!(*str)[k])
 			while (g_flags->cut-- > 0)
 			{
 //				printf("%d\n", g_flags->cut);
 				result[j++] = '0';
 			}
 		else if(i == 0)
-			result[j] = '0' + (str[0] >= '5' ? 1 : 0);
+			result[j] = '0' + ((*str)[0] >= '5' ? 1 : 0);
 		else if (i < 0)
 			result[j] = '0';
 		else
-			result[j] = str[k] + round_last(str, k);
+			result[j] = (*str)[k] + round_last((*str), k);
 		check_round(&result, j);
 		result[++j] = '\0';
 	}
-	print_res(result);
+	print_res(result, str);
+	free(result);
 }
 
 int		numlen (LL mant)
@@ -239,26 +235,22 @@ void	get_str_mant(char **str, t_ld *l_info)
 	}
 }
 
-void	multiplication(char *five, t_ld *l_info, int degr, char *str)
+void	multiplication(char *five, int *degr, char **str)
 {
-	if (degr < 0)
-		infin_mult(&str, five);
+	if (*degr < 0)
+		infin_mult(str, five);
 //	printf("%s\n", str);
-	while (degr > 0)
+	while (*degr > 0)
 	{
-		infin_mult(&str, "2");
-		degr--;
+		infin_mult(str, "2");
+		(*degr)--;
 	}
-	print_num(str, -degr, l_info->sign);
-	free(str);
 }
 
-void	handle_decoded(t_ld *l_info)
+void	handle_decoded(t_ld *l_info, char **str, int *final_degr)
 {
 	int			mant_denom;
-	int			final_degr;
 	char		*five;
-	char		*str;
 
 //	printf("exp = %d\n", l_info->exp);
 	five = NULL;
@@ -269,18 +261,18 @@ void	handle_decoded(t_ld *l_info)
 		mant_denom -= 8;
 	}
 //	printf("mant= %llu\n", l_info->mant);
-	final_degr = l_info->exp - mant_denom;
+	*final_degr = l_info->exp - mant_denom;
 //	printf("power of 2:  %d\n", final_degr);
-	if (final_degr < 0)
-		get_degr_of_five(&five, -final_degr);
-	str = ft_memalloc(ft_strlen(five) + 22);
+	if (*final_degr < 0)
+		get_degr_of_five(&five, -(*final_degr));
+	(*str) = ft_memalloc(ft_strlen(five) + 22);
 //	printf("l_info->mant (llu) %llu\n", l_info->mant);
-	get_str_mant(&str, l_info);
+	get_str_mant(str, l_info);
 //	printf("%s\n", five);
-	multiplication(five, l_info, final_degr, str);
+	multiplication(five, final_degr, str);
 }
 
-int		is_num_valid(t_ld *l_info)
+int		is_num_valid(t_ld *l_info, char **str)
 {
 	int		i;
 
@@ -296,24 +288,28 @@ int		is_num_valid(t_ld *l_info)
 				l_info->exp_2 == 1024) || ((!g_flags->l) && (!g_flags->cap_l) &&
 															l_info->exp_2 == 128))
 	{
+		*str = ft_memalloc(5);
 		if ((l_info->mant << 1) != 0)
-			write(1, "nan", 3);
+			*str = ft_strdup("nan\0");
 		else
 		{
 			if (l_info->sign == 1)
-				write(1, "-", 1);
-			write(1, "inf", 3);
+				*str = ft_strdup("-inf\0");
+			else
+				*str = ft_strdup("inf\0");
 		}
 		return (0);
 	}
 	return (1);
 }
 
-void	print_lf(long double num)
+char	*print_lf(long double num)
 {
 	t_un		u;
 	t_ld		*l_info;
 	int			i;
+	char		*str;
+	int		final_degr;
 
 	l_info = malloc(sizeof(l_info));
 	u.num = num;
@@ -340,8 +336,10 @@ void	print_lf(long double num)
 		l_info->mant = l_info->mant << 8;
 		l_info->mant |= (unsigned char)u.ar[i];
 	}
-	if (!is_num_valid(l_info))
-		return ;
-	handle_decoded(l_info);
+	if (!is_num_valid(l_info, &str))
+		return (str);
+	handle_decoded(l_info, &str, &final_degr);
+	print_num(&str, -final_degr);
 	free(l_info);
+	return(str);
 }
