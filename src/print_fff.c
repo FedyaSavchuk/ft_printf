@@ -15,6 +15,9 @@
 #include "../includes/ft_printf.h"
 #define LD long double
 #define LL unsigned long long
+#define DEG_OF_5_7 "78125"
+#define DEG_OF_5_14 "6103515625"
+#define MAX_LEN 512
 
 typedef struct	s_ldouble
 {
@@ -34,30 +37,28 @@ typedef union	s_un
 
 void	get_degr_of_five(char **str, int degr)
 {
-	char	*dg_7;
-	char	*tmp[1];
+	char	*tmp;
 
-	dg_7 = ft_strdup("78125");
-	*tmp = ft_memalloc(degr + 1);
+	tmp = ft_memalloc(degr + 1);
 	if (degr >= 7)
 	{
-		ft_strcpy(*tmp, dg_7);
+		ft_strcpy(tmp, DEG_OF_5_7);
 		degr -= 7;
 	}
 	else if (degr-- > -1)
-		ft_strcpy(*tmp, "5");
+		ft_strcpy(tmp, "5");
 	while (degr >= 7)
 	{
-		infin_mult(tmp, dg_7);
+		infin_mult(&tmp, DEG_OF_5_7);
 		degr -= 7;
 	}
 	while (degr >= 1)
 	{
-		infin_mult(tmp, "5");
+		infin_mult(&tmp, "5");
 		degr -= 1;
 	}
-	*str = ft_strdup(*tmp);
-	free(*tmp);
+	*str = ft_strdup(tmp);
+	free(tmp);
 }
 
 /*
@@ -110,7 +111,7 @@ void	print_res(char *result, char **str)
 
 	i = 0;
 	free(*str);
-	if (result[1] == '0' && result[2] != '.')
+	if (result[0] == '0' && result[1] != '.')
 		result++;
 	*str = ft_strdup(result);
 }
@@ -303,7 +304,7 @@ int		is_num_valid(t_ld *l_info, char **str)
 	return (1);
 }
 
-char	*print_lf(long double num)
+char	*print_f(long double num)
 {
 	t_un		u;
 	t_ld		*l_info;
@@ -342,4 +343,77 @@ char	*print_lf(long double num)
 	print_num(&str, -final_degr);
 	free(l_info);
 	return(str);
+}
+
+
+static void	print_double(char *str, int len)
+{
+	if (!ft_isdigit(str[0]) && g_flags->zero)
+			ft_putchar(*str++);
+		if (g_flags->zero)
+			ft_putchars('0', g_flags->min_width - len);
+		else
+		{
+			ft_putchars(' ', g_flags->min_width - len);
+			ft_putchar(*str++);
+		}
+	if (ft_isdigit(*str))
+		ft_putstr(str);
+	else
+		ft_putstr(str + 1);
+}
+
+/*
+**	Function: print_lf
+**	--------------------------
+**	main function for  float handling, get float format number
+**	convert it to long double, after what handling flags (+,-, )
+**	and convert it to string for output according to a needed precision
+**	and length of integer part
+**
+**	num:	long long float (long double) number to print
+**
+**	returns:	void
+*/
+
+void		print_lf(long double num)
+{
+	char	s[MAX_LEN];
+	char	*out;
+	int		precision;
+
+	precision = g_flags->cut;
+	ft_bzero(s, MAX_LEN);
+	if (num < 0.0)
+	{
+		s[0] = '-';
+		num *= -1.0;
+		out = s + 1;
+	}
+	else
+	{
+		if (g_flags->plus)
+			s[0] = '+';
+		else if (g_flags->space)
+			s[0] = ' ';
+		out = (g_flags->plus || g_flags->space) ? s + 1 : s;
+	}
+//	len = count_num(num);
+//	if (precision <= 17 && len < 16)
+//	{
+//		out += copy_itoa_result(out, (unsigned long int)(num / 10));
+//		num -= ((unsigned long int)(num / 10)) * 10;
+//		float2str(out, num);
+//	}
+//	else if (len >= 16)
+//	{
+//		out += copy_itoa_result(out, (unsigned long int)num);
+//		*out++ = '.';
+//		while (precision--)
+//			*out++ = '0';
+//	}
+//	else
+	ft_strcpy(out, print_f(num));
+//	round_num(s);
+	print_double(s, ft_strlen(s));
 }

@@ -1,0 +1,7 @@
+*.[oa]
+*~
+*.output
+*.out
+.idea*
+[cC][mM]*
+*.dSYM

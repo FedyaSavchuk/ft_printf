@@ -2,9 +2,22 @@
 
 FLAGS = -Wall -Wextra -Werror -I./libft/includes/ -I./includes/#-L./libft/ -lft
 
-SRC = src/convert.c src/ft_printf.c src/read_flags.c src/print_xob.c src/print_di.c src/print_tyr.c src/print_u.c src/print_s.c src/print_c.c src/print_f.c
+FILES = convert.c \
+      ft_printf.c \
+      read_flags.c \
+      print_xob.c \
+      print_di.c \
+      print_tyr.c \
+      print_u.c \
+      print_s.c \
+      print_c.c \
+      print_fff.c \
+      infin_mult.c \
+      print_f.c
 
 SRC_PATH = ./src/
+
+SRC = $(addprefix $(SRC_PATH), $(FILES))
 
 LIBFT = ./libft/libft.a
 
