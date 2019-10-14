@@ -6,7 +6,7 @@
 /*   By: pmila <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 16:49:28 by pmila             #+#    #+#             */
-/*   Updated: 2019/10/14 14:31:30 by pmila            ###   ########.fr       */
+/*   Updated: 2019/10/14 15:17:26 by pmila            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef union	s_un
 	long double	num;
 	char		ar[sizeof(long double)];
 }				t_un;
+
+t_un		g_u;
 
 void	get_degr_of_five(char **str, int degr)
 {
@@ -166,7 +168,7 @@ void	print_num(char **str, int degr)
 	if (g_flags->dote == 0)
 		g_flags->cut = 6;
 	result[j++] = '0';
-	if (g_flags->cut == 0)
+	if (g_flags->dote == 1 && g_flags->cut == 0)
 		handle_integer(&result, i, (*str));
 	else
 	{
@@ -289,15 +291,12 @@ int		is_num_valid(t_ld *l_info, char **str)
 				l_info->exp_2 == 1024) || ((!g_flags->l) && (!g_flags->cap_l) &&
 															l_info->exp_2 == 128))
 	{
-		*str = ft_memalloc(5);
+		*str = ft_memalloc(4);
 		if ((l_info->mant << 1) != 0)
 			*str = ft_strdup("nan\0");
 		else
 		{
-			if (l_info->sign == 1)
-				*str = ft_strdup("-inf\0");
-			else
-				*str = ft_strdup("inf\0");
+			*str = ft_strdup("inf\0");
 		}
 		return (0);
 	}
@@ -306,21 +305,20 @@ int		is_num_valid(t_ld *l_info, char **str)
 
 char	*print_f(long double num)
 {
-	t_un		u;
 	t_ld		*l_info;
 	int			i;
 	char		*str;
 	int		final_degr;
 
 	l_info = malloc(sizeof(l_info));
-	u.num = num;
+	g_u.num = num;
 	//handling an exponent
-	l_info->sign = (unsigned char)u.ar[9] >> 7;
+	l_info->sign = (unsigned char)g_u.ar[9] >> 7;
 //	printf("l_info->sign = %d\n", sign);
-	l_info->pos_p = (unsigned char)(u.ar[9] << 1) >> 7;
+	l_info->pos_p = (unsigned char)(g_u.ar[9] << 1) >> 7;
 //	printf("l_info->pos_p = %d\n", l_info->pos_p);
-	l_info->exp = ((unsigned int)((unsigned char)(u.ar[9] << 2) >> 2) << 8) | u.ar[8];
-	l_info->exp_2 = ((unsigned int)((unsigned char)(u.ar[9] << 2) >> 2) << 8) | (unsigned char)u.ar[8];
+	l_info->exp = ((unsigned int)((unsigned char)(g_u.ar[9] << 2) >> 2) << 8) | g_u.ar[8];
+	l_info->exp_2 = ((unsigned int)((unsigned char)(g_u.ar[9] << 2) >> 2) << 8) | (unsigned char)g_u.ar[8];
 	if (l_info->pos_p == 1 || l_info->exp < 0)
 		l_info->exp += 1;
 	else if (l_info->exp == 0)
@@ -335,7 +333,7 @@ char	*print_f(long double num)
 	while (--i >= 0)
 	{
 		l_info->mant = l_info->mant << 8;
-		l_info->mant |= (unsigned char)u.ar[i];
+		l_info->mant |= (unsigned char)g_u.ar[i];
 	}
 	if (!is_num_valid(l_info, &str))
 		return (str);
@@ -350,13 +348,13 @@ static void	print_double(char *str, int len)
 {
 	if (!ft_isdigit(str[0]) && g_flags->zero)
 			ft_putchar(*str++);
-		if (g_flags->zero)
-			ft_putchars('0', g_flags->min_width - len);
-		else
-		{
-			ft_putchars(' ', g_flags->min_width - len);
-			ft_putchar(*str++);
-		}
+	if (g_flags->zero)
+		ft_putchars('0', g_flags->min_width - len);
+	else
+	{
+		ft_putchars(' ', g_flags->min_width - len);
+		ft_putchar(*str++);
+	}
 	if (ft_isdigit(*str))
 		ft_putstr(str);
 	else
@@ -384,7 +382,7 @@ void		print_lf(long double num)
 
 	precision = g_flags->cut;
 	ft_bzero(s, MAX_LEN);
-	if (num < 0.0)
+	if ((unsigned char)g_u.ar[9] >> 7 == 1)
 	{
 		s[0] = '-';
 		num *= -1.0;

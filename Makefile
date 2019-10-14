@@ -12,8 +12,7 @@ FILES = convert.c \
       print_s.c \
       print_c.c \
       print_fff.c \
-      infin_mult.c \
-      print_f.c
+      infin_mult.c 
 
 SRC_PATH = ./src/
 

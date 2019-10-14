@@ -6,7 +6,7 @@
 /*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 20:35:25 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/05 20:35:27 by pparalax         ###   ########.fr       */
+/*   Updated: 2019/10/14 15:00:03 by pmila            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ size_t	ft_strlen(const char *s)
 	size_t	length;
 
 	length = 0;
-	while (s[length] != '\0')
-		length++;
+	if (s)
+		while (s[length] != '\0')
+			length++;
 	return (length);
 }
