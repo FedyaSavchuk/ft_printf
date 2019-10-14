@@ -6,10 +6,13 @@
 #include "ft_printf.h"
 #include <limits.h>
 #include <float.h>
+#include <float.h>
+#include <math.h>
+#include <limits.h>
 
 int main(void)
 {
-	ft_printf("{%5.0f}{%5.1lf}{%5.1Lf}\n", 7.3, 7.3, -7.3);
-	printf("{%5.0f}{%5.1lf}{%5.1Lf}\n", 7.3, 7.3, -7.3);
+	ft_printf("%f\n", (double)INT_MAX + 1);
+	printf("%f", (double)INT_MAX + 1);
 	return (0);
 }

@@ -16,8 +16,9 @@
 #define LD long double
 #define LL unsigned long long
 #define DEG_OF_5_7 "78125"
-#define DEG_OF_5_14 "6103515625"
-#define MAX_LEN 512
+#define DEG_OF_5_71 "42351647362715016953416125033982098102569580078125"
+
+#define MAX_LEN 4096
 
 typedef struct	s_ldouble
 {
@@ -41,14 +42,24 @@ void	get_degr_of_five(char **str, int degr)
 {
 	char	*tmp;
 
-	tmp = ft_memalloc(degr + 1);
-	if (degr >= 7)
+	tmp = ft_strnew(degr + 1);
+	if (degr >= 71)
+	{
+		ft_strcpy(tmp, DEG_OF_5_71);
+		degr -= 71;
+	}
+	else if (degr >= 7)
 	{
 		ft_strcpy(tmp, DEG_OF_5_7);
 		degr -= 7;
 	}
 	else if (degr-- > -1)
 		ft_strcpy(tmp, "5");
+	while (degr >= 71)
+	{
+		infin_mult(&tmp, DEG_OF_5_71);
+		degr -= 71;
+	}
 	while (degr >= 7)
 	{
 		infin_mult(&tmp, DEG_OF_5_7);
@@ -112,7 +123,7 @@ void	print_res(char *result, char **str)
 	int		i;
 
 	i = 0;
-	free(*str);
+	ft_strdel(str);
 	if (result[0] == '0' && result[1] != '.')
 		result++;
 	*str = ft_strdup(result);
@@ -141,7 +152,8 @@ void	handle_integer(char **result, int i, char *str)
 		(*result)[j++] = '0';
 	while (i-- > 0 && str[k] != '\0')
 		(*result)[j++] = str[k++];
-	(*result)[j - 1] += round_last(str, k - 1);
+	if (i >= -1)
+		(*result)[j - 1] += round_last(str, k - 1);
 	check_round(result, j - 1);
 	if (g_flags->grill == 1)
 		(*result)[j++] = '.';
@@ -155,18 +167,11 @@ void	print_num(char **str, int degr)
 	int		k;
 	int		j;
 
-//	ft_putstr(str);
-//	ft_putchar('\n');
-	//printf("degr = %d\n", degr);
 	i = ft_strlen((*str));
-	result = ft_memalloc(i + g_flags->cut + 2);
+	result = ft_strnew(i + g_flags->cut + 3);
 	i -= degr;
-//	printf("%d\n", i);
-//	printf("%d\n", sign);
 	j = 0;
 	k = 0;
-	if (g_flags->dote == 0)
-		g_flags->cut = 6;
 	result[j++] = '0';
 	if (g_flags->dote == 1 && g_flags->cut == 0)
 		handle_integer(&result, i, (*str));
@@ -242,7 +247,6 @@ void	multiplication(char *five, int *degr, char **str)
 {
 	if (*degr < 0)
 		infin_mult(str, five);
-//	printf("%s\n", str);
 	while (*degr > 0)
 	{
 		infin_mult(str, "2");
@@ -255,7 +259,6 @@ void	handle_decoded(t_ld *l_info, char **str, int *final_degr)
 	int			mant_denom;
 	char		*five;
 
-//	printf("exp = %d\n", l_info->exp);
 	five = NULL;
 	mant_denom = 63;
 	while ((unsigned char)l_info->mant == 0 && mant_denom > 7)
@@ -263,35 +266,29 @@ void	handle_decoded(t_ld *l_info, char **str, int *final_degr)
 		l_info->mant = l_info->mant >> 8;
 		mant_denom -= 8;
 	}
-//	printf("mant= %llu\n", l_info->mant);
 	*final_degr = l_info->exp - mant_denom;
-//	printf("power of 2:  %d\n", final_degr);
 	if (*final_degr < 0)
-		get_degr_of_five(&five, -(*final_degr));
-	(*str) = ft_memalloc(ft_strlen(five) + 22);
-//	printf("l_info->mant (llu) %llu\n", l_info->mant);
+		get_degr_of_five(&five, - (*final_degr));
+	(*str) = ft_strnew(ft_strlen(five) + 22);
 	get_str_mant(str, l_info);
-//	printf("%s\n", five);
 	multiplication(five, final_degr, str);
+	ft_strdel(&five);
 }
 
 int		is_num_valid(t_ld *l_info, char **str)
 {
 	int		i;
 
-	i = (g_flags->cap_l ? 16383 : 127);
-	i = (g_flags->l ? 1023 : i);
+	i = 16383;
 	if (l_info->pos_p == 1 || l_info->exp_2 < 1)
 		l_info->exp_2 += 1;
 	else if (l_info->exp_2 == 0)
 		l_info->pos_p = -1;
 	else
 		l_info->exp_2 -= i;
-	if ((g_flags->cap_l == 1 && l_info->exp_2 == 16384) || (g_flags->l == 1 &&
-				l_info->exp_2 == 1024) || ((!g_flags->l) && (!g_flags->cap_l) &&
-															l_info->exp_2 == 128))
+	if (l_info->exp_2 == 16384)
 	{
-		*str = ft_memalloc(4);
+		*str = ft_strnew(4);
 		if ((l_info->mant << 1) != 0)
 			*str = ft_strdup("nan\0");
 		else
@@ -303,11 +300,11 @@ int		is_num_valid(t_ld *l_info, char **str)
 	return (1);
 }
 
-char	*print_f(void)
+void	print_f(char **str)
 {
 	t_ld		*l_info;
 	int			i;
-	char		*str;
+//	char		*str;
 	int		final_degr;
 
 	l_info = malloc(sizeof(l_info));
@@ -318,12 +315,13 @@ char	*print_f(void)
 //	printf("l_info->pos_p = %d\n", l_info->pos_p);
 	l_info->exp = ((unsigned int)((unsigned char)(g_u.ar[9] << 2) >> 2) << 8) | g_u.ar[8];
 	l_info->exp_2 = ((unsigned int)((unsigned char)(g_u.ar[9] << 2) >> 2) << 8) | (unsigned char)g_u.ar[8];
+	i = 16383;
 	if (l_info->pos_p == 1 || l_info->exp < 0)
 		l_info->exp += 1;
 	else if (l_info->exp == 0)
 		l_info->pos_p = -1;
 	else
-		l_info->exp -= 127;
+		l_info->exp -= i;
 //	printf("l_info->exp = %d\n", l_info->exp);
 
 	//handling a mantissa
@@ -334,31 +332,39 @@ char	*print_f(void)
 		l_info->mant = l_info->mant << 8;
 		l_info->mant |= (unsigned char)g_u.ar[i];
 	}
-	if (!is_num_valid(l_info, &str))
-		return (str);
-	handle_decoded(l_info, &str, &final_degr);
-	print_num(&str, -final_degr);
+	if (!is_num_valid(l_info, str))
+		return ;
+	handle_decoded(l_info, str, &final_degr);
+	print_num(str, -final_degr);
 	free(l_info);
-	return(str);
+	return ;
 }
 
 
 static void	print_double(char *str, int len)
 {
-	if (!ft_isdigit(str[0]) && g_flags->zero)
+	if (!ft_isalnum(str[0]) && str[1] == 'n')
+		return (void)print_s(str + 1);
+	else if ((!ft_isalnum(str[0]) && str[1] == 'i') || ft_isalpha(str[0]))
+		return (void)print_s(str);
+	if (g_flags->minus)
+	{
+		ft_putstr(str);
+		ft_putchars(' ', g_flags->min_width - len);
+		return ;
+	}
+	if (!ft_isalnum(str[0]) && g_flags->zero)
 			ft_putchar(*str++);
 	if (g_flags->zero && g_flags->min_width)
 		ft_putchars('0', g_flags->min_width - len);
 	else if (g_flags->min_width)
 	{
 		ft_putchars(' ', g_flags->min_width - len);
-		if (!ft_isdigit(str[0]))
+		if (!ft_isalnum(str[0]))
 			ft_putchar(*str++);
 	}
-	if (ft_isdigit(*str))
-		ft_putstr(str);
-	else
-		ft_putstr(str + 1);
+	ft_putstr(str);
+
 }
 
 /*
@@ -378,10 +384,9 @@ void		print_lf(long double num)
 {
 	char	s[MAX_LEN];
 	char	*out;
-	int		precision;
+	char	*temp;
 
 	g_u.num = num;
-	precision = g_flags->cut;
 	ft_bzero(s, MAX_LEN);
 	if ((unsigned char)g_u.ar[9] >> 7 == 1)
 	{
@@ -397,6 +402,8 @@ void		print_lf(long double num)
 			s[0] = ' ';
 		out = (g_flags->plus || g_flags->space) ? s + 1 : s;
 	}
+	if (g_flags->dote == 0)
+		g_flags->cut = 6;
 //	len = count_num(num);
 //	if (precision <= 17 && len < 16)
 //	{
@@ -412,7 +419,9 @@ void		print_lf(long double num)
 //			*out++ = '0';
 //	}
 //	else
-	ft_strcpy(out, print_f());
+	print_f(&temp);
+	ft_strcpy(out, temp);
+	ft_strdel(&temp);
 //	round_num(s);
 	print_double(s, ft_strlen(s));
 }

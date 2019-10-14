@@ -29,7 +29,7 @@ int		*ft_processing(char *m1, char *n2)
 		len++;
 	while (n2[j++] != '\0')
 		len++;
-	arr = malloc(sizeof(int) * (len + 1));
+	arr = (int *)malloc(sizeof(int) * (len + 1));
 	i = 0;
 	while (i < len)
 		arr[i++] = 0;
