@@ -16,83 +16,13 @@
 #define LD long double
 #define LL unsigned long long
 #define MAX_POWER_OF_LDBL 16383
-#define DEG_OF_5_7 "78125"
-#define DEG_OF_5_71 "42351647362715016953416125033982098102569580078125"
+
 
 #define MAX_LEN 4096
 
-typedef struct	s_ldouble
-{
-	LL			mant;
-	char		sign;
-	char		pos_p;
-	int			exp;
-	unsigned int	exp_2;
-}				t_ld;
 
-
-typedef union	s_un
-{
-	long double	num;
-	char		ar[sizeof(long double)];
-}				t_un;
 
 t_un		g_u;
-
-void	get_degr_of_five(char **str, int degr)
-{
-	char	*tmp;
-
-	tmp = ft_strnew(degr);
-	if (degr >= 71)
-	{
-		ft_strcpy(tmp, DEG_OF_5_71);
-		degr -= 71;
-	}
-	else if (degr >= 7)
-	{
-		ft_strcpy(tmp, DEG_OF_5_7);
-		degr -= 7;
-	}
-	else if (degr-- > -1)
-		ft_strcpy(tmp, "5");
-	while (degr >= 71)
-	{
-		infin_mult(&tmp, DEG_OF_5_71);
-		degr -= 71;
-	}
-	while (degr >= 7)
-	{
-		infin_mult(&tmp, DEG_OF_5_7);
-		degr -= 7;
-	}
-	while (degr >= 1)
-	{
-		infin_mult(&tmp, "5");
-		degr -= 1;
-	}
-	*str = ft_strdup(tmp);
-	free(tmp);
-}
-
-int		round_last(char *str, int k)
-{
-	int	i;
-
-	i = 2;
-	if (str[k + 1] == '\0')
-		return (0);
-	else if (str[k + 1] && str[k + 1] > '5')
-		return (1);
-	else if (str[k + 1] && str[k + 1] < '5')
-		return (0);
-	while (str[k + i] != '\0')
-		if (str[k + i++] > '0')
-			return (1);
-	if ((str[k] - '0') % 2 == 0)
-		return (0);
-	return (1);
-}
 
 void	print_res(char *result, char **str)
 {
@@ -101,37 +31,6 @@ void	print_res(char *result, char **str)
 	if (result[0] == '0' && result[1] != '.')
 		result++;
 	*str = ft_strdup(result);
-}
-
-void	check_round(char **str, int j)
-{
-	while (j > 0 && (*str)[j] > '9')
-	{
-		(*str)[j] = '0';
-		if ((*str)[j - 1] == '.')
-			j--;
-		(*str)[j - 1] += 1;
-		j--;
-	}
-}
-
-void	handle_integer(char **result, int i, char *str)
-{
-	int		j;
-	int		k;
-
-	j = 1;
-	k = 0;
-	if (i <= 0 && (++k + 1))
-		(*result)[j++] = '0';
-	while (i-- > 0 && str[k] != '\0')
-		(*result)[j++] = str[k++];
-	if (i >= -1)
-		(*result)[j - 1] += round_last(str, k - 1);
-	check_round(result, j - 1);
-	if (g_flags->grill == 1)
-		(*result)[j++] = '.';
-	(*result)[j] = '\0';
 }
 
 void	print_num(char **str, int degr)
@@ -184,64 +83,6 @@ void	print_num(char **str, int degr)
 	}
 	print_res(result, str);
 	free(result);
-}
-
-int		numlen (LL mant)
-{
-	int		len;
-
-	len = 0;
-	while (mant > 0)
-	{
-		mant /= 10;
-		len++;
-	}
-	return (len);
-}
-
-void	get_str_mant(char **str, t_ld *l_info)
-{
-	int		i;
-
-	i = numlen(l_info->mant);
-	while (l_info->mant > 0)
-	{
-		i -= 1;
-		(*str)[i] = (l_info->mant % 10) + '0';
-		l_info->mant = l_info->mant / 10;
-	}
-}
-
-void	multiplication(char *five, int *degr, char **str)
-{
-	if (*degr < 0)
-		infin_mult(str, five);
-	while (*degr > 0)
-	{
-		infin_mult(str, "2");
-		(*degr)--;
-	}
-}
-
-void	handle_decoded(t_ld *l_info, char **str, int *final_degr)
-{
-	int			mant_denom;
-	char		*five;
-
-	five = NULL;
-	mant_denom = 63;
-	while ((unsigned char)l_info->mant == 0 && mant_denom > 7)
-	{
-		l_info->mant = l_info->mant >> 8;
-		mant_denom -= 8;
-	}
-	*final_degr = l_info->exp - mant_denom;
-	if (*final_degr < 0)
-		get_degr_of_five(&five, - (*final_degr));
-	(*str) = ft_strnew(ft_strlen(five) + 21);
-	get_str_mant(str, l_info);
-	multiplication(five, final_degr, str);
-	ft_strdel(&five);
 }
 
 int		is_num_valid(t_ld *l_info, char **str)

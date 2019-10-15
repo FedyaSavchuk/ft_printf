@@ -18,25 +18,6 @@
 # include <stdarg.h>
 # include "libft.h"
 
-int						ft_printf(const char *format, ...);
-char					read_flags(const char *f, va_list *argv);
-int						clear_flags(void);
-int						print_xxo(unsigned long long int nbr, char ns);
-char					*ft_itoa_base(int long long value, int base, char reg);
-int						print_di(long long int nbr);
-int						print_u(unsigned long long int nbr);
-void					print_t(char **arr);
-void					print_y(char ***arr);
-int						print_s(char *str, int flag);
-int						print_c(char c);
-int						read_file(int fd);
-long long int			convert_d(va_list *argv);
-unsigned long long int	convert_u(va_list *argv);
-long double				convert_f(va_list *argv);
-void					print_lf(long double num);
-void					add_cut(char **snbr);
-void					infin_mult(char **m1, char *m2);
-
 typedef struct			s_flags
 {
 	int zero;
@@ -53,6 +34,44 @@ typedef struct			s_flags
 	int ll;
 	int cap_l;
 }						t_flags;
+
+typedef struct		s_ldouble
+{
+	unsigned long	mant;
+	char			sign;
+	char			pos_p;
+	int				exp;
+	unsigned int	exp_2;
+}					t_ld;
+
+
+typedef union	s_un
+{
+	long double	num;
+	char		ar[sizeof(long double)];
+}				t_un;
+
+int						ft_printf(const char *format, ...);
+char					read_flags(const char *f, va_list *argv);
+int						clear_flags(void);
+int						print_xxo(unsigned long long int nbr, char ns);
+char					*ft_itoa_base(int long long value, int base, char reg);
+int						print_di(long long int nbr);
+int						print_u(unsigned long long int nbr);
+void					print_t(char **arr);
+void					print_y(char ***arr);
+int						print_s(char *str, int flag);
+int						print_c(char c);
+long long int			convert_d(va_list *argv);
+unsigned long long int	convert_u(va_list *argv);
+long double				convert_f(va_list *argv);
+void					print_lf(long double num);
+void					add_cut(char **snbr);
+void					infin_mult(char **m1, char *m2);
+void					handle_integer(char **result, int i, char *str);
+int						round_last(char *str, int k);
+void					check_round(char **str, int j);
+void					handle_decoded(t_ld *l_info, char **str, int *final_degr);
 
 t_flags					*g_flags;
 int						g_iter;

@@ -89,9 +89,7 @@ int		ft_printf(const char *format, ...)
 		return (0);
 	while (format[g_iter])
 	{
-		if (format[g_iter] != '%')
-			ft_putchar(format[g_iter]);
-		else if (check_double_percents(format))
+		if (format[g_iter] != '%' || check_double_percents(format))
 			ft_putchar(format[g_iter]);
 		else
 		{
