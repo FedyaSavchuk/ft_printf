@@ -32,8 +32,7 @@ int		check_double_percents(const char *format)
 			i++;
 		if (format[g_iter + i] == '%')
 		{
-			g_iter += i;
-			i = g_iter;
+			i = g_iter += i;
 			if (i > 1 && format[i - 1] >= '0' && format[i - 1] <= '9' && i--)
 			{
 				while ((format[i] >= '0' && format[i] <= '9'))

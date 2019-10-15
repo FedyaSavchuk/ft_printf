@@ -15,7 +15,7 @@
 #include "printf.h"
 #include "libft.h"
 
-void		check_overlay(int **arr, int len)
+static void		check_overlay(int **arr, int len)
 {
 	int i;
 
@@ -30,11 +30,11 @@ void		check_overlay(int **arr, int len)
 
 static int		*ft_processing(char *m1, char *n2)
 {
-	int		i;
-	int		j;
-	int		len;
-	int		tmp;
-	int		*arr;
+	unsigned int	i;
+	unsigned int	j;
+	unsigned int	len;
+	unsigned int	tmp;
+	int				*arr;
 
 	len = ft_strlen(m1) + ft_strlen(n2);
 	arr = ft_memalloc(sizeof(int) * (len + 1));
@@ -52,20 +52,14 @@ static int		*ft_processing(char *m1, char *n2)
 	}
 	check_overlay(&arr, len);
 	i = len;
-//	while (--i > 0)
-//		if (arr[i] >= 10)
-//		{
-//			arr[i - 1] += arr[i] / 10;
-//			arr[i] = arr[i] % 10;
-//		}
 	return (arr);
 }
 
 void			infin_mult(char **m1, char *m2)
 {
-	int		*arr;
-	int		i;
-	int		j;
+	int					*arr;
+	unsigned int		i;
+	unsigned int		j;
 
 	if ((*m1)[0] == 0 || m2[0] == 0)
 	{

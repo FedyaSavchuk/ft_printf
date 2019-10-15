@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_s.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aolen <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 22:43:48 by pparalax          #+#    #+#             */
-/*   Updated: 2019/10/07 22:43:50 by pparalax         ###   ########.fr       */
+/*   Created: 2019/10/15 12:26:01 by aolen             #+#    #+#             */
+/*   Updated: 2019/10/15 12:26:02 by aolen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int		print_s(char *str, int flag)
 		len = g_flags->cut;
 	if (g_flags->minus)
 		write(1, s, len);
-	ft_putchars(((!flag && (g_flags->zero && !g_flags->minus)) ? '0' : ' ') , g_flags->min_width - len);
+	ft_putchars(((!flag && (g_flags->zero && !g_flags->minus)) ? '0' : ' '),
+			g_flags->min_width - len);
 	if (!g_flags->minus)
 		write(1, s, len);
 	g_giter += len;

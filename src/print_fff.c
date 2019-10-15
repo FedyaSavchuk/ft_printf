@@ -15,6 +15,7 @@
 #include "../includes/ft_printf.h"
 #define LD long double
 #define LL unsigned long long
+#define MAX_POWER_OF_LDBL 16383
 #define DEG_OF_5_7 "78125"
 #define DEG_OF_5_71 "42351647362715016953416125033982098102569580078125"
 
@@ -95,10 +96,8 @@ int		round_last(char *str, int k)
 
 void	print_res(char *result, char **str)
 {
-	int		i;
-
-	i = 0;
-	ft_strdel(str);
+	if (*str)
+		free(*str);
 	if (result[0] == '0' && result[1] != '.')
 		result++;
 	*str = ft_strdup(result);
@@ -280,12 +279,10 @@ void	print_f(char **str)
 	l_info->pos_p = (unsigned char)(g_u.ar[9] << 1) >> 7;
 	l_info->exp = ((unsigned int)((unsigned char)(g_u.ar[9] << 2) >> 2) << 8) | g_u.ar[8];
 	l_info->exp_2 = ((unsigned int)((unsigned char)(g_u.ar[9] << 2) >> 2) << 8) | (unsigned char)g_u.ar[8];
-	i = 16383;
+	i = MAX_POWER_OF_LDBL;
 	if (l_info->pos_p == 1 || l_info->exp < 0)
 		l_info->exp += 1;
-	else if (l_info->exp == 0)
-		l_info->pos_p = -1;
-	else
+	else if (l_info->exp != 0)
 		l_info->exp -= i;
 	i = 8;
 	l_info->mant = 0;
@@ -326,7 +323,6 @@ static void	print_double(char *str, int len)
 			ft_putchar(*str++);
 	}
 	ft_putstr(str);
-
 }
 
 /*
@@ -353,7 +349,6 @@ void		print_lf(long double num)
 	if ((unsigned char)g_u.ar[9] >> 7 == 1)
 	{
 		s[0] = '-';
-		num *= -1.0;
 		out = s + 1;
 	}
 	else

@@ -18,21 +18,22 @@ char	*add_cut_di(char *snbr)
 	int		i;
 
 	i = 0;
-	tmp = ft_strnew((ft_strlen(snbr) + (snbr[0] != '-') > (size_t)g_flags->cut ? ft_strlen(snbr) + (snbr[0] != '-') : g_flags->cut) + 1);
-		if ((snbr)[0] != '-')
-		{
-			tmp[0] = '+';
-			while (i++ < (int)(g_flags->cut - ft_strlen(snbr)))
-				ft_strcat(tmp, "0");
-			ft_strcat(tmp, snbr);
-		}
-		else
-		{
-			tmp[0] = '-';
-			while (i++ < (int)(g_flags->cut - ft_strlen(snbr) + 1))
-				ft_strcat(tmp, "0");
-			ft_strcat(tmp, &snbr[1]);
-		}
+	tmp = ft_strnew((ft_strlen(snbr) + (snbr[0] != '-') > (size_t)
+		g_flags->cut ? ft_strlen(snbr) + (snbr[0] != '-') : g_flags->cut) + 1);
+	if ((snbr)[0] != '-')
+	{
+		tmp[0] = '+';
+		while (i++ < (int)(g_flags->cut - ft_strlen(snbr)))
+			ft_strcat(tmp, "0");
+		ft_strcat(tmp, snbr);
+	}
+	else
+	{
+		tmp[0] = '-';
+		while (i++ < (int)(g_flags->cut - ft_strlen(snbr) + 1))
+			ft_strcat(tmp, "0");
+		ft_strcat(tmp, &snbr[1]);
+	}
 	free(snbr);
 	return ((tmp) ? tmp : snbr);
 }

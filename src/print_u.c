@@ -26,7 +26,8 @@ int	print_u(unsigned long long int nbr)
 		c = g_flags->min_width;
 	if (g_flags->minus && !(!nbr && g_flags->dote && !g_flags->cut))
 		ft_putstr(snbr);
-	ft_putchars((g_flags->zero && !g_flags->dote && !g_flags->minus) ? '0' : ' ', c);
+	ft_putchars((g_flags->zero && !g_flags->dote && !g_flags->minus) ?
+	'0' : ' ', c);
 	if (!g_flags->minus && !(!nbr && g_flags->dote && !g_flags->cut))
 		ft_putstr(snbr);
 	free(snbr);
