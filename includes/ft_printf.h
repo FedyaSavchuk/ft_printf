@@ -35,21 +35,20 @@ typedef struct			s_flags
 	int cap_l;
 }						t_flags;
 
-typedef struct		s_ldouble
+typedef struct			s_ldouble
 {
 	unsigned long	mant;
 	char			sign;
 	char			pos_p;
 	int				exp;
 	unsigned int	exp_2;
-}					t_ld;
+}						t_ld;
 
-
-typedef union	s_un
+typedef union			u_un
 {
 	long double	num;
 	char		ar[sizeof(long double)];
-}				t_un;
+}						t_un;
 
 int						ft_printf(const char *format, ...);
 char					read_flags(const char *f, va_list *argv);
@@ -71,7 +70,9 @@ void					infin_mult(char **m1, char *m2);
 void					handle_integer(char **result, int i, char *str);
 int						round_last(char *str, int k);
 void					check_round(char **str, int j);
-void					handle_decoded(t_ld *l_info, char **str, int *final_degr);
+int						is_num_valid(t_ld *l_info, char **str);
+void					handle_decoded(t_ld *l_info, char **str,
+						int *final_degr);
 
 t_flags					*g_flags;
 int						g_iter;

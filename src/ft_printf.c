@@ -19,11 +19,8 @@ int		put_persent_and_space(int i)
 	return (0);
 }
 
-int		check_double_percents(const char *format)
+int		check_double_percents(const char *format, int i)
 {
-	int i;
-
-	i = 0;
 	if (format[g_iter] == '%' && ++i)
 	{
 		g_flags->zero = (format[g_iter + 1] == '0') ? 1 : 0;
@@ -89,7 +86,7 @@ int		ft_printf(const char *format, ...)
 		return (0);
 	while (format[g_iter])
 	{
-		if (format[g_iter] != '%' || check_double_percents(format))
+		if (format[g_iter] != '%' || check_double_percents(format, 0))
 			ft_putchar(format[g_iter]);
 		else
 		{

@@ -61,3 +61,27 @@ void	handle_integer(char **result, int i, char *str)
 		(*result)[j++] = '.';
 	(*result)[j] = '\0';
 }
+
+int		is_num_valid(t_ld *l_info, char **str)
+{
+	int		i;
+
+	i = 16383;
+	if (l_info->pos_p == 1 || l_info->exp_2 < 1)
+		l_info->exp_2 += 1;
+	else if (l_info->exp_2 == 0)
+		l_info->pos_p = -1;
+	else
+		l_info->exp_2 -= i;
+	if (l_info->exp_2 == 16384)
+	{
+		if ((l_info->mant << 1) != 0)
+			*str = ft_strdup("nan");
+		else
+		{
+			*str = ft_strdup("inf");
+		}
+		return (0);
+	}
+	return (1);
+}

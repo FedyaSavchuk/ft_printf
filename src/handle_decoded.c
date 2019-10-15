@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_decoded.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/15 14:52:48 by pparalax          #+#    #+#             */
+/*   Updated: 2019/10/15 14:52:52 by pparalax         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 #define DEG_OF_5_7 "78125"
 #define DEG_OF_5_71 "42351647362715016953416125033982098102569580078125"
 
-void	get_degr_of_five(char **str, int degr)
+void			get_degr_of_five(char **str, int degr)
 {
 	char	*tmp;
 
@@ -39,7 +50,7 @@ void	get_degr_of_five(char **str, int degr)
 	free(tmp);
 }
 
-static int		numlen (unsigned long mant)
+static int		numlen(unsigned long mant)
 {
 	int		len;
 
@@ -52,7 +63,7 @@ static int		numlen (unsigned long mant)
 	return (len);
 }
 
-static void	get_str_mant(char **str, t_ld *l_info)
+static void		get_str_mant(char **str, t_ld *l_info)
 {
 	int		i;
 
@@ -65,7 +76,7 @@ static void	get_str_mant(char **str, t_ld *l_info)
 	}
 }
 
-static void	multiplication(char *five, int *degr, char **str)
+static void		multiplication(char *five, int *degr, char **str)
 {
 	if (*degr < 0)
 		infin_mult(str, five);
@@ -76,7 +87,7 @@ static void	multiplication(char *five, int *degr, char **str)
 	}
 }
 
-void	handle_decoded(t_ld *l_info, char **str, int *final_degr)
+void			handle_decoded(t_ld *l_info, char **str, int *final_degr)
 {
 	int			mant_denom;
 	char		*five;
@@ -90,7 +101,7 @@ void	handle_decoded(t_ld *l_info, char **str, int *final_degr)
 	}
 	*final_degr = l_info->exp - mant_denom;
 	if (*final_degr < 0)
-		get_degr_of_five(&five, - (*final_degr));
+		get_degr_of_five(&five, -(*final_degr));
 	(*str) = ft_strnew(ft_strlen(five) + 21);
 	get_str_mant(str, l_info);
 	multiplication(five, final_degr, str);

@@ -16,15 +16,11 @@
 #define LD long double
 #define LL unsigned long long
 #define MAX_POWER_OF_LDBL 16383
-
-
 #define MAX_LEN 4096
-
-
 
 t_un		g_u;
 
-void	print_res(char *result, char **str)
+void		print_res(char *result, char **str)
 {
 	if (*str)
 		free(*str);
@@ -33,7 +29,7 @@ void	print_res(char *result, char **str)
 	*str = ft_strdup(result);
 }
 
-void	print_num(char **str, int degr)
+void		print_num(char **str, int degr)
 {
 	char	*result;
 	int		i;
@@ -70,9 +66,8 @@ void	print_num(char **str, int degr)
 		}
 		if (!(*str)[k])
 			while (g_flags->cut-- > 0)
-			
 				result[j++] = '0';
-		else if(i == 0)
+		else if (i == 0)
 			result[j] = '0' + ((*str)[0] >= '5' ? 1 : 0);
 		else if (i < 0)
 			result[j] = '0';
@@ -85,35 +80,11 @@ void	print_num(char **str, int degr)
 	free(result);
 }
 
-int		is_num_valid(t_ld *l_info, char **str)
-{
-	int		i;
-
-	i = 16383;
-	if (l_info->pos_p == 1 || l_info->exp_2 < 1)
-		l_info->exp_2 += 1;
-	else if (l_info->exp_2 == 0)
-		l_info->pos_p = -1;
-	else
-		l_info->exp_2 -= i;
-	if (l_info->exp_2 == 16384)
-	{
-		if ((l_info->mant << 1) != 0)
-			*str = ft_strdup("nan");
-		else
-		{
-			*str = ft_strdup("inf");
-		}
-		return (0);
-	}
-	return (1);
-}
-
-void	print_f(char **str)
+void		print_f(char **str)
 {
 	t_ld		*l_info;
 	int			i;
-	int		final_degr;
+	int			final_degr;
 
 	l_info = ft_memalloc(sizeof(l_info));
 	l_info->sign = (unsigned char)g_u.ar[9] >> 7;
@@ -139,7 +110,6 @@ void	print_f(char **str)
 	free(l_info);
 	return ;
 }
-
 
 static void	print_double(char *str, int len)
 {
