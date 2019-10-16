@@ -14,7 +14,8 @@ FILES = convert.c \
       print_fff.c \
       infin_mult.c \
       print_ff.c \
-      handle_decoded.c
+      handle_decoded.c \
+      print_f.c
 
 SRC_PATH = ./src/
 

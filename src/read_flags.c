@@ -43,7 +43,7 @@ void	star(const char *format, int i, va_list *argv)
 	else
 	{
 		g_flags->min_width = va_arg(*argv, int);
-		g_flags->minus = (g_flags->min_width < 0) ? 1 : 0;
+		g_flags->minus = (g_flags->min_width < 0) ? 1 : g_flags->minus;
 		g_flags->min_width = ft_abs(g_flags->min_width);
 	}
 }

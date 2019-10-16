@@ -40,7 +40,6 @@ static int	get_format_xo(char ns, int nbr)
 	if (!g_flags->grill)
 		return (0);
 	tmp = ft_uitoa_base(nbr, 8, 'a');
-	
 	if (ns == 'o' && ((g_flags->cut > (int)ft_strlen(tmp)) ||
 		(!nbr && !g_flags->dote)))
 	{
@@ -63,26 +62,10 @@ int			get_len1(char *snbr)
 	return (0);
 }
 
-void		add_cut(char **snbr)
-{
-	char	*tmp;
-	int		i;
-
-	i = 0;
-	if (ft_strlen(*snbr) < (unsigned long)g_flags->cut)
-	{
-		tmp = ft_strnew(g_flags->cut);
-		while (i++ < (int)(g_flags->cut - ft_strlen(*snbr)))
-			ft_strcat(tmp, "0");
-		ft_strcat(tmp, *snbr);
-		free(*snbr);
-		*snbr = tmp;
-	}
-}
-
 int			kost(char ns)
 {
-	return (!(g_flags->dote && !g_flags->cut) || (g_flags->grill && ns == 'o' && !g_flags->min_width));
+	return (!(g_flags->dote && !g_flags->cut) ||
+		(g_flags->grill && ns == 'o' && !g_flags->min_width));
 }
 
 int			print_xxo(unsigned long long int nbr, char ns)
@@ -99,17 +82,17 @@ int			print_xxo(unsigned long long int nbr, char ns)
 		print_format_xo(ns, nbr);
 	else
 	{
-		if (g_flags->zero && !g_flags->dote) 
+		if (g_flags->zero && !g_flags->dote)
 			print_format_xo(ns, nbr);
-		ft_putchars((g_flags->zero && !g_flags->dote) ? '0' : ' ', g_flags->min_width -
-		get_len1(snbr) - get_format_xo(ns, nbr));
+		ft_putchars((g_flags->zero && !g_flags->dote) ? '0' : ' ',
+				g_flags->min_width - get_len1(snbr) - get_format_xo(ns, nbr));
 		if (!(g_flags->zero && !g_flags->dote))
 			print_format_xo(ns, nbr);
 	}
 	ft_putstr(kost(ns) ? snbr : 0);
 	if (g_flags->minus)
-		ft_putchars(' ', g_flags->min_width - get_len1(snbr) - get_format_xo(ns, nbr));
+		ft_putchars(' ',
+				g_flags->min_width - get_len1(snbr) - get_format_xo(ns, nbr));
 	free(snbr);
 	return (1);
 }
-

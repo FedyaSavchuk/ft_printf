@@ -24,22 +24,12 @@ void			get_degr_of_five(char **str, int degr)
 		ft_strcpy(tmp, DEG_OF_5_71);
 		degr -= 71;
 	}
-	else if (degr >= 7)
-	{
-		ft_strcpy(tmp, DEG_OF_5_7);
-		degr -= 7;
-	}
 	else if (degr-- > -1)
 		ft_strcpy(tmp, "5");
 	while (degr >= 71)
 	{
 		infin_mult(&tmp, DEG_OF_5_71);
 		degr -= 71;
-	}
-	while (degr >= 7)
-	{
-		infin_mult(&tmp, DEG_OF_5_7);
-		degr -= 7;
 	}
 	while (degr >= 1)
 	{

@@ -46,3 +46,20 @@ long double				convert_f(va_list *argv)
 		return (va_arg(*argv, long double));
 	return (va_arg(*argv, double));
 }
+
+void					add_cut(char **snbr)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	if (ft_strlen(*snbr) < (unsigned long)g_flags->cut)
+	{
+		tmp = ft_strnew(g_flags->cut);
+		while (i++ < (int)(g_flags->cut - ft_strlen(*snbr)))
+			ft_strcat(tmp, "0");
+		ft_strcat(tmp, *snbr);
+		free(*snbr);
+		*snbr = tmp;
+	}
+}

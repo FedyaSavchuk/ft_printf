@@ -79,5 +79,5 @@ void			infin_mult(char **m1, char *m2)
 		j++;
 	}
 	(*m1)[j] = '\0';
-	free(arr);
+	free(&arr[0]);
 }

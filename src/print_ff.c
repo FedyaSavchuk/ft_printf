@@ -33,12 +33,14 @@ int		round_last(char *str, int k)
 
 void	check_round(char **str, int j)
 {
+	(*str)[j + 1] = 0;
 	while (j > 0 && (*str)[j] > '9')
 	{
 		(*str)[j] = '0';
 		if ((*str)[j - 1] == '.')
 			j--;
-		(*str)[j - 1] += 1;
+		if ((j - 1) >= 0)
+			(*str)[j - 1] += 1;
 		j--;
 	}
 }
