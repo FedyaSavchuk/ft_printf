@@ -73,6 +73,8 @@ void					check_round(char **str, int j);
 int						is_num_valid(t_ld *l_info, char **str);
 void					handle_decoded(t_ld *l_info, char **str,
 						int *final_degr);
+void					print_f(char **str, t_un g_u);
+void					add_cut(char **snbr);
 
 t_flags					*g_flags;
 int						g_iter;
