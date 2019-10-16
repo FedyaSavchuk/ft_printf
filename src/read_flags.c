@@ -74,11 +74,8 @@ int		check_flags(char c)
 		&& c != 'x' && c != 'X' && c != 'f' && c != '\0');
 }
 
-char	read_flags(const char *f, va_list *argv)
+char	read_flags(const char *f, va_list *argv, int i)
 {
-	int i;
-
-	i = g_iter - 1;
 	while (check_flags(f[++i]))
 	{
 		g_flags->space = (f[i] == ' ') ? 1 : g_flags->space;

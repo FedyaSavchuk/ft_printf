@@ -51,10 +51,9 @@ typedef union			u_un
 }						t_un;
 
 int						ft_printf(const char *format, ...);
-char					read_flags(const char *f, va_list *argv);
+char					read_flags(const char *f, va_list *argv, int i);
 int						clear_flags(void);
 int						print_xxo(unsigned long long int nbr, char ns);
-char					*ft_itoa_base(int long long value, int base, char reg);
 int						print_di(long long int nbr);
 int						print_u(unsigned long long int nbr);
 void					print_t(char **arr);

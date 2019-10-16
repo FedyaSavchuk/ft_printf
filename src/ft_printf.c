@@ -66,6 +66,8 @@ void	choose_spec(char spec, va_list *argv)
 		print_lf(convert_f(argv));
 	else if (spec == 'p')
 		print_xxo(va_arg(*argv, unsigned long int), 'p');
+	else if (spec == 'r')
+		print_s(va_arg(*argv, char *), 'r');
 }
 
 int		free_g(void)
@@ -92,7 +94,7 @@ int		ft_printf(const char *format, ...)
 		{
 			g_iter++;
 			clear_flags();
-			if (!(spec = read_flags(format, &argv)))
+			if (!(spec = read_flags(format, &argv, g_iter - 1)))
 				continue ;
 			choose_spec(spec, &argv);
 		}
@@ -100,4 +102,10 @@ int		ft_printf(const char *format, ...)
 	}
 	va_end(argv);
 	return (free_g());
+}
+
+int 	main(void)
+{
+	char	*s = "Hello World";
+	ft_printf("%r", s);
 }

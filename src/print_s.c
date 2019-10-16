@@ -21,6 +21,8 @@ int		print_s(char *str, int flag)
 		s = ft_strdup("(null)");
 	else
 		s = ft_strdup(str);
+	if (flag == 'r')
+		s = ft_strrev(s);
 	len = ft_strlen(s);
 	if (g_flags->dote && len > g_flags->cut)
 		len = g_flags->cut;
