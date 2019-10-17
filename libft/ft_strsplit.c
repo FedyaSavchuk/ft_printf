@@ -3,95 +3,91 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aolen <aolen@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 23:38:25 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/05 23:38:31 by pparalax         ###   ########.fr       */
+/*   Created: 2019/09/05 16:02:15 by aolen             #+#    #+#             */
+/*   Updated: 2019/09/07 18:40:35 by aolen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_c_ws(const char *s, char c)
+static int		ft_isdelim(char c, char delim)
 {
-	unsigned int	count;
-	int				f;
-	int				i;
+	if (c == delim || c == '\0')
+		return (1);
+	return (0);
+}
 
-	i = -1;
-	count = 0;
-	f = 1;
-	while (s[++i] != '\0')
+static int		count_words(const char *str, char delim)
+{
+	int words_num;
+	int i;
+
+	words_num = 0;
+	i = 0;
+	while (str[i])
 	{
-		if (s[i] == c)
-			f = 1;
-		else if (f == 1)
-		{
-			f = 0;
-			count++;
-		}
+		if ((!ft_isdelim(str[i], delim) && i == 0) ||
+			(ft_isdelim(str[i - 1], delim) && !ft_isdelim(str[i], delim)))
+			words_num += 1;
+		i++;
 	}
-	return (count);
+	return (words_num);
 }
 
-static int	ft_c_cs(const char *s, int start, char c)
+static char		**clear_list(char ***words, int num)
 {
-	unsigned int	len;
-
-	len = 0;
-	while (s[start + len] != '\0' && s[start + len] != c)
-		len++;
-	return (len);
-}
-
-static char	**ft_clear_table(char ***s, int w)
-{
-	while (w >= 0)
+	while (num > -1)
 	{
-		if (*s[w])
-			free(*s[w]);
-		*s[w] = NULL;
-		w--;
+		free(*words[num]);
+		*words[num] = NULL;
+		num--;
 	}
-	free(*s);
-	*s = NULL;
-	return (NULL);
+	free(*words);
+	*words = NULL;
+	return (*words);
 }
 
-static char	**ft_empty_tab(void)
+static char		**ft_split(const char *str, int words_num, char delim, int j)
 {
-	char	**s;
-
-	if (!(s = (char**)malloc(sizeof(char*))))
-		return (NULL);
-	*s = NULL;
-	return (s);
-}
-
-char		**ft_strsplit(char const *s, char c)
-{
-	char	**str;
 	int		i;
-	int		w;
-	int		j;
+	int		k;
+	char	**words;
 
-	if (s && ft_c_ws(s, c) == 0)
-		return (ft_empty_tab());
-	if (!s || !(str = (char**)malloc(sizeof(char*) * (ft_c_ws(s, c) + 1))))
-		return (NULL);
-	w = 0;
-	j = 0;
 	i = -1;
-	while (s[++i] && !(j = 0) && w != ft_c_ws(s, c))
-	{
-		while (s[i] == c)
-			i++;
-		if (!(str[w] = (char*)malloc(sizeof(char) * (ft_c_cs(s, i, c) + 1))))
-			return (ft_clear_table(&str, w - 1));
-		while (s[i] != c && s[i])
-			str[w][j++] = s[i++];
-		str[w++][j] = '\0';
-	}
-	str[w] = NULL;
-	return (str);
+	if (!(words = (char**)malloc(sizeof(*words) * (words_num + 1))))
+		return (NULL);
+	while (str[++i] && words_num)
+		if ((!ft_isdelim(str[i], delim) && i == 0) ||
+			(ft_isdelim(str[i - 1], delim) && !ft_isdelim(str[i], delim)))
+		{
+			k = 0;
+			while (!ft_isdelim(str[i + k], delim))
+				k++;
+			if (!(words[j] = (char*)malloc(sizeof(**words) * (k + 1))))
+				return (clear_list(&words, j - 1));
+			words[j][k--] = 0;
+			while (k >= 0)
+			{
+				words[j][k] = str[i + k];
+				k--;
+			}
+			j++;
+		}
+	return (words);
+}
+
+char			**ft_strsplit(const char *s, char c)
+{
+	int		words_num;
+	char	**words;
+
+	if (s == NULL)
+		return (NULL);
+	words_num = count_words(s, c);
+	if (!(words = ft_split(s, words_num, c, 0)))
+		return (NULL);
+	words[words_num] = NULL;
+	return (words);
 }

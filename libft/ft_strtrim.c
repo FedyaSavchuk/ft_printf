@@ -3,37 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aolen <aolen@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 23:38:45 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/05 23:38:46 by pparalax         ###   ########.fr       */
+/*   Created: 2019/09/04 20:49:31 by aolen             #+#    #+#             */
+/*   Updated: 2019/09/06 13:58:43 by aolen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+static int	isspace(char c)
 {
-	char	*res;
-	int		i;
-	int		j;
-	int		end;
+	if (c == ' ' || c == '\n' || c == '\t'
+		|| c == '\0')
+		return (1);
+	return (0);
+}
 
-	i = 0;
-	j = 0;
+char		*ft_strtrim(const char *s)
+{
+	char		*clear_copy;
+	int			len;
+	const char	*begin;
+
 	if (!s)
 		return (NULL);
-	end = ft_strlen(s) - 1;
-	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
-		i++;
-	while ((s[i] != '\0') && (s[end] == ' ' || s[end] == '\n' ||
-		s[end] == '\t'))
-		end--;
-	res = (char *)malloc(sizeof(char) * (end - i + 1 + 1));
-	if ((!res))
+	begin = s;
+	while (*begin != '\0' && isspace(*begin))
+		begin++;
+	len = ft_strlen(begin);
+	if (len == 0)
+		return (ft_strnew(1));
+	while (isspace(begin[len - 1]) && len > 0)
+		len--;
+	if (!(clear_copy = ft_strnew(len)))
 		return (NULL);
-	while (i <= end)
-		res[j++] = s[i++];
-	res[j] = '\0';
-	return (res);
+	ft_strncpy(clear_copy, begin, len);
+	clear_copy[len] = 0;
+	return (clear_copy);
 }

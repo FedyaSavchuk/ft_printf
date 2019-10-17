@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aolen <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 23:35:47 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/05 23:35:52 by pparalax         ###   ########.fr       */
+/*   Created: 2019/07/04 11:48:51 by aolen             #+#    #+#             */
+/*   Updated: 2019/09/04 18:03:28 by aolen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int nb, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	if (nb == -2147483648)
+	long int k;
+	long int n_long;
+
+	k = 1;
+	n_long = 0 + n;
+	if (n < 0)
 	{
+		n_long *= -1;
 		ft_putchar_fd('-', fd);
-		ft_putchar_fd('2', fd);
-		nb = 147483648;
 	}
-	if (nb < 0)
+	if (n == 0)
 	{
-		ft_putchar_fd('-', fd);
-		nb = -(nb);
+		ft_putchar_fd('0', fd);
 	}
-	if (nb > 9)
-		ft_putnbr_fd(nb / 10, fd);
-	ft_putchar_fd((nb % 10) + '0', fd);
+	while (n_long)
+	{
+		k = k * 10 + n_long % 10;
+		n_long /= 10;
+	}
+	while (k != 1)
+	{
+		ft_putchar_fd('0' + k % 10, fd);
+		k /= 10;
+	}
+	return ;
 }

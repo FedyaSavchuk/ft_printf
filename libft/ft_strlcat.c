@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aolen <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 20:35:18 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/05 20:35:20 by pparalax         ###   ########.fr       */
+/*   Created: 2019/07/08 17:52:27 by aolen             #+#    #+#             */
+/*   Updated: 2019/09/07 18:29:26 by aolen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,24 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	dst_length;
-	size_t	i;
+	size_t i;
+	size_t dst_len;
+	size_t src_len;
 
-	dst_length = ft_strlen(dst);
 	i = 0;
-	if (size <= dst_length)
-		return (size + ft_strlen(src));
-	while (i < size - dst_length - 1 && src[i] != '\0')
+	dst_len = 0;
+	src_len = 0;
+	while (dst[dst_len] != '\0')
+		dst_len++;
+	while (src[src_len] != '\0')
+		src_len++;
+	while (((dst_len + i + 1) < (size)) && src[i] != '\0')
 	{
-		dst[dst_length + i] = src[i];
+		dst[dst_len + i] = src[i];
 		i++;
 	}
-	dst[dst_length + i] = '\0';
-	return (dst_length + ft_strlen(src));
+	dst[dst_len + i] = 0;
+	if (dst_len > size)
+		return (src_len + size);
+	return (dst_len + src_len);
 }

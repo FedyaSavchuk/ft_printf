@@ -3,29 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aolen <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 23:35:40 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/05 23:35:41 by pparalax         ###   ########.fr       */
+/*   Created: 2019/07/04 11:48:51 by aolen             #+#    #+#             */
+/*   Updated: 2019/09/04 17:45:05 by aolen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int nb)
+void	ft_putnbr(int n)
 {
-	if (nb == -2147483648)
+	long int k;
+	long int n_long;
+
+	k = 1;
+	n_long = 0 + n;
+	if (n < 0)
 	{
+		n_long *= -1;
 		ft_putchar('-');
-		ft_putchar('2');
-		nb = 147483648;
 	}
-	if (nb < 0)
+	if (n == 0)
 	{
-		ft_putchar('-');
-		nb = -(nb);
+		ft_putchar('0');
 	}
-	if (nb > 9)
-		ft_putnbr(nb / 10);
-	ft_putchar((nb % 10) + '0');
+	while (n_long)
+	{
+		k = k * 10 + n_long % 10;
+		n_long /= 10;
+	}
+	while (k != 1)
+	{
+		ft_putchar('0' + k % 10);
+		k /= 10;
+	}
+	return ;
 }

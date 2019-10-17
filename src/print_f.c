@@ -55,7 +55,7 @@ static void	print_num(char **str, int degr, int j)
 	int		k;
 
 	i = ft_strlen((*str)) - degr;
-	result = ft_strnew((i > 0 ? i : 1) + g_flags->cut + 3);
+	result = ft_strnew((i > 0 ? i : 1) + g_flags->cut + 2);
 	result[j++] = '0';
 	if (g_flags->dote == 1 && g_flags->cut == 0)
 		handle_integer(&result, i, (*str));
@@ -100,7 +100,7 @@ void		print_f(char **str, t_un g_u)
 	int			i;
 	int			final_degr;
 
-	l_info = ft_memalloc(sizeof(l_info));
+	l_info = ft_memalloc(sizeof(*l_info));
 	transform_dbl(&l_info, g_u);
 	i = 8;
 	l_info->mant = 0;
@@ -114,5 +114,4 @@ void		print_f(char **str, t_un g_u)
 	handle_decoded(l_info, str, &final_degr);
 	print_num(str, -final_degr, 0);
 	free(l_info);
-	return ;
 }

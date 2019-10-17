@@ -3,31 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aolen <aolen@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 20:32:43 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/05 20:32:45 by pparalax         ###   ########.fr       */
+/*   Created: 2019/09/04 17:22:50 by aolen             #+#    #+#             */
+/*   Updated: 2019/09/05 19:49:54 by aolen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int				i;
-	unsigned char	*dest2;
-	unsigned char	*src2;
+	char	*str_dest;
+	char	*str_src;
+	char	*lastsrc;
+	char	*lastdest;
 
-	i = -1;
-	if (!dest && !src)
-		return (0);
-	dest2 = (unsigned char *)dest;
-	src2 = (unsigned char *)src;
-	if (src < dest)
-		while (n--)
-			dest2[n] = src2[n];
+	str_dest = (char*)dst;
+	str_src = (char*)src;
+	if (!dst && !src)
+		return (dst);
+	if (dst < src)
+		ft_memcpy(dst, src, len);
 	else
-		while (++i < (int)n)
-			dest2[i] = src2[i];
-	return (dest);
+	{
+		lastsrc = str_src + (len - 1);
+		lastdest = str_dest + (len - 1);
+		while (len--)
+			*lastdest-- = *lastsrc--;
+	}
+	return (dst);
 }

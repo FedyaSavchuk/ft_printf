@@ -3,38 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aolen <aolen@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 23:31:50 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/05 23:31:53 by pparalax         ###   ########.fr       */
+/*   Created: 2019/09/05 17:29:23 by aolen             #+#    #+#             */
+/*   Updated: 2019/09/05 20:20:13 by aolen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int value)
+static long int	mult_mult(int base, int exp)
 {
-	int		len;
-	int		digit;
-	char	*nbr;
-	int		sign;
-	long	valuel;
+	long int result;
 
-	valuel = value;
-	digit = valuel;
-	len = 1;
-	sign = ((valuel < 0) ? 1 : 0);
-	while ((digit /= 10) != 0)
-		len++;
-	if (!(nbr = (char*)ft_memalloc(sizeof(char) * (len + 1 + sign))))
-		return (0);
-	nbr[0] = '-';
-	valuel *= ((sign) ? -1 : 1);
-	while (len > 0)
+	result = 1;
+	while (exp-- > 0)
+		result *= base;
+	return (result);
+}
+
+char			*ft_itoa(int n)
+{
+	int			exp;
+	char		*result;
+	int			sign;
+
+	sign = 0;
+	if (n < 0)
+		sign = 1;
+	exp = 0;
+	n = -ABS(n);
+	while (-mult_mult(10, exp + 1) >= n)
+		exp++;
+	if (!(result = (char*)malloc(sizeof(*result) * (exp + sign + 2))))
+		return (NULL);
+	result[exp + sign + 1] = 0;
+	if (sign)
+		result[0] = '-';
+	while (exp > -1)
 	{
-		digit = valuel % 10;
-		nbr[--len + sign] = digit + '0';
-		valuel = valuel / 10;
+		result[sign] = '0' - (n / mult_mult(10, exp));
+		n = n % mult_mult(10, exp);
+		exp--;
+		sign++;
 	}
-	return (nbr);
+	return (result);
 }

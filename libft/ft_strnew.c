@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aolen <aolen@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 23:38:13 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/05 23:38:14 by pparalax         ###   ########.fr       */
+/*   Created: 2019/09/04 18:36:04 by aolen             #+#    #+#             */
+/*   Updated: 2019/09/16 12:46:56 by aolen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strnew(size_t size)
 {
-	if (size + 1 < size)
-		return (NULL);
-	return ((char *)ft_memalloc(size + 1));
+	if (size + 1 > size)
+		return ((char*)ft_memalloc(size + 1));
+	return (NULL);
 }

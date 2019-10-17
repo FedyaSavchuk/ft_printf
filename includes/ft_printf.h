@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aolen <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 23:16:53 by pparalax          #+#    #+#             */
-/*   Updated: 2019/10/13 21:01:35 by pmila            ###   ########.fr       */
+/*   Created: 2019/10/17 14:15:28 by aolen             #+#    #+#             */
+/*   Updated: 2019/10/17 14:16:07 by aolen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FT_PRINTF_H
 # include <unistd.h>
 # include <stdlib.h>
-# include <fcntl.h>
 # include <stdarg.h>
 # include "libft.h"
 

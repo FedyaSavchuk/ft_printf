@@ -1,6 +1,6 @@
 .PHONY: all clean install uninstall
 
-FLAGS = -Wall -Wextra -Werror -I./libft/includes/ -I./includes/#-L./libft/ -lft
+FLAGS = -Wall -Wextra -Werror #-I./libft/includes/ -I./includes/#-L./libft/ -lft
 
 FILES = convert.c \
       ft_printf.c \
@@ -38,10 +38,10 @@ LIBFT_FILES = ft_memset.c \
 		ft_strnstr.c \
 		ft_strcmp.c \
 		ft_strncmp.c \
-		ft_abs.c \
 		ft_atoi.c \
 		ft_itoa_base.c \
 		ft_uitoa_base.c \
+		ft_abs.c \
 		ft_isalpha.c \
 		ft_isdigit.c \
 		ft_isalnum.c \
@@ -82,13 +82,7 @@ LIBFT_FILES = ft_memset.c \
 		ft_lstiter.c \
 		ft_lstmap.c \
 		ft_strlcpy.c \
-		ft_isupper.c \
-		ft_islower.c \
-		ft_capitalize.c \
-		ft_lst_push_back.c \
-		ft_lst_push_front.c \
-		ft_lst_reverse.c \
-		get_next_line.c
+		ft_isspace.c
 
 LIBFT_OBJ = $(addprefix ./libft/, $(LIBFT_FILES:%.c=%.o))
 
@@ -97,6 +91,10 @@ SRC_PATH = ./src/
 SRC = $(addprefix $(SRC_PATH), $(FILES))
 
 LIBFT = ./libft/libft.a
+
+INCL = -I./includes -I./libft/includes
+
+LIBFT_INCL = -Iincludes -Ilibft/includes
 
 NAME = libftprintf.a
 
@@ -109,10 +107,10 @@ $(NAME): $(LIBFT_OBJ) $(OBJ)
 	ranlib $(NAME)
 
 $(LIBFT_OBJ): %.o: %.c
-	gcc -c $(FLAGS) $< -o $@
+	gcc -c $(FLAGS) $(LIBFT_INCL) $< -o $@
 
 $(OBJ): %.o: %.c
-	gcc -c $(FLAGS) $< -o $@
+	gcc -c $(FLAGS) $(INCL) $< -o $@
 
 clean:
 	rm -f $(OBJ) $(LIBFT_OBJ)

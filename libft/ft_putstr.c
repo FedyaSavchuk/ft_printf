@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aolen <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 23:36:05 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/05 23:36:06 by pparalax         ###   ########.fr       */
+/*   Created: 2019/10/17 14:00:28 by aolen             #+#    #+#             */
+/*   Updated: 2019/10/17 14:00:29 by aolen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 void	ft_putstr(const char *s)
 {

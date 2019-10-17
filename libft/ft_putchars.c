@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hspeeder <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aolen <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/29 19:16:50 by hspeeder          #+#    #+#             */
-/*   Updated: 2019/09/29 19:16:53 by hspeeder         ###   ########.fr       */
+/*   Created: 2019/10/17 14:00:50 by aolen             #+#    #+#             */
+/*   Updated: 2019/10/17 14:00:51 by aolen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_printf.h"
 
 void	ft_putchars(char c, int i)
 {
+	g_giter++;
 	while (i-- > 0)
 		ft_putchar(c);
 }

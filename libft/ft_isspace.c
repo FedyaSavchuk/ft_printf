@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_capitalize.c                                    :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aolen <aolen@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 15:21:26 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/10 15:21:27 by pparalax         ###   ########.fr       */
+/*   Created: 2019/09/06 20:44:52 by aolen             #+#    #+#             */
+/*   Updated: 2019/09/07 15:19:02 by aolen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_capitalize(char *s)
+int	ft_isspace(int c)
 {
-	int i;
+	unsigned char ch;
 
-	i = -1;
-	while (s && s[++i])
-		s[i] = ft_toupper(s[i]);
-	return (s);
+	ch = (unsigned char)c;
+	if ((c == '\t') || (c == ' ') || (c == '\f')
+		|| (c == '\n') || (c == '\v') || (c == '\r'))
+		return (1);
+	else
+		return (0);
 }

@@ -3,39 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aolen <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 20:30:48 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/05 20:30:50 by pparalax         ###   ########.fr       */
+/*   Created: 2019/07/08 12:45:05 by aolen             #+#    #+#             */
+/*   Updated: 2019/09/10 20:52:55 by aolen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+static int	for_people_who_think_that_this_is_needed(int sign)
 {
-	long long	res;
-	int			sign;
-	int			i;
-	long long	prev;
+	if (sign < 0)
+		return (0);
+	else
+		return (-1);
+}
 
-	sign = 1;
-	res = 0;
+int			ft_atoi(const char *str)
+{
+	int				i;
+	unsigned long	numbers;
+	unsigned long	prev;
+	int				sign;
+
 	i = 0;
-	while (str[i] != '\0' && (str[i] == ' ' || str[i] == '\n' || str[i] == '\f'
-		|| str[i] == '\t' || str[i] == '\r' || str[i] == '\v'))
+	sign = 1;
+	numbers = 0;
+	prev = 0;
+	while (ft_isspace(str[i]))
 		i++;
-	if ((str[i] == '-' || str[i] == '+') && (str[i++] == '-'))
-		sign = -1;
-	while (str[i] != '\0')
+	if ((str[i] == '-') && (str[i + 1] - '0' < 10)
+		&& (str[i + 1] - '0' >= 0))
+		i -= (sign = -1);
+	else if (str[i] == '+' && ((str[i + 1] - '0' < 10)
+			&& (str[i + 1] - '0' >= 0)))
+		i++;
+	while ((str[i] - '0' < 10) && (str[i] - '0' >= 0))
 	{
-		prev = res;
-		if ((int)(str[i] - '0') > 9 || (int)(str[i] - '0') < 0)
-			return (sign * res);
-		res = res * 10 + (int)(str[i] - '0');
-		if (res < prev)
-			return ((sign == 1) ? -1 : 0);
-		i++;
+		numbers = numbers * 10 + (str[i++] - '0');
+		if (numbers < prev || numbers >= 9223372036854775807)
+			return (for_people_who_think_that_this_is_needed(sign));
+		prev = numbers;
 	}
-	return ((int)(sign * res));
+	return (numbers * sign);
 }

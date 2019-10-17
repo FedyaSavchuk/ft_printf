@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   float.c                                            :+:      :+:    :+:   */
+/*   print_fff.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmila <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aolen <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/02 16:49:28 by pmila             #+#    #+#             */
-/*   Updated: 2019/10/14 15:37:19 by pmila            ###   ########.fr       */
+/*   Created: 2019/10/17 14:18:25 by aolen             #+#    #+#             */
+/*   Updated: 2019/10/17 14:18:25 by aolen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 #include "ft_printf.h"
-#define MAX_LEN 4096
+#define MAX_LEN 8192
 
 static char	handle_flags(char *s, char **out)
 {

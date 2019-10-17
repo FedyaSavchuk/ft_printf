@@ -103,9 +103,3 @@ int		ft_printf(const char *format, ...)
 	va_end(argv);
 	return (free_g());
 }
-
-int 	main(void)
-{
-	char	*s = "Hello World";
-	ft_printf("%r", s);
-}

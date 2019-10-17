@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pparalax <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aolen <aolen@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 23:34:50 by pparalax          #+#    #+#             */
-/*   Updated: 2019/09/12 19:17:00 by pparalax         ###   ########.fr       */
+/*   Created: 2019/09/04 17:39:04 by aolen             #+#    #+#             */
+/*   Updated: 2019/09/04 17:40:07 by aolen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 void	ft_putchar(char c)
 {
