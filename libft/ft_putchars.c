@@ -15,7 +15,7 @@
 
 void	ft_putchars(char c, int i)
 {
-	g_giter++;
+	g_giter += i;
 	while (i-- > 0)
 		ft_putchar(c);
 }
